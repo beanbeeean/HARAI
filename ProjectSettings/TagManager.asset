@@ -14,12 +14,12 @@ TagManager:
   - 
   - 
   - 
-  - 
+  - CommonMonster
   - Floor
   - Wall
   - Door
-  - 
-  - 
+  - Light
+  - Portal
   - 
   - 
   - 
@@ -49,6 +49,9 @@ TagManager:
     locked: 0
   - name: Player
     uniqueID: 341926445
+    locked: 0
+  - name: Monster
+    uniqueID: 3937401721
     locked: 0
   - name: Door
     uniqueID: 1314837173
