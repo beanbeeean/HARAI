@@ -3,7 +3,8 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 3
-  tags: []
+  tags:
+  - Enemy
   layers:
   - Default
   - TransparentFX
@@ -17,9 +18,9 @@ TagManager:
   - CommonMonster
   - Floor
   - Wall
-  - Door
-  - Light
   - Portal
+  - Light
+  - 
   - 
   - 
   - 
@@ -47,17 +48,20 @@ TagManager:
   - name: Outline
     uniqueID: 1902269615
     locked: 0
-  - name: Player
-    uniqueID: 341926445
+  - name: Portal
+    uniqueID: 2435346775
     locked: 0
   - name: Monster
     uniqueID: 3937401721
     locked: 0
-  - name: Door
-    uniqueID: 1314837173
-    locked: 0
   - name: Wall
     uniqueID: 3650162089
+    locked: 0
+  - name: Player
+    uniqueID: 341926445
+    locked: 0
+  - name: InteractAlert
+    uniqueID: 107144753
     locked: 0
   m_RenderingLayers:
   - Default

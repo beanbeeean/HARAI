@@ -35,8 +35,13 @@ public class CommonMonsterAnimator : MonoBehaviour
 
         if (direction.sqrMagnitude > 0.001f)
         {
-            animator.SetFloat(dirXHash, direction.x);
-            animator.SetFloat(dirYHash, direction.y);
+            float inputX = direction.x > 0.1f ? 1f : (direction.x < -0.1f ? -1f : 0f);
+            float inputY = direction.y > 0.1f ? 1f : (direction.y < -0.1f ? -1f : 0f);
+
+            animator.SetFloat(dirXHash, inputX);
+            animator.SetFloat(dirYHash, inputY);
+
+            //Debug.Log($"몬스터 방향 - X: {inputX}, Y: {inputY}");
         }
     }
 
