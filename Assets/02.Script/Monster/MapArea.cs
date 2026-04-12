@@ -9,7 +9,7 @@ public class MapArea : MonoBehaviour
     public int maxEnemyCount = 3;
 
     [Header("Layer Settings")]
-    [SerializeField] private string floorLayerName = "Floor"; // 레이어 이름 설정
+    [SerializeField] private string floorLayerName = "Floor"; 
 
     [HideInInspector] public List<Vector3> walkablePoints = new List<Vector3>();
     private float navMeshCheckRadius = 0.1f;
@@ -18,7 +18,6 @@ public class MapArea : MonoBehaviour
     {
         walkablePoints.Clear();
 
-        // 1. 레이어 번호 가져오기
         int targetLayer = LayerMask.NameToLayer(floorLayerName);
         if (targetLayer == -1)
         {
@@ -26,7 +25,6 @@ public class MapArea : MonoBehaviour
             return;
         }
 
-        // 2. 자식 오브젝트들 중 Tilemap 컴포넌트가 있고, 레이어가 Floor인 것만 수집
         Tilemap[] childMaps = GetComponentsInChildren<Tilemap>();
 
         foreach (var map in childMaps)

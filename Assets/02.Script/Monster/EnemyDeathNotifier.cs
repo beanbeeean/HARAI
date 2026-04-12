@@ -15,7 +15,6 @@ public class EnemyDeathNotifier : MonoBehaviour
 
     private void OnDestroy()
     {
-        // 게임 종료 중이 아니고, Spawner가 살아있을 때만 리스폰 요청
         if (!isQuitting && spawner != null && gameObject.scene.isLoaded)
         {
             spawner.OnMonsterDied(myArea);

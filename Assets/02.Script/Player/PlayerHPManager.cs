@@ -8,6 +8,7 @@ public class PlayerHPManager : MonoBehaviour
     [SerializeField] private int maxHealth = 10;
     [SerializeField] private int currentHealth;
     [SerializeField] private float invincibleTime = 2f;
+    [SerializeField] private HealthPopup healthPopup;
     public bool setFullHealthOnStart = true;
 
     public int CurrentHealth => currentHealth;
@@ -54,14 +55,17 @@ public class PlayerHPManager : MonoBehaviour
         currentHealth = Mathf.Max(0, currentHealth - amount);
         OnHealthChanged?.Invoke(currentHealth, maxHealth);
 
-        // 넉백 실행: PlayerMove2D 컴포넌트를 찾아 넉백 함수 호출
+        if (healthPopup != null)
+        {
+            healthPopup.Show(amount, true);
+        }
+
+        // 넉백 및 무적 로직...
         if (TryGetComponent(out PlayerMove2D playerMove))
         {
             playerMove.ApplyKnockback(attackerPosition);
         }
-
         StartCoroutine(InvincibilityRoutine());
-
         if (IsDead) Die();
     }
 
@@ -76,7 +80,6 @@ public class PlayerHPManager : MonoBehaviour
 
             while (elapsed < invincibleTime)
             {
-                // 컨테이너 하위의 모든 스프라이트를 동시에 깜빡임
                 foreach (var s in childSprites)
                 {
                     if (s != null) s.enabled = !s.enabled;
@@ -86,7 +89,6 @@ public class PlayerHPManager : MonoBehaviour
                 elapsed += blinkInterval;
             }
 
-            // 루프 종료 후 모든 스프라이트 확실히 켜기
             foreach (var s in childSprites)
             {
                 if (s != null) s.enabled = true;
@@ -100,13 +102,19 @@ public class PlayerHPManager : MonoBehaviour
         isHit = false;
     }
 
+
     public void Heal(int amount)
     {
         if (IsDead || amount <= 0) return;
 
+
         currentHealth = Mathf.Min(maxHealth, currentHealth + amount);
         OnHealthChanged?.Invoke(currentHealth, maxHealth);
 
+        if (healthPopup != null)
+        {
+            healthPopup.Show(amount, false);
+        }
     }
 
     private void Die()

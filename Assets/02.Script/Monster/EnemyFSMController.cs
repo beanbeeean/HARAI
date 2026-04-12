@@ -26,12 +26,12 @@ public abstract class EnemyFSMController : MonoBehaviour
     protected readonly int lightLayerMask = 1 << 13;
 
     [Header("Light Timing Settings")]
-    [SerializeField] private float exposureResetDelay = 0.1f; // 0.1초 유예
+    [SerializeField] private float exposureResetDelay = 0.1f;
     private float lastExposedTime;
 
     [Header("Portal Settings")]
-    protected Vector2 lastKnownPlayerPosition; // 플레이어를 마지막으로 본 위치
-    protected bool isPortalCooldown = false;    // 핑퐁 방지 쿨타임
+    protected Vector2 lastKnownPlayerPosition; 
+    protected bool isPortalCooldown = false; 
 
     [Header("UI Settings")]
     [SerializeField] protected Slider exposureSlider;
@@ -45,7 +45,6 @@ public abstract class EnemyFSMController : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         agent = GetComponent<NavMeshAgent>();
 
-        // 2D 설정을 코드로 강제
         agent.updateRotation = false;
         agent.updateUpAxis = false;
 
@@ -66,7 +65,6 @@ public abstract class EnemyFSMController : MonoBehaviour
     {
         if (currentState == EnemyState.Dead) return;
 
-        // 플레이어를 보고 있다면 마지막 위치를 계속 갱신
         if (CanSeePlayer() && target != null)
         {
             lastKnownPlayerPosition = target.position;
@@ -86,14 +84,11 @@ public abstract class EnemyFSMController : MonoBehaviour
     {
         if (exposureSlider == null || canvasObj == null) return;
 
-        // 1. 게이지가 0보다 클 때만 UI를 보여줌 (isExposed 상태 활용)
         if (currentExposure > 0)
         {
             canvasObj.SetActive(true);
-            // 2. 슬라이더 값 업데이트 (현재값 / 최대값 비율)
             exposureSlider.value = currentExposure / maxExposure;
 
-            // 3. [꿀팁] 캔버스가 회전하지 않도록 고정 (몬스터가 돌아봐도 UI는 정면)
             canvasObj.transform.rotation = Quaternion.identity;
         }
         else
@@ -102,7 +97,6 @@ public abstract class EnemyFSMController : MonoBehaviour
         }
     }
 
-    // 몬스터가 포탈을 이용한 후 호출할 코루틴
     protected IEnumerator PortalCooldownRoutine(float duration)
     {
         isPortalCooldown = true;
@@ -120,11 +114,10 @@ public abstract class EnemyFSMController : MonoBehaviour
 
         if (isExposed)
         {
-            lastExposedTime = Time.fixedTime; // 물리 시간으로 기록
+            lastExposedTime = Time.fixedTime;
             isExposed = false;
         }
 
-        // 현재 물리 시간과 마지막 노출 시간의 차이 계산
         float timeSinceLastExposed = Time.fixedTime - lastExposedTime;
         bool isStillExposed = timeSinceLastExposed < exposureResetDelay;
 
@@ -133,8 +126,6 @@ public abstract class EnemyFSMController : MonoBehaviour
             currentExposure += Time.fixedDeltaTime;
             ApplyLightEffect();
 
-            // --- 디버그 로그 추가 ---
-            // Debug.Log($"[빛 노출 중] 차이: {timeSinceLastExposed}, 게이지: {currentExposure}");
 
             if (currentExposure >= maxExposure)
             {
@@ -145,7 +136,6 @@ public abstract class EnemyFSMController : MonoBehaviour
         }
         else
         {
-            // 리셋될 때 로그를 찍어보세요. 손전등을 쏘고 있는데 이게 찍히면 판정 문제임
             if (currentExposure > 0)
             {
                 Debug.Log($"[리셋됨] 마지막 노출로부터 {timeSinceLastExposed}초 경과");
@@ -158,7 +148,6 @@ public abstract class EnemyFSMController : MonoBehaviour
 
     protected void StopMovement()
     {
-        // 정지 시에도 마찬가지로 체크해주는 것이 안전합니다.
         if (agent != null && agent.gameObject.activeInHierarchy && agent.isOnNavMesh)
         {
             agent.isStopped = true;
@@ -170,7 +159,6 @@ public abstract class EnemyFSMController : MonoBehaviour
 
     protected void ResumeMovement()
     {
-        // 에이전트가 활성화되어 있고, NavMesh 위에 올라와 있는지(isOnNavMesh) 체크
         if (agent != null && agent.gameObject.activeInHierarchy && agent.isOnNavMesh)
         {
             agent.isStopped = false;
@@ -194,7 +182,7 @@ public abstract class EnemyFSMController : MonoBehaviour
                 if (distance <= attackDistance)
                     currentState = EnemyState.Attack;
                 else if (distance > loseRange)
-                    currentState = EnemyState.Patrol; // 잃어버리면 다시 순찰로
+                    currentState = EnemyState.Patrol;
                 break;
 
             case EnemyState.Attack:
@@ -206,7 +194,6 @@ public abstract class EnemyFSMController : MonoBehaviour
 
     protected virtual void HandleStateBehavior()
     {
-        // 에이전트가 아직 NavMesh에 배치되지 않았다면 로직을 실행하지 않음
         if (agent == null || !agent.isOnNavMesh) return;
 
         ResumeMovement();
@@ -219,7 +206,7 @@ public abstract class EnemyFSMController : MonoBehaviour
                 break;
 
             case EnemyState.Patrol:
-                HandlePatrol(); // 자식 클래스에서 구현하거나 공통 로직으로 구현
+                HandlePatrol();
                 break;
 
             case EnemyState.Attack:
@@ -246,7 +233,7 @@ public abstract class EnemyFSMController : MonoBehaviour
         if (((1 << collision.gameObject.layer) & lightLayerMask) != 0) isExposed = true;
     }
 
-    protected abstract void HandlePatrol(); // 순찰 방식은 몬스터마다 다를 수 있어 추상화
+    protected abstract void HandlePatrol();
     protected abstract void TryAttack();
     protected abstract void OnLightGaugeFull();
     protected abstract void ApplyLightEffect();

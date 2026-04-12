@@ -1,26 +1,35 @@
 ﻿using UnityEngine;
 using UnityEngine.InputSystem;
-using System; // Action 이벤트를 위해 필요합니다.
-
+using System; 
 [RequireComponent(typeof(PlayerInput))]
 public class PlayerInputReader : MonoBehaviour
 {
     private PlayerInput playerInput;
     private InputAction moveAction;
     private InputAction interactAction;
+    private InputAction pickUpAction;
+    private InputAction inv1Action;
+    private InputAction inv2Action;
+    private InputAction inv3Action;
 
-    // 외부에서 읽어갈 데이터들
     public Vector2 MoveVector { get; private set; }
-    public bool InteractPressed { get; private set; } // 현재 버튼이 눌려있는 상태인지 (채널링용)
+    public bool InteractPressed { get; private set; }
     public bool isMoving { get; private set; }
 
-    // 다른 스크립트에서 구독할 이벤트들
-    public event Action InteractStartedEvent;  // 버튼을 누른 순간 (문 이동 등)
-    public event Action InteractCanceledEvent; // 버튼에서 손을 뗀 순간 (정화 중단 등)
+    public event Action InteractStartedEvent;
+    public event Action InteractCanceledEvent;
+    public event Action PickUpStartedEvent;
+    public event Action<int> OnInventoryUsed;
+    public event Action<int> OnInventoryDropped;
+
 
     [Header("Action Names")]
     [SerializeField] private string moveActionName = "Move";
     [SerializeField] private string interacionActionName = "Interact";
+    [SerializeField] private string pickUpActionName = "PickUp";
+    [SerializeField] private string inventory1ActionName = "Inventory1";
+    [SerializeField] private string inventory2ActionName = "Inventory2";
+    [SerializeField] private string inventory3ActionName = "Inventory3";
 
     private void Awake()
     {
@@ -30,37 +39,62 @@ public class PlayerInputReader : MonoBehaviour
 
     private void OnEnable()
     {
-        // New Input System의 콜백(started, canceled)을 연결합니다.
         if (interactAction != null)
         {
             interactAction.started += OnInteractStarted;
             interactAction.canceled += OnInteractCanceled;
+
+        }
+
+        if (inv1Action != null) inv1Action.started += ctx => HandleInventoryInput(0);
+        if (inv2Action != null) inv2Action.started += ctx => HandleInventoryInput(1);
+        if (inv3Action != null) inv3Action.started += ctx => HandleInventoryInput(2);
+
+        if (pickUpAction != null)
+        {
+            pickUpAction.started += OnPickUpStarted;
         }
     }
 
     private void OnDisable()
     {
-        // 메모리 누수 방지를 위해 연결을 해제합니다.
         if (interactAction != null)
         {
             interactAction.started -= OnInteractStarted;
             interactAction.canceled -= OnInteractCanceled;
         }
+
+        if (pickUpAction != null)
+        {
+            pickUpAction.started -= OnPickUpStarted;
+        }
+    }
+
+    private void OnPickUpStarted(InputAction.CallbackContext context)
+    {
+        PickUpStartedEvent?.Invoke();
+    }
+
+    private void HandleInventoryInput(int index)
+    {
+        bool isAltPressed = Keyboard.current.leftAltKey.isPressed || Keyboard.current.rightAltKey.isPressed;
+
+        if (isAltPressed)
+            OnInventoryDropped?.Invoke(index);
+        else
+            OnInventoryUsed?.Invoke(index);
     }
 
     private void Update()
     {
-        // 매 프레임 이동 값과 버튼 유지 상태를 업데이트합니다.
         MoveVector = moveAction != null ? moveAction.ReadValue<Vector2>() : Vector2.zero;
         isMoving = MoveVector != Vector2.zero;
 
-        // 버튼이 '유지'되고 있는지 체크 (채널링 게이지 상승 등에 사용)
         InteractPressed = interactAction != null && interactAction.IsPressed();
     }
 
     private void OnInteractStarted(InputAction.CallbackContext context)
     {
-        // 이벤트를 구독한 델리게이트가 있다면 실행합니다.
         InteractStartedEvent?.Invoke();
     }
 
@@ -75,6 +109,10 @@ public class PlayerInputReader : MonoBehaviour
 
         moveAction = FindAction(moveActionName);
         interactAction = FindAction(interacionActionName);
+        pickUpAction = FindAction(pickUpActionName);
+        inv1Action = FindAction(inventory1ActionName); 
+        inv2Action = FindAction(inventory2ActionName);
+        inv3Action = FindAction(inventory3ActionName);
     }
 
     private InputAction FindAction(string actionName)

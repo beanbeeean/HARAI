@@ -16,7 +16,7 @@ public class PlayerMove2D : MonoBehaviour
     [SerializeField] private float knockbackDuration = 0.5f;
     private bool isKnockback = false;
     private Vector2 knockbackVelocity;
-    [SerializeField] private float jumpHeight = 1.5f; // 포물선 높이
+    [SerializeField] private float jumpHeight = 1.5f;
     [SerializeField] private Transform spriteTransform;
 
     [SerializeField]
@@ -45,32 +45,10 @@ public class PlayerMove2D : MonoBehaviour
         UpdateDirection();
     }
 
-    //private void FixedUpdate() 
-    //{
-    //    //Vector2 newPosition = rb.position + inputDirection.normalized * moveSpeed * Time.fixedDeltaTime;
-    //    //rb.MovePosition(newPosition);
-
-    //    Vector2 moveStep = inputDirection.normalized * moveSpeed;
-
-    //    // 넉백 중일 때는 입력 방향 대신 넉백 속도를 사용하거나, 두 값을 합칩니다.
-    //    // 여기서는 넉백의 손맛을 위해 입력을 잠시 무시하고 넉백 속도만 적용해볼게요.
-    //    Vector2 finalVelocity = isKnockback ? knockbackVelocity : moveStep;
-
-    //    Vector2 newPosition = rb.position + finalVelocity * Time.fixedDeltaTime;
-    //    rb.MovePosition(newPosition);
-    //}
-
-    //public void ApplyKnockback(Vector2 attackerPos)
-    //{
-    //    if (isKnockback) return;
-    //    StartCoroutine(KnockbackRoutine(attackerPos));
-    //}
-
     private void FixedUpdate()
     {
-        if (isKnockback) return; // 넉백 중엔 입력 무시
+        if (isKnockback) return;
 
-        // 입력 방향으로 속도를 직접 꽂아줍니다.
         rb.linearVelocity = inputDirection.normalized * moveSpeed;
     }
 
@@ -84,7 +62,6 @@ public class PlayerMove2D : MonoBehaviour
     {
         isKnockback = true;
 
-        // 1. 초기 넉백 속도 부여 (Linear Damping이 이걸 서서히 줄여줄 겁니다)
         Vector2 dir = ((Vector2)transform.position - attackerPos).normalized;
         rb.linearVelocity = dir * knockbackForce;
 
@@ -95,8 +72,6 @@ public class PlayerMove2D : MonoBehaviour
             elapsed += Time.deltaTime;
             float percent = elapsed / knockbackDuration;
 
-            // 2. 포물선 계산 (스프라이트만 위로 띄우기)
-            // y = -4h(x^2 - x) 공식
             float height = 4 * jumpHeight * (percent - percent * percent);
 
             if (spriteTransform != null)
@@ -104,32 +79,14 @@ public class PlayerMove2D : MonoBehaviour
                 spriteTransform.localPosition = new Vector3(0, height, 0);
             }
 
-            yield return null; // 매 프레임 실행
+            yield return null;
         }
 
-        // 3. 착지 및 제어권 반환
         if (spriteTransform != null) spriteTransform.localPosition = Vector3.zero;
         rb.linearVelocity = Vector2.zero;
         isKnockback = false;
     }
 
-    //private IEnumerator KnockbackRoutine(Vector2 attackerPos)
-    //{
-    //    isKnockback = true;
-
-    //    // 1. 방향 계산 (공격자 -> 나)
-    //    Vector2 dir = ((Vector2)transform.position - attackerPos).normalized;
-
-    //    // 2. 넉백 속도 설정
-    //    knockbackVelocity = dir * knockbackForce;
-
-    //    // 3. 넉백 지속 시간
-    //    yield return new WaitForSeconds(knockbackDuration);
-
-    //    // 4. 초기화
-    //    knockbackVelocity = Vector2.zero;
-    //    isKnockback = false;
-    //}
 
     private void UpdateDirection()
     {
