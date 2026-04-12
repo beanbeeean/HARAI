@@ -3,22 +3,32 @@
 public class CommonMonsterAnimator : MonoBehaviour
 {
     private Animator animator;
-    private EnemyFSMController controller;
+    private CommonMonster controller;
 
     [Header("Animator Parameters")]
     [SerializeField] private string dirXParameterName = "DirX";
     [SerializeField] private string dirYParameterName = "DirY";
-
+    [SerializeField] private string dieParameterName = "DieTrigger";
     private int dirXHash;
     private int dirYHash;
+    private int dieHash;
 
     private void Awake()
     {
         animator = GetComponent<Animator>();
-        controller = GetComponentInParent<EnemyFSMController>();
+        controller = GetComponentInParent<CommonMonster>();
 
         dirXHash = Animator.StringToHash(dirXParameterName);
         dirYHash = Animator.StringToHash(dirYParameterName);
+        dieHash = Animator.StringToHash(dieParameterName);
+    }
+
+    public void PlayDie()
+    {
+        if (animator != null)
+        {
+            animator.SetTrigger(dieHash);
+        }
     }
 
     private void Update()

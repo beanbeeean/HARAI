@@ -10,24 +10,27 @@ public class CommonMonster : EnemyFSMController
     private Vector2 spawnPoint;
     private bool isWaiting = false;
 
+
     [Header("Common Monster Settings")]
-    public float attackCooldown = 2.0f;
+    public float attackCooldown = 0.5f;
     private bool isAttackCoolingDown = false;
 
     [SerializeField] private float portalDetectionRadius = 1.2f;
     [SerializeField] private LayerMask portalLayer;
+
+    private CommonMonsterAnimator monsterAnimator;
     protected override void Awake()
     {
         base.Awake();
         spawnPoint = transform.position; // 처음 생성된 위치를 순찰 중심점으로
+        monsterAnimator = GetComponentInChildren<CommonMonsterAnimator>();
     }
 
 
     protected override void FixedUpdate()
     {
-        base.FixedUpdate(); // 기존 노출 게이지 및 이동 로직 실행
+        base.FixedUpdate(); 
 
-        // 쿨타임이 아니고, 추격이나 순찰 상태일 때만 포탈 체크
         if (!isPortalCooldown && (currentState == EnemyState.Chase || currentState == EnemyState.Patrol))
         {
             CheckForPortals();
@@ -139,8 +142,10 @@ public class CommonMonster : EnemyFSMController
 
     protected override void TryAttack()
     {
+        Debug.Log("TryAttack 호출!");
         if (!isAttackCoolingDown)
         {
+            Debug.Log("!isAttackCoolingDown  - TryAttack 호출!");
             StartCoroutine(AttackRoutine());
         }
     }
@@ -154,7 +159,7 @@ public class CommonMonster : EnemyFSMController
         {
             if (playerHP != null)
             {
-                playerHP.TakeDamage(1);
+                playerHP.TakeDamage(1, this.transform.position);
                 Debug.Log($" 플레이어  현재 체력: {playerHP.CurrentHealth}");
             }
         }
@@ -167,6 +172,26 @@ public class CommonMonster : EnemyFSMController
     protected override void OnLightGaugeFull()
     {
         // 빛 게이지가 다 찼을 때 소멸 로직
+        //Destroy(gameObject);
+        StartCoroutine(DieRoutine());
+    }
+
+    private IEnumerator DieRoutine()
+    {
+        // 1. AI와 물리 정지
+        StopMovement();
+        currentState = EnemyState.Idle; // 공격이나 추격을 못하게 상태 변경
+
+        // 2. 애니메이션 실행
+        if (monsterAnimator != null)
+        {
+            monsterAnimator.PlayDie();
+        }
+
+        // 3. 애니메이션 재생 시간만큼 대기 (예: 1초, 애니메이션 길이에 맞춰 조절하세요)
+        yield return new WaitForSeconds(1.0f);
+
+        // 4. 진짜 삭제
         Destroy(gameObject);
     }
 

@@ -51,11 +51,11 @@ TagManager:
   - name: Portal
     uniqueID: 2435346775
     locked: 0
-  - name: Monster
-    uniqueID: 3937401721
-    locked: 0
   - name: Wall
     uniqueID: 3650162089
+    locked: 0
+  - name: Monster
+    uniqueID: 3937401721
     locked: 0
   - name: Player
     uniqueID: 341926445

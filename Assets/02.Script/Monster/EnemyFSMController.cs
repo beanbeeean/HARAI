@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.AI;
 using System.Collections;
+using UnityEngine.UI;
 
 public abstract class EnemyFSMController : MonoBehaviour
 {
@@ -24,9 +25,17 @@ public abstract class EnemyFSMController : MonoBehaviour
     [SerializeField] protected bool isExposed = false;
     protected readonly int lightLayerMask = 1 << 13;
 
+    [Header("Light Timing Settings")]
+    [SerializeField] private float exposureResetDelay = 0.1f; // 0.1초 유예
+    private float lastExposedTime;
+
     [Header("Portal Settings")]
     protected Vector2 lastKnownPlayerPosition; // 플레이어를 마지막으로 본 위치
     protected bool isPortalCooldown = false;    // 핑퐁 방지 쿨타임
+
+    [Header("UI Settings")]
+    [SerializeField] protected Slider exposureSlider;
+    [SerializeField] protected GameObject canvasObj;
 
     protected Vector2 currentVelocity;
     public Vector2 CurrentVelocity => currentVelocity;
@@ -69,6 +78,28 @@ public abstract class EnemyFSMController : MonoBehaviour
             currentVelocity = agent.velocity.normalized;
         else
             currentVelocity = Vector2.zero;
+
+        UpdateExposureUI();
+    }
+
+    private void UpdateExposureUI()
+    {
+        if (exposureSlider == null || canvasObj == null) return;
+
+        // 1. 게이지가 0보다 클 때만 UI를 보여줌 (isExposed 상태 활용)
+        if (currentExposure > 0)
+        {
+            canvasObj.SetActive(true);
+            // 2. 슬라이더 값 업데이트 (현재값 / 최대값 비율)
+            exposureSlider.value = currentExposure / maxExposure;
+
+            // 3. [꿀팁] 캔버스가 회전하지 않도록 고정 (몬스터가 돌아봐도 UI는 정면)
+            canvasObj.transform.rotation = Quaternion.identity;
+        }
+        else
+        {
+            canvasObj.SetActive(false);
+        }
     }
 
     // 몬스터가 포탈을 이용한 후 호출할 코루틴
@@ -89,22 +120,40 @@ public abstract class EnemyFSMController : MonoBehaviour
 
         if (isExposed)
         {
-            currentExposure += Time.fixedDeltaTime;
-            if (currentExposure >= maxExposure) OnLightGaugeFull();
-            ApplyLightEffect();
+            lastExposedTime = Time.fixedTime; // 물리 시간으로 기록
             isExposed = false;
+        }
 
-            if (this is CommonMonster) return;
+        // 현재 물리 시간과 마지막 노출 시간의 차이 계산
+        float timeSinceLastExposed = Time.fixedTime - lastExposedTime;
+        bool isStillExposed = timeSinceLastExposed < exposureResetDelay;
+
+        if (isStillExposed)
+        {
+            currentExposure += Time.fixedDeltaTime;
+            ApplyLightEffect();
+
+            // --- 디버그 로그 추가 ---
+            // Debug.Log($"[빛 노출 중] 차이: {timeSinceLastExposed}, 게이지: {currentExposure}");
+
+            if (currentExposure >= maxExposure)
+            {
+                OnLightGaugeFull();
+                return;
+            }
+            return;
         }
         else
         {
-            currentExposure = 0f;
+            // 리셋될 때 로그를 찍어보세요. 손전등을 쏘고 있는데 이게 찍히면 판정 문제임
+            if (currentExposure > 0)
+            {
+                Debug.Log($"[리셋됨] 마지막 노출로부터 {timeSinceLastExposed}초 경과");
+                currentExposure = 0f;
+            }
         }
 
-        if (currentState != EnemyState.Attack)
-        {
-            HandleStateBehavior();
-        }
+        HandleStateBehavior();
     }
 
     protected void StopMovement()

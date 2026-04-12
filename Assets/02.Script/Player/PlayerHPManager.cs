@@ -20,13 +20,21 @@ public class PlayerHPManager : MonoBehaviour
 
     public bool isHit = false;
 
-    [SerializeField] private SpriteRenderer sprite;
+    [SerializeField] private GameObject visualContainer; 
+    private SpriteRenderer[] childSprites;
 
     private void Awake()
     {
         if (setFullHealthOnStart) FullHealth();
     }
 
+    private void Start()
+    {
+        if (visualContainer != null)
+        {
+            childSprites = visualContainer.GetComponentsInChildren<SpriteRenderer>();
+        }
+    }
 
     public int FullHealth()
     {
@@ -36,12 +44,21 @@ public class PlayerHPManager : MonoBehaviour
         return currentHealth;
     }
 
-    public void TakeDamage(int amount)
+
+
+
+    public void TakeDamage(int amount, Vector2 attackerPosition)
     {
         if (IsDead || amount <= 0 || isHit) return;
 
         currentHealth = Mathf.Max(0, currentHealth - amount);
         OnHealthChanged?.Invoke(currentHealth, maxHealth);
+
+        // 넉백 실행: PlayerMove2D 컴포넌트를 찾아 넉백 함수 호출
+        if (TryGetComponent(out PlayerMove2D playerMove))
+        {
+            playerMove.ApplyKnockback(attackerPosition);
+        }
 
         StartCoroutine(InvincibilityRoutine());
 
@@ -52,23 +69,28 @@ public class PlayerHPManager : MonoBehaviour
     {
         isHit = true;
 
-        if (sprite != null)
+        if (childSprites != null && childSprites.Length > 0)
         {
-            Color originalColor = sprite.color;
-            Color fadedColor = new Color(originalColor.r, originalColor.g, originalColor.b, 0.4f);
-
             float elapsed = 0f;
-            float blinkInterval = 0.15f; 
+            float blinkInterval = 0.15f;
 
             while (elapsed < invincibleTime)
             {
-                sprite.color = (sprite.color == originalColor) ? fadedColor : originalColor;
+                // 컨테이너 하위의 모든 스프라이트를 동시에 깜빡임
+                foreach (var s in childSprites)
+                {
+                    if (s != null) s.enabled = !s.enabled;
+                }
 
                 yield return new WaitForSeconds(blinkInterval);
                 elapsed += blinkInterval;
             }
 
-            sprite.color = originalColor;
+            // 루프 종료 후 모든 스프라이트 확실히 켜기
+            foreach (var s in childSprites)
+            {
+                if (s != null) s.enabled = true;
+            }
         }
         else
         {
