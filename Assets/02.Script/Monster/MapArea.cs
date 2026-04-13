@@ -21,7 +21,7 @@ public class MapArea : MonoBehaviour
         int targetLayer = LayerMask.NameToLayer(floorLayerName);
         if (targetLayer == -1)
         {
-            Debug.LogError($"{gameObject.name}: {floorLayerName} 레이어를 찾을 수 없습니다!");
+            Debug.LogError($"{gameObject.name}: {floorLayerName} 레이어 찾지못함");
             return;
         }
 
@@ -35,7 +35,7 @@ public class MapArea : MonoBehaviour
             }
         }
 
-        Debug.Log($"{areaName} 구역: {walkablePoints.Count}개의 포인트 수집 완료.");
+        Debug.Log($"{areaName} 구역: {walkablePoints.Count}개 포인트 수집 완료");
     }
 
     private void ExtractWalkablePoints(Tilemap map)

@@ -11,7 +11,8 @@ public class PlayerInputReader : MonoBehaviour
     private InputAction inv1Action;
     private InputAction inv2Action;
     private InputAction inv3Action;
-
+    private InputAction flashlightPowerAction;
+    private InputAction flashlightModeAction; 
     public Vector2 MoveVector { get; private set; }
     public bool InteractPressed { get; private set; }
     public bool isMoving { get; private set; }
@@ -21,7 +22,10 @@ public class PlayerInputReader : MonoBehaviour
     public event Action PickUpStartedEvent;
     public event Action<int> OnInventoryUsed;
     public event Action<int> OnInventoryDropped;
+    public event Action FlashlightPowerStartedEvent;
+    public event Action FlashlightModeStartedEvent;
 
+    
 
     [Header("Action Names")]
     [SerializeField] private string moveActionName = "Move";
@@ -30,6 +34,9 @@ public class PlayerInputReader : MonoBehaviour
     [SerializeField] private string inventory1ActionName = "Inventory1";
     [SerializeField] private string inventory2ActionName = "Inventory2";
     [SerializeField] private string inventory3ActionName = "Inventory3";
+    [SerializeField] private string flashlightPowerActionName = "FlashlightPower";
+    [SerializeField] private string flashlightModeActionName = "FlashlightMode";
+
 
     private void Awake()
     {
@@ -54,6 +61,13 @@ public class PlayerInputReader : MonoBehaviour
         {
             pickUpAction.started += OnPickUpStarted;
         }
+
+        if (flashlightPowerAction != null)
+            flashlightPowerAction.started += OnFlashlightPowerStarted;
+
+        if (flashlightModeAction != null)
+            flashlightModeAction.started += OnFlashlightModeStarted;
+
     }
 
     private void OnDisable()
@@ -68,6 +82,21 @@ public class PlayerInputReader : MonoBehaviour
         {
             pickUpAction.started -= OnPickUpStarted;
         }
+
+        if (flashlightPowerAction != null)
+            flashlightPowerAction.started -= OnFlashlightPowerStarted;
+
+        if (flashlightModeAction != null)
+            flashlightModeAction.started -= OnFlashlightModeStarted;
+    }
+    private void OnFlashlightPowerStarted(InputAction.CallbackContext context)
+    {
+        FlashlightPowerStartedEvent?.Invoke();
+    }
+
+    private void OnFlashlightModeStarted(InputAction.CallbackContext context)
+    {
+        FlashlightModeStartedEvent?.Invoke();
     }
 
     private void OnPickUpStarted(InputAction.CallbackContext context)
@@ -113,6 +142,8 @@ public class PlayerInputReader : MonoBehaviour
         inv1Action = FindAction(inventory1ActionName); 
         inv2Action = FindAction(inventory2ActionName);
         inv3Action = FindAction(inventory3ActionName);
+        flashlightPowerAction = FindAction(flashlightPowerActionName);
+        flashlightModeAction = FindAction(flashlightModeActionName);
     }
 
     private InputAction FindAction(string actionName)

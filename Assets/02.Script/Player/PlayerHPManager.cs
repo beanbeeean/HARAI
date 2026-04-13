@@ -9,6 +9,7 @@ public class PlayerHPManager : MonoBehaviour
     [SerializeField] private int currentHealth;
     [SerializeField] private float invincibleTime = 2f;
     [SerializeField] private HealthPopup healthPopup;
+    
     public bool setFullHealthOnStart = true;
 
     public int CurrentHealth => currentHealth;
@@ -35,6 +36,7 @@ public class PlayerHPManager : MonoBehaviour
         {
             childSprites = visualContainer.GetComponentsInChildren<SpriteRenderer>();
         }
+
     }
 
     public int FullHealth()

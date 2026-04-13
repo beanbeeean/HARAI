@@ -230,7 +230,7 @@ public abstract class EnemyFSMController : MonoBehaviour
 
     protected virtual void OnTriggerStay2D(Collider2D collision)
     {
-        if (((1 << collision.gameObject.layer) & lightLayerMask) != 0) isExposed = true;
+        if (((1 << collision.gameObject.layer) & lightLayerMask) != 0 && collision.GetComponentInParent<FlashlightManager>().isUVMode) isExposed = true;
     }
 
     protected abstract void HandlePatrol();

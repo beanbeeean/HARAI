@@ -6,6 +6,7 @@ public class InventoryManager : MonoBehaviour
 {
     [SerializeField] private PlayerInputReader inputReader;
     [SerializeField] private PlayerHPManager hpManager;
+    [SerializeField] private FlashlightManager flashlightManager;
     public ItemData[] slots = new ItemData[3];
     public float dropDistance = 1.0f;
     public InventoryUI inventoryUI;
@@ -83,6 +84,7 @@ public class InventoryManager : MonoBehaviour
                 {
                     if (hpManager.CurrentHealth >= hpManager.MaxHealth)
                     {
+                        // 팝업 알림 넣어야할 곳
                         Debug.Log("체력이 이미 가득 찼습니다!");
                         return false;
                     }
@@ -94,7 +96,18 @@ public class InventoryManager : MonoBehaviour
                 return false;
 
             case ItemType.Battery:
-                return true;
+                if(flashlightManager != null)
+                {
+                    if(flashlightManager.currentPower >= flashlightManager.maxPower)
+                    {
+                        // 팝업 알림 넣어야할 곳
+                        Debug.Log("배터리가 이미 가득 찼습니다.");
+                        return false;
+                    }
+                    flashlightManager.AddPower(data.value);
+                    return true;
+                }
+                return false;
 
             case ItemType.CurseRemover:
                 return true;
@@ -109,6 +122,14 @@ public class InventoryManager : MonoBehaviour
         if (slots[index] == null) return;
 
         Vector3 dropPos = transform.position;
+
+
+        // 버린 자리에 똑같이 겹치게 버릴 수 있게 할지.. 고민
+        //Collider2D hit = Physics2D.OverlapCircle(dropPos, 0.5f);
+        //if (hit == null || !hit.CompareTag("Item"))
+        //{
+            
+        //}
 
         GameObject droppedObj = Instantiate(slots[index].itemPrefab, dropPos, Quaternion.identity);
 
