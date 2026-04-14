@@ -5,25 +5,15 @@ using System.Collections;
 public class CommonMonster : EnemyFSMController
 
 {
-    [Header("Patrol Settings")]
-    public float patrolRadius = 5f;
-    public float patrolWaitTime = 2f;
+    [Header("Common Monster - Local Info")]
+    private int baseAttackDamage;
     private Vector2 spawnPoint;
-    private bool isWaiting = false;
-    public int attackDamage = 10;
-
-    [Header("Common Monster Settings")]
-
-    public float attackCooldown = 0.5f;
-    private bool isAttackCoolingDown = false;
-
-    [SerializeField] private float portalDetectionRadius = 1.2f;
-    [SerializeField] private LayerMask portalLayer;
-
     private CommonMonsterAnimator monsterAnimator;
+
     protected override void Awake()
     {
         base.Awake();
+        baseAttackDamage = attackDamage;
         spawnPoint = transform.position;
         monsterAnimator = GetComponentInChildren<CommonMonsterAnimator>();
     }
@@ -164,4 +154,17 @@ public class CommonMonster : EnemyFSMController
         Gizmos.color = Color.yellow;
         Gizmos.DrawWireSphere(transform.position, portalDetectionRadius);
     }
+
+    public void UpdateAttackDamage(float totalPenalty)
+    {
+        attackDamage = Mathf.Max(baseAttackDamage + (int)totalPenalty, baseAttackDamage);
+
+    }
+
+    public void UpdateChaseRange(float totalPenalty)
+    {
+        chaseDistance = Mathf.Max(baseChaseDistance + totalPenalty, baseChaseDistance);
+        loseRange = Mathf.Max(baseLoseRange + totalPenalty, baseLoseRange);
+    }
+
 }

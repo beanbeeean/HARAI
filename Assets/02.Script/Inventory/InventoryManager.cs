@@ -110,7 +110,25 @@ public class InventoryManager : MonoBehaviour
                 return false;
 
             case ItemType.CurseRemover:
-                return true;
+                if(CurseManager.instance != null)
+                {
+                    if(CurseManager.instance.GetActiveCurseList().Count <= 0)
+                    {
+                        Debug.Log("해제할 저주가 없습니다.");
+                        return false;
+                    }
+                    else if (CurseManager.instance.IsCleanseOnCooldown)
+                    {
+                        Debug.Log("저주 해제 쿨타임");
+                        return false;
+                    }
+                    else
+                    {
+                        CurseManager.instance.RemoveLastCurse();
+                        return true;
+                    }
+                }
+                return false;
 
             default:
                 return false;

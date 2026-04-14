@@ -24,8 +24,10 @@ public class PlayerMove2D : MonoBehaviour
     public Direction CurrentDirection => currentDirection;
 
     Vector2 inputDirection;
-    public float moveSpeed = 5.0f;
+    [SerializeField] private float moveSpeed = 5.0f;
+    [SerializeField] private float baseMoveSpeed = 5.0f;
 
+    public int currentFloor;
 
     private void Awake()
     {
@@ -117,5 +119,10 @@ public class PlayerMove2D : MonoBehaviour
             else if (y < -1 * deadzoneValue) currentDirection = Direction.Down;
         }
 
+    }
+
+    public void UpdateMoveSpeed(float totalPenalty)
+    {
+        moveSpeed = Mathf.Max(baseMoveSpeed - totalPenalty, 3.5f);
     }
 }

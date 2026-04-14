@@ -3,7 +3,7 @@
     "name": "InputSystem_PlayerAction",
     "maps": [
         {
-            "name": "Main",
+            "name": "Player",
             "id": "2928ad02-9ec5-42ab-a1ac-2344a8150319",
             "actions": [
                 {
@@ -73,6 +73,15 @@
                     "name": "FlashlightMode",
                     "type": "Button",
                     "id": "85780068-4066-4f35-83d9-64ea0364a00a",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "CurseListOpen",
+                    "type": "Button",
+                    "id": "7006a02d-b599-46b1-89d7-7bbbb4301a34",
                     "expectedControlType": "",
                     "processors": "",
                     "interactions": "",
@@ -209,6 +218,56 @@
                     "processors": "",
                     "groups": "",
                     "action": "FlashlightMode",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "90bdd516-e0c6-49d4-8462-d8d3ea995ebf",
+                    "path": "<Keyboard>/tab",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "CurseListOpen",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        },
+        {
+            "name": "UI",
+            "id": "43de3e38-2470-422c-b604-03efe6b154ed",
+            "actions": [
+                {
+                    "name": "CurseListClose",
+                    "type": "Button",
+                    "id": "03fc45fb-efe0-4db7-9e14-5fe645a87b40",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "8ac70023-9cd1-4700-a70b-883b6e06eaac",
+                    "path": "<Keyboard>/tab",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "CurseListClose",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "a06f78ab-0c88-4453-92fe-402233fdd074",
+                    "path": "<Keyboard>/escape",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "CurseListClose",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

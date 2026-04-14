@@ -177,7 +177,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: -357565575
-  m_SortingLayer: 4
+  m_SortingLayer: 7
   m_SortingOrder: 0
   m_MaskInteraction: 0
   m_Sprite: {fileID: 2022117259, guid: d4242707c398865418ae1e2c5a7f5e50, type: 3}
@@ -470,7 +470,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -4.5, y: 2.17, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.8, y: 0.8, z: 0.8}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 8963244609026954450}
@@ -565,25 +565,29 @@ MonoBehaviour:
   target: {fileID: 0}
   currentState: 4
   moveSpeed: 2
+  attackDamage: 10
+  attackCooldown: 0.5
   chaseDistance: 5
   attackDistance: 1
   loseRange: 7
+  baseChaseDistance: 5
+  baseLoseRange: 7
   obstacleMask:
     serializedVersion: 2
     m_Bits: 2048
+  canAttackWhileExposed: 0
+  patrolRadius: 5
+  patrolWaitTime: 2
   maxExposure: 3
   currentExposure: 0
   isExposed: 0
   exposureResetDelay: 0.1
-  exposureSlider: {fileID: 9155959103380534632}
-  canvasObj: {fileID: 6475271420142329179}
-  patrolRadius: 5
-  patrolWaitTime: 2
-  attackCooldown: 0.5
   portalDetectionRadius: 1.2
   portalLayer:
     serializedVersion: 2
     m_Bits: 4096
+  exposureSlider: {fileID: 9155959103380534632}
+  canvasObj: {fileID: 6475271420142329179}
 --- !u!195 &7321947364649348097
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -593,14 +597,14 @@ NavMeshAgent:
   m_GameObject: {fileID: 7234039832250142700}
   m_Enabled: 1
   m_AgentTypeID: 1479372276
-  m_Radius: 0.5
+  m_Radius: 1
   m_Speed: 3.5
-  m_Acceleration: 8
+  m_Acceleration: 100
   avoidancePriority: 50
-  m_AngularSpeed: 120
+  m_AngularSpeed: 1000
   m_StoppingDistance: 0.5
   m_AutoTraverseOffMeshLink: 1
-  m_AutoBraking: 1
+  m_AutoBraking: 0
   m_AutoRepath: 1
   m_Height: 2
   m_BaseOffset: 0

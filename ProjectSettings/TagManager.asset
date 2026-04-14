@@ -15,7 +15,7 @@ TagManager:
   - Water
   - UI
   - Item
-  - 
+  - MainMonster
   - Background
   - CommonMonster
   - Floor
@@ -55,6 +55,9 @@ TagManager:
     locked: 0
   - name: Wall
     uniqueID: 3650162089
+    locked: 0
+  - name: TileObject
+    uniqueID: 3010364361
     locked: 0
   - name: Item
     uniqueID: 2531546081

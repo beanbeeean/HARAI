@@ -1,6 +1,6 @@
 ﻿using TMPro;
 using UnityEngine;
-using System.Collections; // 코루틴 사용을 위해 필요
+using System.Collections;
 
 public class GameManager : MonoBehaviour
 {

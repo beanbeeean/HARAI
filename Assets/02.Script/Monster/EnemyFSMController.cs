@@ -11,15 +11,28 @@ public abstract class EnemyFSMController : MonoBehaviour
     public Transform target;
     protected PlayerHPManager playerHP;
 
-    [Header("State Settings")]
+    [Header("Base Stat Settings")]
     public EnemyState currentState = EnemyState.Patrol;
     public float moveSpeed = 2.0f;
-    public float chaseDistance = 7f;
-    public float attackDistance = 1.2f;
-    public float loseRange = 10f;
-    public LayerMask obstacleMask;
+    public int attackDamage = 10;
+    public float attackCooldown = 1.0f;
+    protected bool isAttackCoolingDown = false;
 
-    [Header("Light Settings")]
+    [Header("Detection Settings")]
+    public float chaseDistance = 5f;
+    public float attackDistance = 1.0f;
+    public float loseRange = 7f;
+    public float baseChaseDistance = 5f;
+    public float baseLoseRange = 7f;
+    public LayerMask obstacleMask;
+    public bool canAttackWhileExposed = false;
+
+    [Header("Patrol Settings")]
+    public float patrolRadius = 5f;
+    public float patrolWaitTime = 2f;
+    protected bool isWaiting = false;
+
+    [Header("Light(UV) Settings")]
     public float maxExposure = 3.0f;
     [SerializeField] protected float currentExposure = 0f;
     [SerializeField] protected bool isExposed = false;
@@ -30,8 +43,10 @@ public abstract class EnemyFSMController : MonoBehaviour
     private float lastExposedTime;
 
     [Header("Portal Settings")]
-    protected Vector2 lastKnownPlayerPosition; 
-    protected bool isPortalCooldown = false; 
+    public float portalDetectionRadius = 1.2f;
+    public LayerMask portalLayer;
+    protected Vector2 lastKnownPlayerPosition;
+    protected bool isPortalCooldown = false;
 
     [Header("UI Settings")]
     [SerializeField] protected Slider exposureSlider;
@@ -80,7 +95,7 @@ public abstract class EnemyFSMController : MonoBehaviour
         UpdateExposureUI();
     }
 
-    private void UpdateExposureUI()
+    protected virtual void UpdateExposureUI()
     {
         if (exposureSlider == null || canvasObj == null) return;
 
@@ -112,6 +127,14 @@ public abstract class EnemyFSMController : MonoBehaviour
             return;
         }
 
+        if (agent != null && agent.isOnNavMesh && agent.hasPath)
+        {
+            if (agent.velocity.sqrMagnitude < 0.1f && agent.remainingDistance > agent.stoppingDistance)
+            {
+                agent.SetDestination(agent.destination);
+            }
+        }
+
         if (isExposed)
         {
             lastExposedTime = Time.fixedTime;
@@ -132,7 +155,10 @@ public abstract class EnemyFSMController : MonoBehaviour
                 OnLightGaugeFull();
                 return;
             }
-            return;
+            if (!canAttackWhileExposed)
+            {
+                return;
+            }
         }
         else
         {
@@ -201,10 +227,12 @@ public abstract class EnemyFSMController : MonoBehaviour
         switch (currentState)
         {
             case EnemyState.Chase:
-                agent.speed = moveSpeed;
+                if (currentExposure <= 0)
+                {
+                    agent.speed = moveSpeed;
+                }
                 agent.SetDestination(target.position);
                 break;
-
             case EnemyState.Patrol:
                 HandlePatrol();
                 break;

@@ -24,7 +24,7 @@ public class HPUIController : MonoBehaviour
         float ratio = (float)currentHealth / (float)maxHealth;
         hpSlider.value = ratio;
         Debug.Log("ratio : " + ratio);
-        hpText.text = $"HP: {currentHealth}/100";
+        hpText.text = $"HP: {currentHealth}/{maxHealth}";
     }
 
 }

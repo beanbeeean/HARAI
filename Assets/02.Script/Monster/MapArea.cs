@@ -7,6 +7,7 @@ public class MapArea : MonoBehaviour
 {
     public string areaName;
     public int maxEnemyCount = 3;
+    [SerializeField] private int floorIndex;
 
     [Header("Layer Settings")]
     [SerializeField] private string floorLayerName = "Floor"; 
@@ -60,6 +61,26 @@ public class MapArea : MonoBehaviour
                         walkablePoints.Add(hit.position);
                     }
                 }
+            }
+        }
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        // 플레이어나 몬스터가 들어오면 층 정보를 업데이트
+        if (collision.CompareTag("Player"))
+        {
+            // 플레이어 스크립트에 floorIndex 전달 (기능 추가 필요)
+            collision.GetComponent<PlayerMove2D>().currentFloor = floorIndex;
+        }
+        else if (collision.CompareTag("Enemy"))
+        {
+            // 메인 몬스터나 일반 몬스터에게 전달
+            var fsm = collision.GetComponent<EnemyFSMController>();
+            // 여기서 메인 몬스터인지 체크해서 층 정보 업데이트
+            if (collision.TryGetComponent(out MainMonster mainMonster))
+            {
+                mainMonster.UpdateCurrentFloor(floorIndex);
             }
         }
     }

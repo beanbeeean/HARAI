@@ -5,7 +5,8 @@ using UnityEngine;
 public class PlayerHPManager : MonoBehaviour
 {
     [Header("Health Settings (체력 10 기준)")]
-    [SerializeField] private int maxHealth = 10;
+    [SerializeField] private int maxHealth = 100;
+    [SerializeField] private int baseMaxHealth = 100;
     [SerializeField] private int currentHealth;
     [SerializeField] private float invincibleTime = 2f;
     [SerializeField] private HealthPopup healthPopup;
@@ -131,5 +132,11 @@ public class PlayerHPManager : MonoBehaviour
         //}
     }
 
+
+    public void UpdateMaxHp(float totalPenalty)
+    {
+        maxHealth = Mathf.Max(baseMaxHealth - (int)totalPenalty, 70);
+        OnHealthChanged?.Invoke(currentHealth, maxHealth);
+    }
 
 }

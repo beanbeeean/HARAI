@@ -14,9 +14,11 @@ public class FlashlightManager : MonoBehaviour
     [SerializeField] private Color normalColor = Color.white;
     [SerializeField] private Color uvColor;
     public float maxPower = 100f;
+    public float baseMaxPower = 100f;
     public float currentPower;
-    [SerializeField] private float consumeRate = 1.0f;
-    [SerializeField] private float rechargeRate = 0.5f;
+    [SerializeField] private float consumeRate = 5.0f;
+    [SerializeField] private float rechargeRate = 2.0f;
+    [SerializeField] private float baseRechargeRate = 2.0f;
 
     public bool isPowerOn = false;
     public bool isUVMode = false;
@@ -108,5 +110,14 @@ public class FlashlightManager : MonoBehaviour
         batteryPopup.Show((int) amount);
     }
 
-    
+    public void UpdateRechargeTime(float totalPenalty)
+    {
+        rechargeRate = Mathf.Max(baseRechargeRate - totalPenalty, 1.1f);
+    }
+
+    public void UpdateMaxPower(float totalPenalty)
+    {
+        maxPower = Mathf.Max(baseMaxPower - totalPenalty, 70f);
+        OnPowerChanged?.Invoke(currentPower, maxPower);
+    }
 }

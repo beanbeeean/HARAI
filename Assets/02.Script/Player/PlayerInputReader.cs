@@ -12,7 +12,10 @@ public class PlayerInputReader : MonoBehaviour
     private InputAction inv2Action;
     private InputAction inv3Action;
     private InputAction flashlightPowerAction;
-    private InputAction flashlightModeAction; 
+    private InputAction flashlightModeAction;
+    private InputAction curseListOpenAction;
+    private InputAction curseListCloseAction;
+
     public Vector2 MoveVector { get; private set; }
     public bool InteractPressed { get; private set; }
     public bool isMoving { get; private set; }
@@ -24,6 +27,8 @@ public class PlayerInputReader : MonoBehaviour
     public event Action<int> OnInventoryDropped;
     public event Action FlashlightPowerStartedEvent;
     public event Action FlashlightModeStartedEvent;
+    public event Action CurseListOpenEvent;
+    public event Action CurseListCloseEvent;
 
     
 
@@ -36,6 +41,8 @@ public class PlayerInputReader : MonoBehaviour
     [SerializeField] private string inventory3ActionName = "Inventory3";
     [SerializeField] private string flashlightPowerActionName = "FlashlightPower";
     [SerializeField] private string flashlightModeActionName = "FlashlightMode";
+    [SerializeField] private string curseListOpenActionName = "CurseListOpen";
+    [SerializeField] private string curseListCloseActionName = "CurseListClose";
 
 
     private void Awake()
@@ -68,6 +75,16 @@ public class PlayerInputReader : MonoBehaviour
         if (flashlightModeAction != null)
             flashlightModeAction.started += OnFlashlightModeStarted;
 
+        if(curseListOpenAction != null)
+        {
+            curseListOpenAction.started += OnCurseListOpenStarted;
+        }
+
+        if (curseListCloseAction != null)
+        {
+            curseListCloseAction.started += OnCurseListCloseStarted;
+        }
+
     }
 
     private void OnDisable()
@@ -84,11 +101,50 @@ public class PlayerInputReader : MonoBehaviour
         }
 
         if (flashlightPowerAction != null)
+        {
             flashlightPowerAction.started -= OnFlashlightPowerStarted;
+        }
 
         if (flashlightModeAction != null)
+        {
             flashlightModeAction.started -= OnFlashlightModeStarted;
+        }
+
+        if (curseListOpenAction != null)
+        {
+            curseListOpenAction.started -= OnCurseListOpenStarted;
+        }
+
+        if (curseListCloseAction != null)
+        {
+            curseListCloseAction.started -= OnCurseListCloseStarted;
+        }
     }
+
+    public void SetUIInput(bool isUI)
+    {
+        if (isUI)
+        {
+            playerInput.SwitchCurrentActionMap("UI");
+        }
+        else
+        {
+            playerInput.SwitchCurrentActionMap("Player");
+        }
+    }
+
+    private void OnCurseListCloseStarted(InputAction.CallbackContext context)
+    {
+        Debug.Log("OnCurseListCloseStarted 이벤트 호출");
+        CurseListCloseEvent?.Invoke();
+    }
+
+    private void OnCurseListOpenStarted(InputAction.CallbackContext context)
+    {
+        Debug.Log("OnCurseListOpenStarted 이벤트 호출");
+        CurseListOpenEvent?.Invoke();
+    }
+
     private void OnFlashlightPowerStarted(InputAction.CallbackContext context)
     {
         FlashlightPowerStartedEvent?.Invoke();
@@ -144,6 +200,8 @@ public class PlayerInputReader : MonoBehaviour
         inv3Action = FindAction(inventory3ActionName);
         flashlightPowerAction = FindAction(flashlightPowerActionName);
         flashlightModeAction = FindAction(flashlightModeActionName);
+        curseListOpenAction = FindAction(curseListOpenActionName);
+        curseListCloseAction = FindAction(curseListCloseActionName);
     }
 
     private InputAction FindAction(string actionName)

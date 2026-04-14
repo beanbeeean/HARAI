@@ -121,6 +121,11 @@ public class PurificationObject : InteractableBase
             Debug.LogWarning("PurificationManager 없음");
         }
 
+        if(CurseManager.instance != null)
+        {
+            CurseManager.instance.AddRandomCurse();
+        }
+
         Destroy(gameObject);
     }
 
