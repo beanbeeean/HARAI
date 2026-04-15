@@ -16,7 +16,7 @@ public class InventoryUI : MonoBehaviour
         //Debug.Log("UpdateUI 호출됨!");
         for (int i = 0; i < invManager.slots.Length; i++)
         {
-            if (invManager.slots[i] != null)
+            if (invManager.slots[i].itemType != ItemType.None)
             {
                 Debug.Log($"{i}번 슬롯 아이템 있음: {invManager.slots[i].itemName}");
                 slotIcons[i].sprite = invManager.slots[i].itemIcon;

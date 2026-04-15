@@ -15,17 +15,19 @@ public class MainMonster : EnemyFSMController
     private int playerFloor => (target != null) ? target.GetComponent<PlayerMove2D>().currentFloor : -1;
 
     [Header("Stalker - Unique Movement")]
-    public float slowedSpeed;
+    public float slowedSpeed = 0.3f;
     [Header("Stalker - Status")]
     private Coroutine currentImmuneRoutine;
     private float stunTime = 5f;
     private float immuneTime = 30f;
     public bool isImmune = false;
+    [SerializeField] GameObject auraObject;
 
     protected override void Awake()
     {
         base.Awake();
         canAttackWhileExposed = true;
+        if (auraObject != null) auraObject.SetActive(false);
     }
 
     protected override void Update()
@@ -34,6 +36,8 @@ public class MainMonster : EnemyFSMController
         if (currentState == EnemyState.Dead) return;
 
         HandleTeleportTimers();
+
+
     }
 
     protected override void FixedUpdate()
@@ -52,19 +56,24 @@ public class MainMonster : EnemyFSMController
                 agent.SetDestination(agent.destination);
             }
         }
+
     }
 
     private void CheckForPortals()
     {
-        Collider2D hit = Physics2D.OverlapCircle(transform.position, portalDetectionRadius, portalLayer);
+        LayerMask debugMask = 1 << LayerMask.NameToLayer("Portal");
+        Collider2D hit = Physics2D.OverlapCircle(transform.position, portalDetectionRadius, debugMask);
 
         if (hit != null && hit.TryGetComponent(out TeleportPortal portal))
         {
+            Debug.Log("[MainMonster] hit != null && hit.TryGetComponent(out TeleportPortal portal)");
+            Debug.Log("현재 상태: " + currentState);
             if (currentState == EnemyState.Chase)
             {
                 float distToLastSeen = Vector2.Distance(lastKnownPlayerPosition, portal.transform.position);
                 if (!CanSeePlayer() && distToLastSeen < 1.0f)
                 {
+                    Debug.Log("!CanSeePlayer() && distToLastSeen < 1.0f");
                     ExecutePortalTeleport(portal);
                 }
             }
@@ -77,6 +86,7 @@ public class MainMonster : EnemyFSMController
             }
         }
     }
+
 
     private void ExecutePortalTeleport(TeleportPortal portal)
     {
@@ -135,12 +145,9 @@ public class MainMonster : EnemyFSMController
     {
         isWaiting = true;
 
-        EnemyState previousState = currentState;
-        currentState = EnemyState.Idle;
-
+     
         yield return new WaitForSeconds(patrolWaitTime);
 
-        currentState = previousState;
         Vector2 nextPoint = GetRandomPoint(transform.position, patrolRadius);
         agent.speed = moveSpeed * 0.7f;
         agent.SetDestination(nextPoint);
@@ -158,8 +165,24 @@ public class MainMonster : EnemyFSMController
     {
         isAttackCoolingDown = true;
         if (playerHP != null)
+        {
             playerHP.TakeDamage(attackDamage, transform.position);
+        } 
 
+
+        if (isImmune)
+        {
+            isImmune = false;
+            if (auraObject != null) auraObject.SetActive(false);
+
+            if (currentImmuneRoutine != null)
+            {
+                StopCoroutine(currentImmuneRoutine);
+                currentImmuneRoutine = null;
+            }
+            AlertManager.Instance.ShowAlert(AlertKey.NoImmune);
+            
+        }
         yield return new WaitForSeconds(attackCooldown);
         isAttackCoolingDown = false;
     }
@@ -168,9 +191,7 @@ public class MainMonster : EnemyFSMController
     {
         if (isImmune) return;
 
-        Debug.Log(agent.speed);
         agent.speed = slowedSpeed;
-        Debug.Log(agent.speed);
     }
 
     protected override void HandleStateBehavior()
@@ -185,7 +206,9 @@ public class MainMonster : EnemyFSMController
     protected override void OnLightGaugeFull()
     {
         if (isImmune) return;
-        StartCoroutine(StunAndImmuneRoutine());
+
+        if (currentImmuneRoutine != null) StopCoroutine(currentImmuneRoutine);
+        currentImmuneRoutine = StartCoroutine(StunAndImmuneRoutine());
     }
 
     private IEnumerator StunAndImmuneRoutine()
@@ -193,15 +216,27 @@ public class MainMonster : EnemyFSMController
         currentState = EnemyState.Stun;
         StopMovement();
         currentExposure = 0;
+        AlertManager.Instance.ShowAlert(AlertKey.Stun);
 
+        auraObject.SetActive(false);
         yield return new WaitForSeconds(stunTime);
 
         isImmune = true;
-        currentState = EnemyState.Chase;
+        auraObject.SetActive(true);
+        AlertManager.Instance.ShowAlert(AlertKey.Immune);
+
         ResumeMovement();
 
         yield return new WaitForSeconds(immuneTime);
-        isImmune = false;
+        if (isImmune)
+        {
+            AlertManager.Instance.ShowAlert(AlertKey.NoImmune);
+            isImmune = false;
+            auraObject.SetActive(false);
+        }
+
+        currentImmuneRoutine = null;
+        
     }
 
 
@@ -233,12 +268,6 @@ public class MainMonster : EnemyFSMController
             float randomDist = Random.Range(10f, 15f);
             Vector2 randomDir = Random.insideUnitCircle.normalized;
             Vector3 candidatePos = target.position + (Vector3)(randomDir * randomDist);
-
-            //Vector3 viewportPos = Camera.main.WorldToViewportPoint(candidatePos);
-            //bool isInView = viewportPos.x >= 0 && viewportPos.x <= 1 && viewportPos.y >= 0 && viewportPos.y <= 1;
-
-            //if (isInView) continue;
-
             NavMeshHit hit;
             if (NavMesh.SamplePosition(candidatePos, out hit, 5.0f, NavMesh.AllAreas))
             {
@@ -273,5 +302,11 @@ public class MainMonster : EnemyFSMController
         {
             canvasObj.SetActive(false);
         }
+    }
+
+    private void OnDrawGizmosSelected()
+    {
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireSphere(transform.position, portalDetectionRadius);
     }
 }

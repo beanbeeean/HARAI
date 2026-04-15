@@ -47,20 +47,23 @@ TagManager:
   - name: Floor
     uniqueID: 117407527
     locked: 0
-  - name: Outline
-    uniqueID: 1902269615
-    locked: 0
   - name: Portal
     uniqueID: 2435346775
     locked: 0
   - name: Wall
     uniqueID: 3650162089
     locked: 0
-  - name: TileObject
+  - name: Interior_1
     uniqueID: 3010364361
+    locked: 0
+  - name: Interior_2
+    uniqueID: 3843333797
     locked: 0
   - name: Item
     uniqueID: 2531546081
+    locked: 0
+  - name: Aura
+    uniqueID: 830394219
     locked: 0
   - name: Monster
     uniqueID: 3937401721

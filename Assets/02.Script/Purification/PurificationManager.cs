@@ -18,11 +18,11 @@ public class PurificationManager : MonoBehaviour
     public void OnObjectPurified()
     {
         CurrentPurified++;
-        GameManager.Instance.UpdateMissionProgress(CurrentPurified, TotalTargets);
+        AlertManager.Instance.ShowAlert(AlertKey.Purifying, CurrentPurified, TotalTargets);
 
         if (CurrentPurified >= TotalTargets)
         {
-            GameManager.Instance.OnAllPurified();
+            AlertManager.Instance.ShowAlert(AlertKey.GameClear);
         }
     }
 }

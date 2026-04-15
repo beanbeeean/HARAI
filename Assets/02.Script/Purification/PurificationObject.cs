@@ -42,6 +42,11 @@ public class PurificationObject : InteractableBase
         }
 
         if (gaugeCanvas != null) gaugeCanvas.SetActive(false);
+
+        if(playerInputReader == null)
+        {
+            playerInputReader = FindFirstObjectByType<PlayerInputReader>();
+        }
     }
 
     protected override void Update()

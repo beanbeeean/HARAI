@@ -75,6 +75,9 @@ public class PlayerHPManager : MonoBehaviour
     private IEnumerator InvincibilityRoutine()
     {
         isHit = true;
+        var playerMove = GetComponent<PlayerMove2D>();
+
+        if (playerMove != null) playerMove.SetTempSpeedMultiplier(1.5f);
 
         if (childSprites != null && childSprites.Length > 0)
         {
@@ -87,7 +90,6 @@ public class PlayerHPManager : MonoBehaviour
                 {
                     if (s != null) s.enabled = !s.enabled;
                 }
-
                 yield return new WaitForSeconds(blinkInterval);
                 elapsed += blinkInterval;
             }
@@ -101,6 +103,8 @@ public class PlayerHPManager : MonoBehaviour
         {
             yield return new WaitForSeconds(invincibleTime);
         }
+
+        if (playerMove != null) playerMove.SetTempSpeedMultiplier(1.0f);
 
         isHit = false;
     }
@@ -136,6 +140,10 @@ public class PlayerHPManager : MonoBehaviour
     public void UpdateMaxHp(float totalPenalty)
     {
         maxHealth = Mathf.Max(baseMaxHealth - (int)totalPenalty, 70);
+        if(currentHealth >= maxHealth)
+        {
+            currentHealth = maxHealth;
+        }
         OnHealthChanged?.Invoke(currentHealth, maxHealth);
     }
 

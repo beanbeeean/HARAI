@@ -26,6 +26,8 @@ public class PlayerMove2D : MonoBehaviour
     Vector2 inputDirection;
     [SerializeField] private float moveSpeed = 5.0f;
     [SerializeField] private float baseMoveSpeed = 5.0f;
+    private float tempSpeedMultiplier = 1.0f;
+    public float MoveSpeed => moveSpeed;
 
     public int currentFloor;
 
@@ -51,7 +53,7 @@ public class PlayerMove2D : MonoBehaviour
     {
         if (isKnockback) return;
 
-        rb.linearVelocity = inputDirection.normalized * moveSpeed;
+        rb.linearVelocity = inputDirection.normalized * (moveSpeed * tempSpeedMultiplier);
     }
 
     public void ApplyKnockback(Vector2 attackerPos)
@@ -119,6 +121,11 @@ public class PlayerMove2D : MonoBehaviour
             else if (y < -1 * deadzoneValue) currentDirection = Direction.Down;
         }
 
+    }
+
+    public void SetTempSpeedMultiplier(float multiplier)
+    {
+        tempSpeedMultiplier = multiplier;
     }
 
     public void UpdateMoveSpeed(float totalPenalty)

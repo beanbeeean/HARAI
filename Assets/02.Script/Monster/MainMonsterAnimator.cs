@@ -8,10 +8,8 @@ public class MainMonsterAnimator : MonoBehaviour
     [Header("Animator Parameters")]
     [SerializeField] private string dirXParameterName = "DirX";
     [SerializeField] private string dirYParameterName = "DirY";
-    [SerializeField] private string isMovingParameterName = "IsMoving";
     private int dirXHash;
     private int dirYHash;
-    private int isMovingHash;
 
     private void Awake()
     {
@@ -20,30 +18,31 @@ public class MainMonsterAnimator : MonoBehaviour
 
         dirXHash = Animator.StringToHash(dirXParameterName);
         dirYHash = Animator.StringToHash(dirYParameterName);
-        isMovingHash = Animator.StringToHash(isMovingParameterName);
     }
 
 
 
     private void Update()
     {
-        if (animator == null || controller == null) return;
+        if(animator == null || controller == null) return;
 
-        bool isMoving = (controller.currentState != EnemyState.Idle &&
-                         controller.currentState != EnemyState.Attack &&
-                         controller.currentState != EnemyState.Stun);
-
-        animator.SetBool(isMovingHash, isMoving);
-        animator.speed = 1f;
-
-        Vector2 velocity = controller.CurrentVelocity;
-        if (velocity.sqrMagnitude > 0.01f)
+        if (controller.currentState == EnemyState.Attack)
         {
-            float inputX = velocity.x > 0.1f ? 1f : (velocity.x < -0.1f ? -1f : 0f);
-            float inputY = velocity.y > 0.1f ? 1f : (velocity.y < -0.1f ? -1f : 0f);
+            animator.speed = 0f;
+            return;
+        }
+
+        Vector2 direction = controller.CurrentVelocity;
+
+        if (direction.sqrMagnitude > 0.001f)
+        {
+            float inputX = direction.x > 0.1f ? 1f : (direction.x < -0.1f ? -1f : 0f);
+            float inputY = direction.y > 0.1f ? 1f : (direction.y < -0.1f ? -1f : 0f);
 
             animator.SetFloat(dirXHash, inputX);
             animator.SetFloat(dirYHash, inputY);
+
+            //Debug.Log($"몬스터 방향 - X: {inputX}, Y: {inputY}");
         }
     }
 

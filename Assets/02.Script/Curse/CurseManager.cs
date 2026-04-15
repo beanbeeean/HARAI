@@ -13,6 +13,7 @@ public class CurseManager : MonoBehaviour
     [Header("Current Status")]
     private Stack<CurseData> activeCurseStack = new Stack<CurseData>();
     [SerializeField] private bool isCleanseOnCooldown = false;
+    public float currentCleanseCDT = 0f;
     [SerializeField] private float cleanseCooldownTime = 30f;
     [SerializeField] private int maxCount = 3;
 
@@ -64,15 +65,14 @@ public class CurseManager : MonoBehaviour
             CurseData selectedCurse = validCurse[randomIdx];
 
             activeCurseStack.Push(selectedCurse);
-            // Alert으로 저주가 옮겨붙었다는 알림을 줘야할듯
 
-            // 수치 적용할 함수도 만들어야됨..
             ApplyCuresEffect(selectedCurse.type);
+            AlertManager.Instance.ShowAlert(AlertKey.GetCurse, selectedCurse.curseName);
 
         }
         else
         {
-            // 모든 저주 중첩 시 Alert으로 알려줘야할듯
+            AlertManager.Instance.ShowAlert(AlertKey.CannotGetCurse);
         }
     }
 
@@ -82,7 +82,6 @@ public class CurseManager : MonoBehaviour
     {
         if (isCleanseOnCooldown)
         {
-            // Alert - 정화 쿨타임 중
             return;
         }
 
@@ -90,22 +89,26 @@ public class CurseManager : MonoBehaviour
         {
             CurseData cleansed = activeCurseStack.Pop();
 
-            // 수치 새롭게 적용할 함수
             ApplyCuresEffect(cleansed.type);
-
+            AlertManager.Instance.ShowAlert(AlertKey.CleanseCurse);
             StartCoroutine(CleanseCooldownRoutine());
         }
     }
 
-    // 여기서 합산해서 전달..?  or 각 스크립트에서 합산..?
 
     public IEnumerator CleanseCooldownRoutine()
     {
         isCleanseOnCooldown = true;
-        yield return new WaitForSeconds(cleanseCooldownTime);
-        isCleanseOnCooldown = false;
+        currentCleanseCDT = cleanseCooldownTime;
 
-        // Alert - 해제 쿨다운이 종료되어서 해제를 할 수 있다는 것
+        while (currentCleanseCDT > 0)
+        {
+            currentCleanseCDT -= Time.deltaTime;
+            yield return null;
+        }
+
+        currentCleanseCDT = 0f;
+        isCleanseOnCooldown = false;
     }
 
     public void ApplyCuresEffect(CurseType selectedType)

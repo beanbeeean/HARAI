@@ -37,8 +37,6 @@ public class CommonMonster : EnemyFSMController
                 float distToLastSeen = Vector2.Distance(lastKnownPlayerPosition, portal.transform.position);
                 if (!CanSeePlayer() && distToLastSeen < 1.0f)
                 {
-                    Debug.Log("!CanSeePlayer() && distToLastSeen < 1.0f");
-                    Debug.Log($"CanSeePlayer : {CanSeePlayer()}");
                     ExecutePortalTeleport(portal);
                 }
             }

@@ -43,7 +43,7 @@ public class InventoryManager : MonoBehaviour
     {
         for (int i = 0; i < slots.Length; i++)
         {
-            if (slots[i] == null)
+            if (slots[i].itemType ==  ItemType.None)
             {
                 slots[i] = newItem;
                 if (inventoryUI != null)
@@ -54,13 +54,14 @@ public class InventoryManager : MonoBehaviour
             }
         }
         //ShowFullMessage();
+        AlertManager.Instance.ShowAlert(AlertKey.CannotPickUp);
         inventoryUI.UpdateUI();
         return false;
     }
 
     public void UseItem(int index)
     {
-        if (index < 0 || index >= slots.Length || slots[index] == null) return;
+        if (index < 0 || index >= slots.Length || slots[index].itemType ==  ItemType.None) return;
 
         ItemData item = slots[index];
 
@@ -68,7 +69,7 @@ public class InventoryManager : MonoBehaviour
 
         if (useSuccess)
         {
-            slots[index] = null;
+            slots[index] = new ItemData();
             inventoryUI?.UpdateUI();
         }
     }
@@ -86,6 +87,7 @@ public class InventoryManager : MonoBehaviour
                     {
                         // 팝업 알림 넣어야할 곳
                         Debug.Log("체력이 이미 가득 찼습니다!");
+                        AlertManager.Instance.ShowAlert(AlertKey.FullHealth);
                         return false;
                     }
 
@@ -101,7 +103,8 @@ public class InventoryManager : MonoBehaviour
                     if(flashlightManager.currentPower >= flashlightManager.maxPower)
                     {
                         // 팝업 알림 넣어야할 곳
-                        Debug.Log("배터리가 이미 가득 찼습니다.");
+                        //Debug.Log("배터리가 이미 가득 찼습니다.");
+                        AlertManager.Instance.ShowAlert(AlertKey.FullBattery);
                         return false;
                     }
                     flashlightManager.AddPower(data.value);
@@ -114,12 +117,12 @@ public class InventoryManager : MonoBehaviour
                 {
                     if(CurseManager.instance.GetActiveCurseList().Count <= 0)
                     {
-                        Debug.Log("해제할 저주가 없습니다.");
+                        AlertManager.Instance.ShowAlert(AlertKey.NoCurse);
                         return false;
                     }
                     else if (CurseManager.instance.IsCleanseOnCooldown)
                     {
-                        Debug.Log("저주 해제 쿨타임");
+                        AlertManager.Instance.ShowAlert(AlertKey.CannotCleanse, (int)CurseManager.instance.currentCleanseCDT);
                         return false;
                     }
                     else
@@ -158,8 +161,10 @@ public class InventoryManager : MonoBehaviour
         }
 
         Debug.Log($"{slots[index].itemName}을(를) 현재 위치에 버렸습니다.");
-        slots[index] = null;
+        slots[index] = new ItemData();
         inventoryUI.UpdateUI();
+
+        Destroy(droppedObj, 30f);
     }
 
 

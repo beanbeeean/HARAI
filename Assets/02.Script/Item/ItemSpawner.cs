@@ -1,80 +1,118 @@
 ﻿using UnityEngine;
 using System.Collections.Generic;
+using System.Collections;
 
 public class ItemSpawner : MonoBehaviour
 {
-    public List<ItemData> itemPool;
-    public int maxItemsInMap = 10;
-    public float respawnCheckTime = 5f;
+    public static ItemSpawner Instance;
 
-    private List<Transform> spawnPoints = new List<Transform>();
-    private List<GameObject> currentItems = new List<GameObject>();
+    [Header("Spawn Setting")]
+    [SerializeField] private int spawnLimit = 10;
+    [SerializeField] private float respawnDelay = 10f;
+    [SerializeField] private float itemLifeTime = 15f;
 
-    void Start()
+    [SerializeField] private List<SpawnPointState> pointStates = new List<SpawnPointState>();
+
+
+    private void Awake()
     {
-        spawnPoints.Clear();
-
-        foreach (Transform child in transform)
+        if(Instance == null)
         {
-            spawnPoints.Add(child);
-        }
-
-        if (spawnPoints.Count == 0)
-        {
-            Debug.LogWarning($"{gameObject.name} 아래에 자식 스폰 포인트가 하나도 없습니다!");
+            Instance = this;
         }
         else
         {
-            Debug.Log($"{gameObject.name}: {spawnPoints.Count}개의 스폰 포인트를 로드했습니다.");
+            Destroy(gameObject);
         }
+    }
+
+    void Start()
+    {
+
+        foreach (Transform child in transform)
+        {
+            pointStates.Add(new SpawnPointState(child));
+        }
+
+
 
         InitialSpawn();
-        InvokeRepeating(nameof(CheckAndRespawn), respawnCheckTime, respawnCheckTime);
+        //InvokeRepeating(nameof(CheckAndRespawn), respawnCheckTime, respawnCheckTime);
     }
 
-    void InitialSpawn()
+    private void Update()
     {
-        while (currentItems.Count < maxItemsInMap && spawnPoints.Count > 0)
+        UpdateStates();
+        TrySpawnItem();
+    }
+
+    void UpdateStates()
+    {
+        foreach (SpawnPointState state in pointStates)
         {
-            SpawnRandomItem();
-        }
-    }
-
-    void CheckAndRespawn()
-    {
-        currentItems.RemoveAll(item => item == null);
-
-        if (currentItems.Count < maxItemsInMap)
-        {
-            SpawnRandomItem();
-        }
-    }
-
-    void SpawnRandomItem()
-    {
-        List<Transform> validPoints = GetEmptySpawnPoints();
-        if (validPoints.Count == 0) return;
-
-        Transform selectedPoint = validPoints[Random.Range(0, validPoints.Count)];
-        ItemData selectedData = itemPool[Random.Range(0, itemPool.Count)];
-
-        GameObject newItem = Instantiate(selectedData.itemPrefab, selectedPoint.position, Quaternion.identity);
-        newItem.GetComponent<ItemObject>().itemData = selectedData;
-
-        currentItems.Add(newItem);
-    }
-
-    List<Transform> GetEmptySpawnPoints()
-    {
-        List<Transform> emptyPoints = new List<Transform>();
-        foreach (var sp in spawnPoints)
-        {
-            Collider2D hit = Physics2D.OverlapCircle(sp.position, 0.5f);
-            if (hit == null || !hit.CompareTag("Item"))
+            if (state.currentItem == null && state.wasSpawning)
             {
-                emptyPoints.Add(sp);
+                state.wasSpawning = false;
+                state.isCooling = true;
+                state.respawnTimer = respawnDelay;
+            }
+
+            if (state.isCooling)
+            {
+                state.respawnTimer -= Time.deltaTime;
+                if (state.respawnTimer <= 0)
+                {
+                    state.isCooling = false;
+                }
             }
         }
-        return emptyPoints;
     }
+
+    void TrySpawnItem()
+    {
+        int activeCount = pointStates.FindAll(state => state.currentItem != null).Count;
+
+        if(activeCount < spawnLimit)
+        {
+            List<SpawnPointState> emptyPoints = pointStates.FindAll(state =>!state.wasSpawning && !state.isCooling && state.currentItem == null);
+
+            if (emptyPoints.Count > 0)
+            {
+                SpawnItemAt(emptyPoints[Random.Range(0, emptyPoints.Count)]);
+            }
+        }
+    }
+    void InitialSpawn()
+    {
+
+        List<SpawnPointState> available = new List<SpawnPointState>(pointStates);
+        int count = Mathf.Min(spawnLimit, available.Count);
+
+        for (int i = 0; i < count; i++)
+        {
+            int randomIndex = Random.Range(0, available.Count);
+            SpawnItemAt(available[randomIndex]);
+            available.RemoveAt(randomIndex);
+        }
+    }
+
+    void SpawnItemAt(SpawnPointState state)
+    {
+        ItemData data = ItemManager.Instance.GetRandomItemCopy();
+        if (data == null) return;
+
+        GameObject newItem = Instantiate(data.itemPrefab, state.point.position, Quaternion.identity);
+
+        ItemObject itemObj = newItem.GetComponent<ItemObject>();
+        if (itemObj != null)
+        {
+            itemObj.itemData = data;
+        }
+
+        Destroy(newItem, itemLifeTime);
+        state.currentItem = newItem;
+        state.wasSpawning = true;
+    }
+
+    
 }
