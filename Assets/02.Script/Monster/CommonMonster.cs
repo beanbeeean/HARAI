@@ -8,14 +8,17 @@ public class CommonMonster : EnemyFSMController
     [Header("Common Monster - Local Info")]
     private int baseAttackDamage;
     private Vector2 spawnPoint;
-    private CommonMonsterAnimator monsterAnimator;
+    [SerializeField] private bool isDead = false;
+
+    [Header("Effect Settings")]
+    [SerializeField] private GameObject deathEffectPrefab;
+    [SerializeField] private float effectYOffset = 1.0f;
 
     protected override void Awake()
     {
         base.Awake();
         baseAttackDamage = attackDamage;
         spawnPoint = transform.position;
-        monsterAnimator = GetComponentInChildren<CommonMonsterAnimator>();
     }
     protected override void FixedUpdate()
     {
@@ -35,7 +38,7 @@ public class CommonMonster : EnemyFSMController
             if (currentState == EnemyState.Chase)
             {
                 float distToLastSeen = Vector2.Distance(lastKnownPlayerPosition, portal.transform.position);
-                if (!CanSeePlayer() && distToLastSeen < 1.0f)
+                if (!CanSeePlayer() && distToLastSeen < 2.0f)
                 {
                     ExecutePortalTeleport(portal);
                 }
@@ -128,21 +131,44 @@ public class CommonMonster : EnemyFSMController
 
     protected override void OnLightGaugeFull()
     {
-        StartCoroutine(DieRoutine());
-    }
-    private IEnumerator DieRoutine()
-    {
+        if (isDead) return;
+        isDead = true;
+
         StopMovement();
         currentState = EnemyState.Idle;
-        if (monsterAnimator != null)
-        {
-            attackDamage = 0;
-            monsterAnimator.PlayDie();
-        }
 
-        yield return new WaitForSeconds(0.5f);
+
+        SpriteRenderer spriteRenderer = GetComponentInChildren<SpriteRenderer>();
+        //spriteRenderer.enabled = false;
+
+        spriteRenderer.gameObject.SetActive(false);
+
+        agent.isStopped = true;
+
+
+        if (deathEffectPrefab != null)
+        {
+            Vector3 spawnPosition = transform.position + new Vector3(0, effectYOffset, 0);
+
+            GameObject effect = Instantiate(deathEffectPrefab, spawnPosition, Quaternion.identity);
+
+            Destroy(effect, 0.8f);
+        }
+        else
+        {
+            Debug.LogWarning("이펙트 프리팹 할당 X");
+        }
+        StartCoroutine(PlayDeathSoundRoutine());
+        //Destroy(gameObject);
+    }
+
+    private IEnumerator PlayDeathSoundRoutine()
+    {
+        PlayDeathSound();
+        yield return new WaitForSeconds(0.8f);
         Destroy(gameObject);
     }
+ 
     protected override void ApplyLightEffect()
     {
         StopMovement();

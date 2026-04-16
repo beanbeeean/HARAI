@@ -31,6 +31,9 @@ public class PlayerMove2D : MonoBehaviour
 
     public int currentFloor;
 
+    private float footstepTimer;
+    [SerializeField] private float stepInterval = 0.3f;
+
     private void Awake()
     {
         if (rb == null) rb = GetComponent<Rigidbody2D>();
@@ -47,6 +50,21 @@ public class PlayerMove2D : MonoBehaviour
         
         inputDirection = playerInputReader != null ? playerInputReader.MoveVector : Vector2.zero;
         UpdateDirection();
+
+        if(inputDirection.sqrMagnitude > 0.01f && !isKnockback)
+        {
+            footstepTimer += Time.deltaTime;
+            if(footstepTimer >= stepInterval)
+            {
+                SoundManager.Instance.PlayWalkSound();
+                footstepTimer = 0;
+            }
+        }
+        else
+        {
+            SoundManager.Instance.StopWalkSound();
+            footstepTimer = stepInterval;
+        }
     }
 
     private void FixedUpdate()

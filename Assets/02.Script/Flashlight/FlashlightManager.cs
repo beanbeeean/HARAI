@@ -59,14 +59,15 @@ public class FlashlightManager : MonoBehaviour
     void TogglePower()
     {
         isPowerOn = !isPowerOn;
+        SoundManager.Instance.PlaySFX("Flashlight");
         UpdateLightState();
     }
 
     void ToggleMode()
     {
         if (currentPower < consumeRate) return;
-
         isUVMode = !isUVMode;
+        SoundManager.Instance.PlaySFX("Flashlight");
         UpdateLightState();
     }
 

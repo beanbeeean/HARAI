@@ -38,14 +38,14 @@ public class CurseUIContainer : MonoBehaviour
             cuc.RefreshUI();
 
             Time.timeScale = 0f;
-            playerInputReader.SetUIInput(true);
+            playerInputReader.SetUIInput("UI");
         }
         else
         {
             cursePanel.SetActive(false);
             isActive = false;
             Time.timeScale = 1f;
-            playerInputReader.SetUIInput(false);
+            playerInputReader.SetUIInput("Player");
         }
     }
 }

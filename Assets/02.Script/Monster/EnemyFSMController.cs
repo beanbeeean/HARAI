@@ -52,6 +52,17 @@ public abstract class EnemyFSMController : MonoBehaviour
     [SerializeField] protected Slider exposureSlider;
     [SerializeField] protected GameObject canvasObj;
 
+    [Header("Sound Settings")]
+    [SerializeField] protected AudioSource loopSource;
+    [SerializeField] protected AudioSource effectSource;
+    [SerializeField] protected AudioClip chaseClip;
+    [SerializeField] protected AudioClip stunClip;
+    [SerializeField] protected AudioClip deathClip;
+    [SerializeField] private float soundInterval = 3.0f;
+    [SerializeField] private float defaultVolume = 1.0f;
+
+    private Coroutine chaseSoundCoroutine;
+
     protected Vector2 currentVelocity;
     public Vector2 CurrentVelocity => currentVelocity;
 
@@ -64,6 +75,29 @@ public abstract class EnemyFSMController : MonoBehaviour
         agent.updateUpAxis = false;
 
         TryFindTarget();
+    }
+
+    private void Start()
+    {
+        UpdateVolume(SoundManager.Instance.GetSFXVolume());
+        SoundManager.Instance.OnSFXVolumeChanged += UpdateVolume;
+    }
+
+    private void OnDestroy()
+    {
+        if (SoundManager.Instance != null)
+        {
+            SoundManager.Instance.OnSFXVolumeChanged -= UpdateVolume;
+        }
+    }
+
+    private void UpdateVolume(float customVolume)
+    {
+        if (loopSource != null && effectSource != null)
+        {
+            loopSource.volume = defaultVolume * customVolume;
+            effectSource.volume = defaultVolume * customVolume;
+        }
     }
 
     private void TryFindTarget()
@@ -93,6 +127,7 @@ public abstract class EnemyFSMController : MonoBehaviour
             currentVelocity = Vector2.zero;
 
         UpdateExposureUI();
+
     }
 
     protected virtual void UpdateExposureUI()
@@ -231,10 +266,13 @@ public abstract class EnemyFSMController : MonoBehaviour
                 {
                     agent.speed = moveSpeed;
                 }
+
+                if(!isExposed) StartChaseSound();
                 agent.SetDestination(target.position);
                 break;
             case EnemyState.Patrol:
                 HandlePatrol();
+                StopChaseSound();
                 break;
 
             case EnemyState.Attack:
@@ -244,6 +282,7 @@ public abstract class EnemyFSMController : MonoBehaviour
 
             case EnemyState.Idle:
                 StopMovement();
+                StopChaseSound();
                 break;
         }
     }
@@ -259,6 +298,47 @@ public abstract class EnemyFSMController : MonoBehaviour
     protected virtual void OnTriggerStay2D(Collider2D collision)
     {
         if (((1 << collision.gameObject.layer) & lightLayerMask) != 0 && collision.GetComponentInParent<FlashlightManager>().isUVMode) isExposed = true;
+    }
+
+    protected void StartChaseSound()
+    {
+        Debug.Log("StartChaseSound");
+        if(chaseSoundCoroutine != null)
+        {
+            return;
+        }
+
+        chaseSoundCoroutine = StartCoroutine(PlayChaseSoundRoutine());
+    }
+
+    protected void StopChaseSound()
+    {
+        if(chaseSoundCoroutine != null)
+        {
+            StopCoroutine(chaseSoundCoroutine);
+            chaseSoundCoroutine = null;
+        }
+        loopSource.Stop();
+    }
+
+    private IEnumerator PlayChaseSoundRoutine()
+    {
+        Debug.Log("PlayChaseSoundRoutine()");
+        while (true)
+        {
+            if (!isExposed)
+            {
+                loopSource.PlayOneShot(chaseClip);
+            }
+
+            yield return new WaitForSeconds(soundInterval);
+        }
+    }
+
+    protected void PlayDeathSound()
+    {
+        Debug.Log("PlayDeathSound()");
+        effectSource.PlayOneShot(deathClip);
     }
 
     protected abstract void HandlePatrol();

@@ -26,13 +26,17 @@ public class MainMonsterAnimator : MonoBehaviour
     {
         if(animator == null || controller == null) return;
 
-        if (controller.currentState == EnemyState.Attack)
+        if (controller.currentState == EnemyState.Attack || controller.currentState == EnemyState.Stun)
         {
             animator.speed = 0f;
             return;
         }
+        else
+        {
+            animator.speed = 1f;
+        }
 
-        Vector2 direction = controller.CurrentVelocity;
+            Vector2 direction = controller.CurrentVelocity;
 
         if (direction.sqrMagnitude > 0.001f)
         {

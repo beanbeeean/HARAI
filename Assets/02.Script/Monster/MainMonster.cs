@@ -71,7 +71,7 @@ public class MainMonster : EnemyFSMController
             if (currentState == EnemyState.Chase)
             {
                 float distToLastSeen = Vector2.Distance(lastKnownPlayerPosition, portal.transform.position);
-                if (!CanSeePlayer() && distToLastSeen < 1.0f)
+                if (!CanSeePlayer() && distToLastSeen < 2.0f)
                 {
                     Debug.Log("!CanSeePlayer() && distToLastSeen < 1.0f");
                     ExecutePortalTeleport(portal);
@@ -122,6 +122,7 @@ public class MainMonster : EnemyFSMController
         encounterTimer = 0f;
 
         Vector3 spawnPos = GetRandomPositionOnPlayerFloor();
+        SoundManager.Instance.PlaySFX("Teleport");
         agent.Warp(spawnPos);
 
         agent.isStopped = false;
@@ -189,7 +190,11 @@ public class MainMonster : EnemyFSMController
 
     protected override void ApplyLightEffect()
     {
-        if (isImmune) return;
+        if (isImmune)
+        {
+            currentExposure = 0f;
+            return;
+        }
 
         agent.speed = slowedSpeed;
     }
@@ -214,6 +219,7 @@ public class MainMonster : EnemyFSMController
     private IEnumerator StunAndImmuneRoutine()
     {
         currentState = EnemyState.Stun;
+        PlayStunSound();
         StopMovement();
         currentExposure = 0;
         AlertManager.Instance.ShowAlert(AlertKey.Stun);
@@ -226,6 +232,7 @@ public class MainMonster : EnemyFSMController
         AlertManager.Instance.ShowAlert(AlertKey.Immune);
 
         ResumeMovement();
+        currentState = EnemyState.Patrol;
 
         yield return new WaitForSeconds(immuneTime);
         if (isImmune)
@@ -302,6 +309,12 @@ public class MainMonster : EnemyFSMController
         {
             canvasObj.SetActive(false);
         }
+    }
+
+    private void PlayStunSound()
+    {
+        StopChaseSound();
+        effectSource.PlayOneShot(stunClip);
     }
 
     private void OnDrawGizmosSelected()

@@ -57,7 +57,7 @@ public class PlayerHPManager : MonoBehaviour
 
         currentHealth = Mathf.Max(0, currentHealth - amount);
         OnHealthChanged?.Invoke(currentHealth, maxHealth);
-
+        SoundManager.Instance.PlaySFX("Hit");
         if (healthPopup != null)
         {
             healthPopup.Show(amount, true);
@@ -126,6 +126,7 @@ public class PlayerHPManager : MonoBehaviour
 
     private void Die()
     {
+        SoundManager.Instance.PlaySFX("Gameover");
         StopAllCoroutines();
         OnDied?.Invoke();
 

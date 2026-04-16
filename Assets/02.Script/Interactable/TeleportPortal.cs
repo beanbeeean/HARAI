@@ -10,6 +10,7 @@ public class TeleportPortal : InteractableBase
         if (player != null && destination != null)
         {
             player.transform.position = destination.position;
+            SoundManager.Instance.PlaySFX("Door");
             HideUI();
         }
     }

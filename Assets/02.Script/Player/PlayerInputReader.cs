@@ -15,6 +15,8 @@ public class PlayerInputReader : MonoBehaviour
     private InputAction flashlightModeAction;
     private InputAction curseListOpenAction;
     private InputAction curseListCloseAction;
+    private InputAction pauseAction;
+    private InputAction resumeAction;
 
     public Vector2 MoveVector { get; private set; }
     public bool InteractPressed { get; private set; }
@@ -29,6 +31,8 @@ public class PlayerInputReader : MonoBehaviour
     public event Action FlashlightModeStartedEvent;
     public event Action CurseListOpenEvent;
     public event Action CurseListCloseEvent;
+    public event Action PauseEvent;
+    public event Action ResumeEvent;
 
     
 
@@ -43,6 +47,8 @@ public class PlayerInputReader : MonoBehaviour
     [SerializeField] private string flashlightModeActionName = "FlashlightMode";
     [SerializeField] private string curseListOpenActionName = "CurseListOpen";
     [SerializeField] private string curseListCloseActionName = "CurseListClose";
+    [SerializeField] private string pauseActionName = "Pause";
+    [SerializeField] private string resumeActionName = "Resume";
 
 
     private void Awake()
@@ -85,6 +91,15 @@ public class PlayerInputReader : MonoBehaviour
             curseListCloseAction.started += OnCurseListCloseStarted;
         }
 
+        if(pauseAction != null)
+        {
+            pauseAction.started += OnPauseStarted;
+        }
+
+        if (resumeAction != null)
+        {
+            resumeAction.started += OnResumeStarted;
+        }
     }
 
     private void OnDisable()
@@ -119,18 +134,31 @@ public class PlayerInputReader : MonoBehaviour
         {
             curseListCloseAction.started -= OnCurseListCloseStarted;
         }
+
+        if (pauseAction != null)
+        {
+            pauseAction.started -= OnPauseStarted;
+        }
+
+        if(resumeAction != null)
+        {
+            resumeAction.started -= OnResumeStarted;
+        }
     }
 
-    public void SetUIInput(bool isUI)
+    public void SetUIInput(string map)
     {
-        if (isUI)
-        {
-            playerInput.SwitchCurrentActionMap("UI");
-        }
-        else
-        {
-            playerInput.SwitchCurrentActionMap("Player");
-        }
+        playerInput.SwitchCurrentActionMap(map);
+    }
+
+    private void OnPauseStarted(InputAction.CallbackContext context)
+    {
+        PauseEvent?.Invoke();
+    }
+
+    private void OnResumeStarted(InputAction.CallbackContext context)
+    {
+        ResumeEvent?.Invoke();
     }
 
     private void OnCurseListCloseStarted(InputAction.CallbackContext context)
@@ -202,6 +230,8 @@ public class PlayerInputReader : MonoBehaviour
         flashlightModeAction = FindAction(flashlightModeActionName);
         curseListOpenAction = FindAction(curseListOpenActionName);
         curseListCloseAction = FindAction(curseListCloseActionName);
+        pauseAction = FindAction(pauseActionName);
+        resumeAction = FindAction(resumeActionName);
     }
 
     private InputAction FindAction(string actionName)
