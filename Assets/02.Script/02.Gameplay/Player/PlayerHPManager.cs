@@ -10,7 +10,9 @@ public class PlayerHPManager : MonoBehaviour
     [SerializeField] private int currentHealth;
     [SerializeField] private float invincibleTime = 2f;
     [SerializeField] private HealthPopup healthPopup;
-    
+
+
+
     public bool setFullHealthOnStart = true;
 
     public int CurrentHealth => currentHealth;
@@ -31,13 +33,20 @@ public class PlayerHPManager : MonoBehaviour
         if (setFullHealthOnStart) FullHealth();
     }
 
+
     private void Start()
     {
         if (visualContainer != null)
         {
             childSprites = visualContainer.GetComponentsInChildren<SpriteRenderer>();
         }
+        StartCoroutine(Test());
+    }
 
+    IEnumerator Test()
+    {
+        yield return new WaitForSeconds(10f);
+        Die();
     }
 
     public int FullHealth()
@@ -68,8 +77,8 @@ public class PlayerHPManager : MonoBehaviour
         {
             playerMove.ApplyKnockback(attackerPosition);
         }
-        StartCoroutine(InvincibilityRoutine());
         if (IsDead) Die();
+        StartCoroutine(InvincibilityRoutine());
     }
 
     private IEnumerator InvincibilityRoutine()
@@ -126,10 +135,11 @@ public class PlayerHPManager : MonoBehaviour
 
     private void Die()
     {
-        SoundManager.Instance.PlaySFX("Gameover");
+        // SoundManager.Instance.PlaySFX("Gameover");
         StopAllCoroutines();
         OnDied?.Invoke();
 
+        
         //// 플레이어 캐릭터라면 결과 화면(Clear/Result)으로 이동
         //if (gameObject.CompareTag("Player") && GameSceneManager.Instance != null)
         //{

@@ -15,7 +15,6 @@ public class PlayerMove2D : MonoBehaviour
     [SerializeField] private float knockbackForce = 5f;
     [SerializeField] private float knockbackDuration = 0.5f;
     private bool isKnockback = false;
-    private Vector2 knockbackVelocity;
     [SerializeField] private float jumpHeight = 1.5f;
     [SerializeField] private Transform spriteTransform;
 

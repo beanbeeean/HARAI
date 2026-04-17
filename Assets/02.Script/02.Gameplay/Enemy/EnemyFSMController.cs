@@ -79,7 +79,7 @@ public abstract class EnemyFSMController : MonoBehaviour
 
     private void Start()
     {
-        UpdateVolume(SoundManager.Instance.GetSFXVolume());
+        UpdateVolume(SoundManager.Instance.GetCustomSFXVolume());
         SoundManager.Instance.OnSFXVolumeChanged += UpdateVolume;
     }
 

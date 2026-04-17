@@ -47,22 +47,9 @@ public class AlertManager : MonoBehaviour
             alertCanvasGroup = alertPanel.GetComponent<CanvasGroup>();
             alertPanel.SetActive(false);
         }
-        //InitMessages();
+        
     }
 
-    private void InitMessages()
-    {
-        alertMessages.Add(AlertKey.Purifying, "정화를 완료했습니다...\n목표 수치 : {0}/{1}"); // o
-        alertMessages.Add(AlertKey.GameClear, "모든 구역이 정화되었습니다... \n탈출하세요!"); // o
-        alertMessages.Add(AlertKey.GameOver, "게임 오버... 정화 실패.."); // 이건 문구 생각좀.. && GameManager 만들어서 HPManager랑 연동 예정
-        alertMessages.Add(AlertKey.GetCurse, "{0} 저주가 당신에게 스며듭니다."); // o
-        alertMessages.Add(AlertKey.CleanseCurse, "스며든 저주가 해제되었습니다.");  // o
-        alertMessages.Add(AlertKey.CannotGetCurse, "이미 저주가 가득합니다."); // o
-        alertMessages.Add(AlertKey.CannotPickUp, "인벤토리가 이미 가득 찼습니다.");
-        alertMessages.Add(AlertKey.CanCleanse, "이제 다시 저주를 해제할 수 있습니다."); // o
-        alertMessages.Add(AlertKey.CannotCleanse, "{0}초 이후에 저주를 해제할 수 있습니다."); // o
-
-    }
 
     public void ShowAlert(AlertKey key, params object[] args)
     {

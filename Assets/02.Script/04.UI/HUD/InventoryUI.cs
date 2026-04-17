@@ -3,7 +3,7 @@ using UnityEngine.UI;
 
 public class InventoryUI : MonoBehaviour
 {
-    public InventoryManager invManager;
+    public InventoryManager inventoryManager;
     public Image[] slotIcons;
 
     void Start()
@@ -14,12 +14,12 @@ public class InventoryUI : MonoBehaviour
     public void UpdateUI()
     {
         //Debug.Log("UpdateUI 호출됨!");
-        for (int i = 0; i < invManager.slots.Length; i++)
+        for (int i = 0; i < inventoryManager.slots.Length; i++)
         {
-            if (invManager.slots[i].itemType != ItemType.None)
+            if (inventoryManager.slots[i].itemType != ItemType.None)
             {
-                Debug.Log($"{i}번 슬롯 아이템 있음: {invManager.slots[i].itemName}");
-                slotIcons[i].sprite = invManager.slots[i].itemIcon;
+                Debug.Log($"{i}번 슬롯 아이템 있음: {inventoryManager.slots[i].itemName}");
+                slotIcons[i].sprite = inventoryManager.slots[i].itemIcon;
                 slotIcons[i].enabled = true;
 
                 slotIcons[i].color = Color.white;

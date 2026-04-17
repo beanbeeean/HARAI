@@ -6,8 +6,10 @@ public class PlayerAnimator : MonoBehaviour
     private Animator animator;
     private PlayerInputReader inputReader;
     private PlayerMove2D playerMove;
+
     [SerializeField] private FlashlightAnimator flashlightAnimator;
 
+    
 
     private readonly int hashIsMoving = Animator.StringToHash("IsMoving");
     private readonly int hashDirX = Animator.StringToHash("DirX");
@@ -22,7 +24,10 @@ public class PlayerAnimator : MonoBehaviour
         playerMove = GetComponentInParent<PlayerMove2D>();
     }
 
+   
 
+    
+    
     private void Update()
     {
         animator.SetBool(hashIsMoving, inputReader.isMoving);

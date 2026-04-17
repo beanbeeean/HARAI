@@ -10,29 +10,29 @@ public class PauseManager : MonoBehaviour
     [SerializeField] private GameObject settingPanel;
 
 
-    [Header("Audio Settings UI")]
-    [SerializeField] private Slider bgmSlider;
-    [SerializeField] private TextMeshProUGUI bgmValueText;
-    [SerializeField] private Slider sfxSlider;
-    [SerializeField] private TextMeshProUGUI sfxValueText;
+    // [Header("Audio Settings UI")]
+    // [SerializeField] private Slider bgmSlider;
+    // [SerializeField] private TextMeshProUGUI bgmValueText;
+    // [SerializeField] private Slider sfxSlider;
+    // [SerializeField] private TextMeshProUGUI sfxValueText;
 
     private void Start()
     {
         playerInputReader.PauseEvent += OnPause;
         playerInputReader.ResumeEvent += OnResume;
 
-        bgmSlider.onValueChanged.AddListener(UpdateBGMVolume);
-        sfxSlider.onValueChanged.AddListener(UpdateSFXVolume);
+        // bgmSlider.onValueChanged.AddListener(UpdateBGMVolume);
+        // sfxSlider.onValueChanged.AddListener(UpdateSFXVolume);
 
-        float defaultStartValue = 0.5f;
-        bgmSlider.value = defaultStartValue;
-        sfxSlider.value = defaultStartValue;
+        // float defaultStartValue = 0.5f;
+        // bgmSlider.value = defaultStartValue;
+        // sfxSlider.value = defaultStartValue;
 
-        UpdateVolumeText(bgmSlider.value, bgmValueText);
-        UpdateVolumeText(sfxSlider.value, sfxValueText);
+        // UpdateVolumeText(bgmSlider.value, bgmValueText);
+        // UpdateVolumeText(sfxSlider.value, sfxValueText);
 
-        Debug.Log($"bgmSlider.value: {bgmSlider.value}");
-        Debug.Log($"sfxSlider.value: {sfxSlider.value}");
+        // Debug.Log($"bgmSlider.value: {bgmSlider.value}");
+        // Debug.Log($"sfxSlider.value: {sfxSlider.value}");
         pauseContainer.SetActive(false);
     }
 
@@ -45,26 +45,26 @@ public class PauseManager : MonoBehaviour
         }
     }
 
-    private void UpdateBGMVolume(float value)
-    {
-        UpdateVolumeText(value, bgmValueText);
+    // private void UpdateBGMVolume(float value)
+    // {
+    //     UpdateVolumeText(value, bgmValueText);
 
-        if (SoundManager.Instance != null)
-            SoundManager.Instance.SetBGMVolume(value);
-    }
+    //     if (SoundManager.Instance != null)
+    //         SoundManager.Instance.SetBGMVolume(value);
+    // }
 
-    private void UpdateSFXVolume(float value)
-    {
-        UpdateVolumeText(value, sfxValueText);
+    // private void UpdateSFXVolume(float value)
+    // {
+    //     UpdateVolumeText(value, sfxValueText);
 
-        if (SoundManager.Instance != null)
-            SoundManager.Instance.SetSFXVolume(value);
-    }
+    //     if (SoundManager.Instance != null)
+    //         SoundManager.Instance.SetSFXVolume(value);
+    // }
 
-    private void UpdateVolumeText(float value, TextMeshProUGUI text)
-    {
-        text.text = Mathf.RoundToInt(value * 100).ToString();
-    }
+    // private void UpdateVolumeText(float value, TextMeshProUGUI text)
+    // {
+    //     text.text = Mathf.RoundToInt(value * 100).ToString();
+    // }
 
     private void OnPause()
     {
@@ -98,7 +98,13 @@ public class PauseManager : MonoBehaviour
 
             playerInputReader.SetUIInput("Player");
         }
-            
+
+    }
+    
+    public void GoBackTitle()
+    {
+        Time.timeScale = 1f;
+        GameSceneManager.Instance.LoadSceneByName("Title");
     }
 
 

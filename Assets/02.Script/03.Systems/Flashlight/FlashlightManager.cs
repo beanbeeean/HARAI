@@ -10,6 +10,8 @@ public class FlashlightManager : MonoBehaviour
     [SerializeField] private Light2D flashlight;
     [SerializeField] private BatteryPopup batteryPopup;
 
+    [SerializeField] private PlayerHPManager playerHPManager;
+
     [Header("Setting")]
     [SerializeField] private Color normalColor = Color.white;
     [SerializeField] private Color uvColor;
@@ -32,11 +34,16 @@ public class FlashlightManager : MonoBehaviour
 
     private void OnEnable()
     {
-        if(playerInputReader != null)
+        if (playerInputReader != null)
         {
             playerInputReader.FlashlightPowerStartedEvent += TogglePower;
             playerInputReader.FlashlightModeStartedEvent += ToggleMode;
 
+        }
+        
+        if(playerHPManager != null)
+        {
+            playerHPManager.OnDied += TurnOff;
         }
     }
 
@@ -48,12 +55,26 @@ public class FlashlightManager : MonoBehaviour
             playerInputReader.FlashlightModeStartedEvent -= ToggleMode;
 
         }
+
+        if(playerHPManager != null)
+        {
+            playerHPManager.OnDied -= TurnOff;
+        }
     }
 
     private void Update()
     {
         HandlePower();
         OnPowerChanged?.Invoke(currentPower, maxPower);
+    }
+
+    void TurnOff()
+    {
+        Debug.Log("TurnOff");
+        isPowerOn = false;
+        SpriteRenderer flashlight = GetComponent<SpriteRenderer>();
+        flashlight.enabled = false;
+        flashlightObj.SetActive(false);
     }
 
     void TogglePower()

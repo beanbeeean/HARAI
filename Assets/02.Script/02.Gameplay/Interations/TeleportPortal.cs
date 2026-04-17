@@ -42,4 +42,8 @@ public class TeleportPortal : InteractableBase
 
     }
 
+    public void SetInactiveCanvas()
+    {
+        interactionUI.SetActive(false);
+    }
 }

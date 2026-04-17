@@ -18,6 +18,11 @@ public class SoundManager : MonoBehaviour
     [SerializeField] private AudioSource footstepSource;
     [SerializeField] private AudioClip[] walkClips;
 
+    [SerializeField] private float customBGMVolume = 0.5f;
+    [SerializeField] private float customSFXVolume = 0.5f;
+
+    [SerializeField] private SoundEffect currentBGMData;
+
     public event Action<float> OnSFXVolumeChanged;
 
     private int currentStepIndex = 0;
@@ -30,7 +35,8 @@ public class SoundManager : MonoBehaviour
             Instance = this;
             DontDestroyOnLoad(gameObject);
             InitDictionaries();
-
+            PlayBGM("Title");
+            
         }
         else
         {
@@ -42,7 +48,21 @@ public class SoundManager : MonoBehaviour
     //Test
     private void Start()
     {
-        PlayBGM("GameBGM");
+        GameSceneManager.Instance.changeSceneEvent += UpdateBGM;
+    }
+
+    void OnDestroy()
+    {
+        GameSceneManager.Instance.changeSceneEvent -= UpdateBGM;
+    }
+    private void UpdateBGM(string sceneName)
+    {
+        bgmSource.Stop();
+        if(sceneName != "Ending")
+        {
+            PlayBGM(sceneName);
+        }
+
     }
 
     private void InitDictionaries()
@@ -68,7 +88,7 @@ public class SoundManager : MonoBehaviour
     {
         if (sfxDictionary.TryGetValue(clipName, out SoundEffect sfxData))
         {
-            float finalVolume = sfxData.defaultVolume * sfxSource.volume;
+            float finalVolume = sfxData.defaultVolume * customSFXVolume;
             sfxSource.PlayOneShot(sfxData.clip, finalVolume);
         }
     }
@@ -79,17 +99,30 @@ public class SoundManager : MonoBehaviour
         {
             if (bgmSource.isPlaying && bgmSource.clip == bgmData.clip) return;
 
-            bgmSource.volume = bgmData.defaultVolume * bgmSource.volume;  
+            bgmSource.volume = bgmData.defaultVolume * customBGMVolume;  
             bgmSource.clip = bgmData.clip;
             bgmSource.loop = true;
             bgmSource.Play();
+
+            currentBGMData = bgmData;
         }
     }
 
-    public void StopBGM() { 
+    public void StopBGM()
+    {
         bgmSource.Stop();
     }
 
+    public void PlaySFXEnding(string clipName, float volume)
+    {
+        if (sfxDictionary.TryGetValue(clipName, out SoundEffect sfxData))
+        {
+            float endingVolume = volume;
+            sfxSource.PlayOneShot(sfxData.clip, endingVolume);
+        }
+
+    }
+    
     public void PlayWalkSound()
     {
         if (walkClips == null || walkClips.Length <= 0) return;
@@ -120,24 +153,34 @@ public class SoundManager : MonoBehaviour
 
     public void SetBGMVolume(float volume)
     {
-        bgmSource.volume = volume;
+        customBGMVolume = volume;
+        
+        if (currentBGMData != null)
+        {
+            bgmSource.volume = currentBGMData.defaultVolume * customBGMVolume;
+        }
         //bgmSource.Play();
     }
 
     public void SetSFXVolume(float volume)
     {
-
-        sfxSource.volume = volume;
+        customSFXVolume = volume;
+        sfxSource.volume = customSFXVolume;
         if (footstepSource != null)
         {
-            footstepSource.volume = volume;
+            footstepSource.volume = customSFXVolume;
         }
 
-        OnSFXVolumeChanged?.Invoke(volume);
+        OnSFXVolumeChanged?.Invoke(customSFXVolume);
     }
 
-    public float GetSFXVolume()
+    public float GetCustomSFXVolume()
     {
-        return sfxSource.volume;
+        return customSFXVolume;
+    }
+
+    public float GetCustomBGMVolume()
+    {
+        return customBGMVolume;
     }
 }
