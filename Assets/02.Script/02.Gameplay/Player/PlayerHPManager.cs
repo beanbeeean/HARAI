@@ -40,7 +40,7 @@ public class PlayerHPManager : MonoBehaviour
         {
             childSprites = visualContainer.GetComponentsInChildren<SpriteRenderer>();
         }
-        StartCoroutine(Test());
+        // StartCoroutine(Test());
     }
 
     IEnumerator Test()
