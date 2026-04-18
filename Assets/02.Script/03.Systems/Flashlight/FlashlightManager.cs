@@ -68,7 +68,7 @@ public class FlashlightManager : MonoBehaviour
         OnPowerChanged?.Invoke(currentPower, maxPower);
     }
 
-    void TurnOff()
+    public void TurnOff()
     {
         Debug.Log("TurnOff");
         isPowerOn = false;

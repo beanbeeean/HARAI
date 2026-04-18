@@ -1,0 +1,2340 @@
+fileFormatVersion: 2
+guid: 7d25a073b9aff4547aa60fb26b4cc46d
+TextureImporter:
+  internalIDToNameTable: []
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 0
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: MainMonster_Die_v2_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 1156
+        width: 357
+        height: 560
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: abcaa3a01d7c21142bc1afb97b861968
+      internalID: -2146355002
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MainMonster_Die_v2_1
+      rect:
+        serializedVersion: 2
+        x: 417
+        y: 1156
+        width: 315
+        height: 518
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cfba50a09911a6642918b79297f2774f
+      internalID: -1033704802
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MainMonster_Die_v2_2
+      rect:
+        serializedVersion: 2
+        x: 793
+        y: 1156
+        width: 314
+        height: 527
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 91cab067e6f9348459f77bc2cc1690ed
+      internalID: -1225590594
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MainMonster_Die_v2_3
+      rect:
+        serializedVersion: 2
+        x: 1167
+        y: 1165
+        width: 355
+        height: 551
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 320c7eda8e911bb4faab665f88609f7c
+      internalID: 700359380
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MainMonster_Die_v2_4
+      rect:
+        serializedVersion: 2
+        x: 54
+        y: 558
+        width: 345
+        height: 553
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: aa89994cd66a190489c0010be93929b5
+      internalID: 2031804865
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MainMonster_Die_v2_5
+      rect:
+        serializedVersion: 2
+        x: 473
+        y: 561
+        width: 329
+        height: 520
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 19cd4ca7b3bfbe543bf7ead1d949ac4c
+      internalID: -336238492
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MainMonster_Die_v2_6
+      rect:
+        serializedVersion: 2
+        x: 644
+        y: 1075
+        width: 14
+        height: 14
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 32d4fa55131396b4d9fb93ae647f6537
+      internalID: 644696001
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MainMonster_Die_v2_7
+      rect:
+        serializedVersion: 2
+        x: 1033
+        y: 1066
+        width: 12
+        height: 12
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b7196885bc4bc814aa02d6a6d8b6b70d
+      internalID: -2046239365
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MainMonster_Die_v2_8
+      rect:
+        serializedVersion: 2
+        x: 1023
+        y: 1002
+        width: 50
+        height: 50
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a3d27492132e4024a9ef6541265ab07a
+      internalID: -23528133
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MainMonster_Die_v2_9
+      rect:
+        serializedVersion: 2
+        x: 1418
+        y: 1047
+        width: 12
+        height: 12
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 66a6b10f0e1530a43b63fdd0c5c975dd
+      internalID: 468553693
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MainMonster_Die_v2_10
+      rect:
+        serializedVersion: 2
+        x: 797
+        y: 1012
+        width: 14
+        height: 14
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b69ffdaa127d6984db4b82d37469bb3c
+      internalID: 1548271752
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MainMonster_Die_v2_11
+      rect:
+        serializedVersion: 2
+        x: 837
+        y: 610
+        width: 289
+        height: 485
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a166f2d4734ab5c43831a80f58781f13
+      internalID: -1965907393
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MainMonster_Die_v2_12
+      rect:
+        serializedVersion: 2
+        x: 1301
+        y: 1002
+        width: 13
+        height: 14
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 47f33a0aa643c4943a990a5ec6dc2cb3
+      internalID: -960055427
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MainMonster_Die_v2_13
+      rect:
+        serializedVersion: 2
+        x: 1408
+        y: 1001
+        width: 41
+        height: 43
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7f3f4bed642b2f24ca057d181adf0fdc
+      internalID: -764170976
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MainMonster_Die_v2_14
+      rect:
+        serializedVersion: 2
+        x: 1265
+        y: 993
+        width: 13
+        height: 14
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 11171edd1ad120f43aee45e6dbd71e8c
+      internalID: 79259550
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MainMonster_Die_v2_15
+      rect:
+        serializedVersion: 2
+        x: 1318
+        y: 975
+        width: 23
+        height: 23
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c3e902a737b72a34ea3dc11997501cc2
+      internalID: 1476687424
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MainMonster_Die_v2_16
+      rect:
+        serializedVersion: 2
+        x: 1363
+        y: 993
+        width: 14
+        height: 14
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f670492f482bae442889202dc646ef06
+      internalID: -478572855
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MainMonster_Die_v2_17
+      rect:
+        serializedVersion: 2
+        x: 1381
+        y: 965
+        width: 59
+        height: 34
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7c67a8f10d0419049a959096f666ebe2
+      internalID: -1899464255
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MainMonster_Die_v2_18
+      rect:
+        serializedVersion: 2
+        x: 843
+        y: 965
+        width: 14
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 279c48861ab612a4582b4d43fb8a6fc2
+      internalID: -1259449891
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MainMonster_Die_v2_19
+      rect:
+        serializedVersion: 2
+        x: 1274
+        y: 957
+        width: 22
+        height: 14
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 860ee0414de25504e868b82d1be89dc4
+      internalID: -1963241653
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MainMonster_Die_v2_20
+      rect:
+        serializedVersion: 2
+        x: 1336
+        y: 867
+        width: 87
+        height: 114
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: eac3e5110af0c134097a708699e8ad08
+      internalID: 1003917071
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MainMonster_Die_v2_21
+      rect:
+        serializedVersion: 2
+        x: 1444
+        y: 958
+        width: 14
+        height: 13
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 200ad705ee0fb824392e07b689320f0e
+      internalID: 869537171
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MainMonster_Die_v2_22
+      rect:
+        serializedVersion: 2
+        x: 1224
+        y: 959
+        width: 8
+        height: 4
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d892c8705f696e14084d043eb3bec748
+      internalID: 1354699783
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MainMonster_Die_v2_23
+      rect:
+        serializedVersion: 2
+        x: 1290
+        y: 939
+        width: 35
+        height: 23
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 42bb565b1c98c4c458ee9d35651afe79
+      internalID: -364865198
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MainMonster_Die_v2_24
+      rect:
+        serializedVersion: 2
+        x: 1255
+        y: 930
+        width: 15
+        height: 23
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b2c5cf7376b3dd34c930f3e131c5ba1a
+      internalID: -893806793
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MainMonster_Die_v2_25
+      rect:
+        serializedVersion: 2
+        x: 1291
+        y: 912
+        width: 24
+        height: 24
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 824b3a284e6edf841a94622c96fcb775
+      internalID: 549656400
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MainMonster_Die_v2_26
+      rect:
+        serializedVersion: 2
+        x: 1318
+        y: 921
+        width: 24
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 346752ab8f04b3f4da4cba452e0311a0
+      internalID: 304269124
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MainMonster_Die_v2_27
+      rect:
+        serializedVersion: 2
+        x: 1417
+        y: 912
+        width: 33
+        height: 42
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 58223cc8928622c4ebc3e27e86dfb065
+      internalID: 2006444822
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MainMonster_Die_v2_28
+      rect:
+        serializedVersion: 2
+        x: 1229
+        y: 895
+        width: 14
+        height: 13
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b95633e1de39d564f964587c0b8bce76
+      internalID: 925013921
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MainMonster_Die_v2_29
+      rect:
+        serializedVersion: 2
+        x: 1255
+        y: 902
+        width: 24
+        height: 25
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 134d811b1ce310842be3568511d58909
+      internalID: -1624676425
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MainMonster_Die_v2_30
+      rect:
+        serializedVersion: 2
+        x: 1443
+        y: 894
+        width: 24
+        height: 23
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b97d8a7522d1ec84897da4bbb2c40914
+      internalID: -1071689498
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MainMonster_Die_v2_31
+      rect:
+        serializedVersion: 2
+        x: 1246
+        y: 840
+        width: 41
+        height: 61
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2e0d99d9c1e911e418760c3e426cc498
+      internalID: 890987079
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MainMonster_Die_v2_32
+      rect:
+        serializedVersion: 2
+        x: 1292
+        y: 876
+        width: 50
+        height: 24
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a313ec4071187ff46a99a33afa66f06f
+      internalID: -1048061196
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MainMonster_Die_v2_33
+      rect:
+        serializedVersion: 2
+        x: 1300
+        y: 740
+        width: 149
+        height: 160
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8ada1109b3ce30f46a8de4df7c8d5982
+      internalID: -492812998
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MainMonster_Die_v2_34
+      rect:
+        serializedVersion: 2
+        x: 1291
+        y: 849
+        width: 24
+        height: 15
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0890bce0cdb5d814f886a78bc94acf83
+      internalID: 1305583835
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MainMonster_Die_v2_35
+      rect:
+        serializedVersion: 2
+        x: 1454
+        y: 849
+        width: 13
+        height: 14
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 53773f4c38a6fa34caba5e304c7ad0a9
+      internalID: -2085338454
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MainMonster_Die_v2_36
+      rect:
+        serializedVersion: 2
+        x: 1255
+        y: 822
+        width: 15
+        height: 14
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 40c3bffb502b3e14c897d45141c80e9a
+      internalID: -580250327
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MainMonster_Die_v2_37
+      rect:
+        serializedVersion: 2
+        x: 1211
+        y: 616
+        width: 268
+        height: 454
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f0c847fcc66dd5143a737b25c3d5e664
+      internalID: -635931524
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MainMonster_Die_v2_38
+      rect:
+        serializedVersion: 2
+        x: 1264
+        y: 767
+        width: 23
+        height: 34
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 849f8326c7c45d44e81d0dafd0e97715
+      internalID: 1530909135
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MainMonster_Die_v2_39
+      rect:
+        serializedVersion: 2
+        x: 1255
+        y: 714
+        width: 41
+        height: 51
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 641c782fef3c7864ea66e56c817ffeb7
+      internalID: 835511454
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MainMonster_Die_v2_40
+      rect:
+        serializedVersion: 2
+        x: 1301
+        y: 696
+        width: 32
+        height: 41
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f10bd1493f7f39140b264665bba9432f
+      internalID: -2059531221
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MainMonster_Die_v2_41
+      rect:
+        serializedVersion: 2
+        x: 1335
+        y: 704
+        width: 70
+        height: 51
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 03b958706f2f9f44cb2fd275b439bed4
+      internalID: -2029023359
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MainMonster_Die_v2_42
+      rect:
+        serializedVersion: 2
+        x: 1426
+        y: 723
+        width: 15
+        height: 14
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 87405bac55fb5c34185857ba3de06cc8
+      internalID: -1799534053
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MainMonster_Die_v2_43
+      rect:
+        serializedVersion: 2
+        x: 1444
+        y: 717
+        width: 10
+        height: 10
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: be37d7a38403799408b92d52349131be
+      internalID: 1757770876
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MainMonster_Die_v2_44
+      rect:
+        serializedVersion: 2
+        x: 1345
+        y: 687
+        width: 14
+        height: 15
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 31525b3f4309e0747b72e48d972e3a55
+      internalID: -562500503
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MainMonster_Die_v2_45
+      rect:
+        serializedVersion: 2
+        x: 1382
+        y: 673
+        width: 12
+        height: 18
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b2daf6286978a12419e836f17c63ef4e
+      internalID: 715168419
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MainMonster_Die_v2_46
+      rect:
+        serializedVersion: 2
+        x: 1399
+        y: 687
+        width: 14
+        height: 23
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5f64e1b2a7f6fe946b9079e2480f026e
+      internalID: 256312545
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MainMonster_Die_v2_47
+      rect:
+        serializedVersion: 2
+        x: 1318
+        y: 660
+        width: 23
+        height: 23
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3f6af6c8b6122834dbdeef8c890a210a
+      internalID: 367370853
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MainMonster_Die_v2_48
+      rect:
+        serializedVersion: 2
+        x: 924
+        y: 615
+        width: 41
+        height: 43
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e9c4de7c31f6a6e4995dc8d71a97378c
+      internalID: -2022704439
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MainMonster_Die_v2_49
+      rect:
+        serializedVersion: 2
+        x: 1005
+        y: 633
+        width: 22
+        height: 23
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5a514075b0f12fa449f3655f789bb603
+      internalID: -732751495
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MainMonster_Die_v2_50
+      rect:
+        serializedVersion: 2
+        x: 1312
+        y: 632
+        width: 9
+        height: 4
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7555bd707f01f234790e633b7763f972
+      internalID: 1301398856
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MainMonster_Die_v2_51
+      rect:
+        serializedVersion: 2
+        x: 1329
+        y: 626
+        width: 11
+        height: 11
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 729e2fee73f61124585dcbc66e81db5b
+      internalID: -347481885
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MainMonster_Die_v2_52
+      rect:
+        serializedVersion: 2
+        x: 190
+        y: 417
+        width: 13
+        height: 13
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1ffadddf0965f244192674459890c080
+      internalID: -1088666383
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MainMonster_Die_v2_53
+      rect:
+        serializedVersion: 2
+        x: 57
+        y: 51
+        width: 248
+        height: 413
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4c421c4f19037ed45bd68eb8e12c74ee
+      internalID: 752592666
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MainMonster_Die_v2_54
+      rect:
+        serializedVersion: 2
+        x: 163
+        y: 380
+        width: 23
+        height: 24
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7a12e251d3047ab4fa894dfdb6fee057
+      internalID: 57966790
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MainMonster_Die_v2_55
+      rect:
+        serializedVersion: 2
+        x: 226
+        y: 399
+        width: 14
+        height: 14
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e14e26ecf9a356045bd8b4be42e58f5d
+      internalID: 1730189972
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MainMonster_Die_v2_56
+      rect:
+        serializedVersion: 2
+        x: 234
+        y: 379
+        width: 24
+        height: 25
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 154fbd71fa2a8c94b99c86a1e8895ad9
+      internalID: 1706355667
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MainMonster_Die_v2_57
+      rect:
+        serializedVersion: 2
+        x: 504
+        y: 383
+        width: 11
+        height: 11
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 51b24cddbf3ef0f4ca3419de8df49133
+      internalID: 902777262
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MainMonster_Die_v2_58
+      rect:
+        serializedVersion: 2
+        x: 127
+        y: 363
+        width: 14
+        height: 14
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a533d40ebefbbc849a860550ddb0aa07
+      internalID: -88918719
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MainMonster_Die_v2_59
+      rect:
+        serializedVersion: 2
+        x: 208
+        y: 336
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d5e2e06795adbcf4fbb6e18870f15a7d
+      internalID: 660176212
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MainMonster_Die_v2_60
+      rect:
+        serializedVersion: 2
+        x: 244
+        y: 363
+        width: 13
+        height: 14
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5b7ccb4aca1968647bf18b65d23ae2ea
+      internalID: -190628133
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MainMonster_Die_v2_61
+      rect:
+        serializedVersion: 2
+        x: 272
+        y: 355
+        width: 11
+        height: 12
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ab7274c070e68054b8b847128c759697
+      internalID: -726262918
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MainMonster_Die_v2_62
+      rect:
+        serializedVersion: 2
+        x: 82
+        y: 345
+        width: 14
+        height: 14
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8d34c65435b3a8749a47330313a815c5
+      internalID: 1609307391
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MainMonster_Die_v2_63
+      rect:
+        serializedVersion: 2
+        x: 136
+        y: 336
+        width: 14
+        height: 14
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6db7665c5fde98b41a3b9afb9fa3166e
+      internalID: -2142850737
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MainMonster_Die_v2_64
+      rect:
+        serializedVersion: 2
+        x: 180
+        y: 319
+        width: 24
+        height: 40
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5fa2856e1de5ad94994ed696740593ad
+      internalID: 545190946
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MainMonster_Die_v2_65
+      rect:
+        serializedVersion: 2
+        x: 75
+        y: 312
+        width: 10
+        height: 9
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f75ec0f6aad8a8b4999a27fbed6d20a8
+      internalID: -1885510094
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MainMonster_Die_v2_66
+      rect:
+        serializedVersion: 2
+        x: 224
+        y: 317
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d88dade71df10e34695f6a30a5731b94
+      internalID: -1044509332
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MainMonster_Die_v2_67
+      rect:
+        serializedVersion: 2
+        x: 154
+        y: 299
+        width: 14
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 91d109cf454801a4b9d3105d24cae861
+      internalID: 2060200652
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MainMonster_Die_v2_68
+      rect:
+        serializedVersion: 2
+        x: 262
+        y: 299
+        width: 14
+        height: 15
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 95b328c83a8e7b746a94dffb0a050924
+      internalID: 603939208
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MainMonster_Die_v2_69
+      rect:
+        serializedVersion: 2
+        x: 469
+        y: 302
+        width: 10
+        height: 11
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 35fd5aa1b5379e948bdeded6d3beded5
+      internalID: -1608113591
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MainMonster_Die_v2_70
+      rect:
+        serializedVersion: 2
+        x: 100
+        y: 282
+        width: 13
+        height: 13
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: dd66823556ca02f40b1a3932a5fc26b7
+      internalID: -1809943882
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MainMonster_Die_v2_71
+      rect:
+        serializedVersion: 2
+        x: 127
+        y: 273
+        width: 13
+        height: 14
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 25993eaeb0b43344b9ea376e8ce104bd
+      internalID: 1775799542
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MainMonster_Die_v2_72
+      rect:
+        serializedVersion: 2
+        x: 189
+        y: 282
+        width: 15
+        height: 14
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5c7f2cba9fedad643917c2e85c142d89
+      internalID: 428906826
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MainMonster_Die_v2_73
+      rect:
+        serializedVersion: 2
+        x: 224
+        y: 282
+        width: 16
+        height: 14
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: babb9ab017bce5f46b209daebd45b79e
+      internalID: 750652267
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MainMonster_Die_v2_74
+      rect:
+        serializedVersion: 2
+        x: 280
+        y: 274
+        width: 12
+        height: 12
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b9272205ea0cc6348ae627e49969cd28
+      internalID: -1703263480
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MainMonster_Die_v2_75
+      rect:
+        serializedVersion: 2
+        x: 153
+        y: 264
+        width: 24
+        height: 14
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 106ecbae7a2ddc84ea88fcd4eac7dfc5
+      internalID: 1117405106
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MainMonster_Die_v2_76
+      rect:
+        serializedVersion: 2
+        x: 201
+        y: 250
+        width: 20
+        height: 19
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f505c6a4ce03e44409dc1fcffa70835b
+      internalID: -876043928
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MainMonster_Die_v2_77
+      rect:
+        serializedVersion: 2
+        x: 189
+        y: 227
+        width: 25
+        height: 17
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 04d0567119ea1ef44bedfaf514ad4485
+      internalID: -1521189804
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MainMonster_Die_v2_78
+      rect:
+        serializedVersion: 2
+        x: 216
+        y: 237
+        width: 14
+        height: 14
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0e54e0f1ed7862743959a1c2b62f340b
+      internalID: -274362278
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MainMonster_Die_v2_79
+      rect:
+        serializedVersion: 2
+        x: 451
+        y: 131
+        width: 212
+        height: 319
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 746b8f29b88a07d40b6c6887da1f8773
+      internalID: 746479053
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MainMonster_Die_v2_80
+      rect:
+        serializedVersion: 2
+        x: 584
+        y: 219
+        width: 22
+        height: 31
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8ca4bce4662502e4ea0f5fd96799ab0e
+      internalID: 1036841742
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MainMonster_Die_v2_81
+      rect:
+        serializedVersion: 2
+        x: 154
+        y: 210
+        width: 22
+        height: 24
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e69c7e2e72f3f8b448e0bddcad77fde0
+      internalID: -1155188225
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MainMonster_Die_v2_82
+      rect:
+        serializedVersion: 2
+        x: 216
+        y: 219
+        width: 14
+        height: 14
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ef59fe225badc2644ba7570d495d4b61
+      internalID: -344218829
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MainMonster_Die_v2_83
+      rect:
+        serializedVersion: 2
+        x: 252
+        y: 201
+        width: 14
+        height: 22
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 11e4db2f20cedda409d619d78dd9a819
+      internalID: -2128140865
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MainMonster_Die_v2_84
+      rect:
+        serializedVersion: 2
+        x: 629
+        y: 201
+        width: 13
+        height: 22
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6bbaef59b087a9841adc3aa72c4f0c11
+      internalID: -801927790
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MainMonster_Die_v2_85
+      rect:
+        serializedVersion: 2
+        x: 189
+        y: 192
+        width: 15
+        height: 23
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ad71628942902b04ba7de2bf8239a60e
+      internalID: -422341703
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MainMonster_Die_v2_86
+      rect:
+        serializedVersion: 2
+        x: 557
+        y: 201
+        width: 13
+        height: 13
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5ba8f4887137f2a4b9843cecfd95f23b
+      internalID: 1011800110
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MainMonster_Die_v2_87
+      rect:
+        serializedVersion: 2
+        x: 109
+        y: 174
+        width: 14
+        height: 13
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b45ce82c7e48d284e9feb694c578fad7
+      internalID: -142770366
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MainMonster_Die_v2_88
+      rect:
+        serializedVersion: 2
+        x: 216
+        y: 164
+        width: 14
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6d2d4fe17b73d85439b0e071a965c27a
+      internalID: -687169260
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MainMonster_Die_v2_89
+      rect:
+        serializedVersion: 2
+        x: 92
+        y: 147
+        width: 13
+        height: 13
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fb867b133cf599e46bee036b4e6859a8
+      internalID: -1481625046
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MainMonster_Die_v2_90
+      rect:
+        serializedVersion: 2
+        x: 154
+        y: 138
+        width: 14
+        height: 14
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 954d8af356a714542beda04430ef25b3
+      internalID: 1841746729
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MainMonster_Die_v2_91
+      rect:
+        serializedVersion: 2
+        x: 208
+        y: 138
+        width: 13
+        height: 14
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 37e38bc9e03e7a5418d6752ce91e452d
+      internalID: 522649898
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MainMonster_Die_v2_92
+      rect:
+        serializedVersion: 2
+        x: 127
+        y: 120
+        width: 13
+        height: 13
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 07cb143e7d735d74f80db765012eb964
+      internalID: -1758432332
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MainMonster_Die_v2_93
+      rect:
+        serializedVersion: 2
+        x: 154
+        y: 93
+        width: 14
+        height: 13
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4a57bd9d52068e442bb2f0550ddb4890
+      internalID: 998301459
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MainMonster_Die_v2_94
+      rect:
+        serializedVersion: 2
+        x: 156
+        y: 63
+        width: 9
+        height: 6
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d8277332097df3d48bfdf6bb937dea08
+      internalID: 1107546496
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MainMonster_Die_v2_95
+      rect:
+        serializedVersion: 2
+        x: 465
+        y: 180
+        width: 33
+        height: 36
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f8065ad7392a5f54ab90c28f877d81b2
+      internalID: 1771504346
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 4b98dbfb6c121184bae758eba9f3e1d4
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries:
+      - key: SpriteEditor.SliceSettings
+        value: '{"sliceOnImport":false,"gridCellCount":{"x":1.0,"y":1.0},"gridSpriteSize":{"x":1522.0,"y":1716.0},"gridSpriteOffset":{"x":0.0,"y":0.0},"gridSpritePadding":{"x":0.0,"y":0.0},"pivot":{"x":0.5,"y":0.5},"pivotPixels":{"x":0.0,"y":0.0},"autoSlicingMethod":0,"spriteAlignment":0,"pivotUnitMode":0,"slicingType":0,"keepEmptyRects":false,"isAlternate":false}'
+    nameFileIdTable:
+      MainMonster_Die_v2_0: -2146355002
+      MainMonster_Die_v2_1: -1033704802
+      MainMonster_Die_v2_10: 1548271752
+      MainMonster_Die_v2_11: -1965907393
+      MainMonster_Die_v2_12: -960055427
+      MainMonster_Die_v2_13: -764170976
+      MainMonster_Die_v2_14: 79259550
+      MainMonster_Die_v2_15: 1476687424
+      MainMonster_Die_v2_16: -478572855
+      MainMonster_Die_v2_17: -1899464255
+      MainMonster_Die_v2_18: -1259449891
+      MainMonster_Die_v2_19: -1963241653
+      MainMonster_Die_v2_2: -1225590594
+      MainMonster_Die_v2_20: 1003917071
+      MainMonster_Die_v2_21: 869537171
+      MainMonster_Die_v2_22: 1354699783
+      MainMonster_Die_v2_23: -364865198
+      MainMonster_Die_v2_24: -893806793
+      MainMonster_Die_v2_25: 549656400
+      MainMonster_Die_v2_26: 304269124
+      MainMonster_Die_v2_27: 2006444822
+      MainMonster_Die_v2_28: 925013921
+      MainMonster_Die_v2_29: -1624676425
+      MainMonster_Die_v2_3: 700359380
+      MainMonster_Die_v2_30: -1071689498
+      MainMonster_Die_v2_31: 890987079
+      MainMonster_Die_v2_32: -1048061196
+      MainMonster_Die_v2_33: -492812998
+      MainMonster_Die_v2_34: 1305583835
+      MainMonster_Die_v2_35: -2085338454
+      MainMonster_Die_v2_36: -580250327
+      MainMonster_Die_v2_37: -635931524
+      MainMonster_Die_v2_38: 1530909135
+      MainMonster_Die_v2_39: 835511454
+      MainMonster_Die_v2_4: 2031804865
+      MainMonster_Die_v2_40: -2059531221
+      MainMonster_Die_v2_41: -2029023359
+      MainMonster_Die_v2_42: -1799534053
+      MainMonster_Die_v2_43: 1757770876
+      MainMonster_Die_v2_44: -562500503
+      MainMonster_Die_v2_45: 715168419
+      MainMonster_Die_v2_46: 256312545
+      MainMonster_Die_v2_47: 367370853
+      MainMonster_Die_v2_48: -2022704439
+      MainMonster_Die_v2_49: -732751495
+      MainMonster_Die_v2_5: -336238492
+      MainMonster_Die_v2_50: 1301398856
+      MainMonster_Die_v2_51: -347481885
+      MainMonster_Die_v2_52: -1088666383
+      MainMonster_Die_v2_53: 752592666
+      MainMonster_Die_v2_54: 57966790
+      MainMonster_Die_v2_55: 1730189972
+      MainMonster_Die_v2_56: 1706355667
+      MainMonster_Die_v2_57: 902777262
+      MainMonster_Die_v2_58: -88918719
+      MainMonster_Die_v2_59: 660176212
+      MainMonster_Die_v2_6: 644696001
+      MainMonster_Die_v2_60: -190628133
+      MainMonster_Die_v2_61: -726262918
+      MainMonster_Die_v2_62: 1609307391
+      MainMonster_Die_v2_63: -2142850737
+      MainMonster_Die_v2_64: 545190946
+      MainMonster_Die_v2_65: -1885510094
+      MainMonster_Die_v2_66: -1044509332
+      MainMonster_Die_v2_67: 2060200652
+      MainMonster_Die_v2_68: 603939208
+      MainMonster_Die_v2_69: -1608113591
+      MainMonster_Die_v2_7: -2046239365
+      MainMonster_Die_v2_70: -1809943882
+      MainMonster_Die_v2_71: 1775799542
+      MainMonster_Die_v2_72: 428906826
+      MainMonster_Die_v2_73: 750652267
+      MainMonster_Die_v2_74: -1703263480
+      MainMonster_Die_v2_75: 1117405106
+      MainMonster_Die_v2_76: -876043928
+      MainMonster_Die_v2_77: -1521189804
+      MainMonster_Die_v2_78: -274362278
+      MainMonster_Die_v2_79: 746479053
+      MainMonster_Die_v2_8: -23528133
+      MainMonster_Die_v2_80: 1036841742
+      MainMonster_Die_v2_81: -1155188225
+      MainMonster_Die_v2_82: -344218829
+      MainMonster_Die_v2_83: -2128140865
+      MainMonster_Die_v2_84: -801927790
+      MainMonster_Die_v2_85: -422341703
+      MainMonster_Die_v2_86: 1011800110
+      MainMonster_Die_v2_87: -142770366
+      MainMonster_Die_v2_88: -687169260
+      MainMonster_Die_v2_89: -1481625046
+      MainMonster_Die_v2_9: 468553693
+      MainMonster_Die_v2_90: 1841746729
+      MainMonster_Die_v2_91: 522649898
+      MainMonster_Die_v2_92: -1758432332
+      MainMonster_Die_v2_93: 998301459
+      MainMonster_Die_v2_94: 1107546496
+      MainMonster_Die_v2_95: 1771504346
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

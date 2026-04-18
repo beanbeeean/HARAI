@@ -64,28 +64,43 @@ public class PlayerDeath : MonoBehaviour
         SetInactiveObjects();
         playerInput.enabled = false;
 
-
-        playerSprite.enabled = false;
-        
-
         StartCoroutine(DeathScenario());
     }
 
     IEnumerator DeathScenario()
     {
-        SoundManager.Instance.PlaySFX("PlayerDied");
+        float timer = 0f;
+        circleLight.SetActive(true);
+        yield return new WaitForSeconds(1f);
+
+        playerAnimator.SetBool("IsDead", true);  
+
         yield return new WaitForSeconds(3f);
+        
+        while (timer < 5.0f)
+        {
+            timer += Time.deltaTime;
+            float alpha = Mathf.Lerp(0f, 1f, timer / 5.0f);
+            fadeoutImg.color = new Color(0, 0, 0, alpha);
+            yield return null;
+        }
+        playerAnimator.SetBool("IsDead", false); 
+        playerSprite.enabled = false;
+        SoundManager.Instance.PlaySFX("PlayerDied");
+
+        yield return new WaitForSeconds(3f);
+        fadeoutImg.color = new Color(0, 0, 0, 0);
         circleLight.SetActive(true);
         playerSprite.enabled = true;
         // 애니메이션 - 메인몬스터 모습으로 웃는 Sprite 8프레임 정도..
         //  + 사운드 포함
-        playerAnimator.SetBool("IsDead", true);
+        playerAnimator.SetBool("IsChanged", true);
         SoundManager.Instance.PlaySFX("EnemyLaugh_1");
 
 
         yield return new WaitForSeconds(2.5f);
         SoundManager.Instance.PlaySFX("EnemyLaugh_2");
-        float timer = 0f;
+        timer = 0f;
         bool isSoundPlayed = false;
 
         while (timer < 5.0f)

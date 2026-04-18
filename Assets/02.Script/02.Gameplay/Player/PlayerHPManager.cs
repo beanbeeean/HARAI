@@ -40,7 +40,7 @@ public class PlayerHPManager : MonoBehaviour
         {
             childSprites = visualContainer.GetComponentsInChildren<SpriteRenderer>();
         }
-        StartCoroutine(Test());
+        // StartCoroutine(Test());
     }
 
     IEnumerator Test()
@@ -72,12 +72,19 @@ public class PlayerHPManager : MonoBehaviour
             healthPopup.Show(amount, true);
         }
 
+
         // 넉백 및 무적 로직...
         if (TryGetComponent(out PlayerMove2D playerMove))
         {
             playerMove.ApplyKnockback(attackerPosition);
         }
-        if (IsDead) Die();
+
+        if (IsDead) {
+            Die();
+            return;
+        };
+        
+
         StartCoroutine(InvincibilityRoutine());
     }
 
@@ -135,16 +142,10 @@ public class PlayerHPManager : MonoBehaviour
 
     private void Die()
     {
-        // SoundManager.Instance.PlaySFX("Gameover");
         StopAllCoroutines();
         OnDied?.Invoke();
 
-        
-        //// 플레이어 캐릭터라면 결과 화면(Clear/Result)으로 이동
-        //if (gameObject.CompareTag("Player") && GameSceneManager.Instance != null)
-        //{
-        //    GameSceneManager.Instance.LoadSceneByName("Result");
-        //}
+      
     }
 
 
