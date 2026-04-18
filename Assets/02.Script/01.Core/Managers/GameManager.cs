@@ -38,6 +38,15 @@ public class GameManager : MonoBehaviour
 
     private void Awake() => Instance = this;
 
+
+    void Start()
+    {
+        AlertManager.Instance.ShowAlert(AlertKey.StartMsg_1);
+        AlertManager.Instance.ShowAlert(AlertKey.StartMsg_2);
+        AlertManager.Instance.ShowAlert(AlertKey.StartMsg_3);
+        AlertManager.Instance.ShowAlert(AlertKey.StartMsg_4);
+    }
+    
     void OnEnable()
     {
         PurificationManager.Instance.gameClearEvent += GameClear;

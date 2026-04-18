@@ -15,6 +15,10 @@
     Stun,
     Immune,
     NoImmune,
+    StartMsg_1,
+    StartMsg_2,
+    StartMsg_3,
+    StartMsg_4,
 }
 
 [System.Serializable]

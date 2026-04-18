@@ -17,6 +17,7 @@ public class PlayerInputReader : MonoBehaviour
     private InputAction curseListCloseAction;
     private InputAction pauseAction;
     private InputAction resumeAction;
+    private InputAction tooltipsAction;
 
     public Vector2 MoveVector { get; private set; }
     public bool InteractPressed { get; private set; }
@@ -33,6 +34,7 @@ public class PlayerInputReader : MonoBehaviour
     public event Action CurseListCloseEvent;
     public event Action PauseEvent;
     public event Action ResumeEvent;
+    public event Action TooltipsEvent;
 
     
 
@@ -49,6 +51,7 @@ public class PlayerInputReader : MonoBehaviour
     [SerializeField] private string curseListCloseActionName = "CurseListClose";
     [SerializeField] private string pauseActionName = "Pause";
     [SerializeField] private string resumeActionName = "Resume";
+    [SerializeField] private string tooltipsActionName = "Tooltips";
 
 
     private void Awake()
@@ -100,6 +103,11 @@ public class PlayerInputReader : MonoBehaviour
         {
             resumeAction.started += OnResumeStarted;
         }
+
+        if (tooltipsAction != null)
+        {
+            tooltipsAction.started += OnTooltipsStarted;
+        }
     }
 
     private void OnDisable()
@@ -140,15 +148,29 @@ public class PlayerInputReader : MonoBehaviour
             pauseAction.started -= OnPauseStarted;
         }
 
-        if(resumeAction != null)
+        if (resumeAction != null)
         {
             resumeAction.started -= OnResumeStarted;
+        }
+        
+        if (tooltipsAction != null)
+        {
+            tooltipsAction.started -= OnTooltipsStarted;
         }
     }
 
     public void SetUIInput(string map)
     {
         playerInput.SwitchCurrentActionMap(map);
+    }
+
+    private void OnTooltipsStarted(InputAction.CallbackContext context)
+    {
+        bool isAltPressed = Keyboard.current.leftAltKey.isPressed || Keyboard.current.rightAltKey.isPressed;
+        if (isAltPressed)
+        {
+            TooltipsEvent?.Invoke();
+        }
     }
 
     private void OnPauseStarted(InputAction.CallbackContext context)
@@ -232,6 +254,7 @@ public class PlayerInputReader : MonoBehaviour
         curseListCloseAction = FindAction(curseListCloseActionName);
         pauseAction = FindAction(pauseActionName);
         resumeAction = FindAction(resumeActionName);
+        tooltipsAction = FindAction(tooltipsActionName);
     }
 
     private InputAction FindAction(string actionName)
