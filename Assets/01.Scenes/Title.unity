@@ -3451,6 +3451,9 @@ MonoBehaviour:
   - name: PlayerDied
     clip: {fileID: 8300000, guid: 41f38bcf63f3dd948894d9c486a31d77, type: 3}
     defaultVolume: 0.5
+  - name: MainMonsterDied
+    clip: {fileID: 8300000, guid: fa96eb877513bd14ca152ba1036fb938, type: 3}
+    defaultVolume: 0.5
   bgmList:
   - name: Title
     clip: {fileID: 8300000, guid: fa6c3922c20699040839583473ea2b05, type: 3}

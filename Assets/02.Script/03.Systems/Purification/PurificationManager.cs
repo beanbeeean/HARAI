@@ -1,4 +1,6 @@
-﻿using UnityEngine;
+﻿using System;
+using System.Collections;
+using UnityEngine;
 
 public class PurificationManager : MonoBehaviour
 {
@@ -7,12 +9,21 @@ public class PurificationManager : MonoBehaviour
     public int TotalTargets { get; private set; }
     public int CurrentPurified { get; private set; }
 
+    public Action gameClearEvent;
     private void Awake() => Instance = this;
 
     private void Start()
     {
         TotalTargets = FindObjectsByType<PurificationObject>(FindObjectsSortMode.None).Length;
         Debug.Log($"TotalTargets : {TotalTargets}");
+
+        // StartCoroutine(Test());
+    }
+
+    IEnumerator Test()
+    {
+        yield return new WaitForSeconds(5f);
+        gameClearEvent?.Invoke();
     }
 
     public void OnObjectPurified()
@@ -22,7 +33,8 @@ public class PurificationManager : MonoBehaviour
 
         if (CurrentPurified >= TotalTargets)
         {
-            AlertManager.Instance.ShowAlert(AlertKey.GameClear);
+            // AlertManager.Instance.ShowAlert(AlertKey.GameClear);
+            gameClearEvent?.Invoke();
         }
     }
 }

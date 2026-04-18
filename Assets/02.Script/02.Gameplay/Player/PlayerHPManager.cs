@@ -40,12 +40,12 @@ public class PlayerHPManager : MonoBehaviour
         {
             childSprites = visualContainer.GetComponentsInChildren<SpriteRenderer>();
         }
-        // StartCoroutine(Test());
+        StartCoroutine(Test());
     }
 
     IEnumerator Test()
     {
-        yield return new WaitForSeconds(10f);
+        yield return new WaitForSeconds(5f);
         Die();
     }
 
