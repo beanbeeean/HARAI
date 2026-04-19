@@ -1,6 +1,4 @@
-﻿using NUnit.Framework.Interfaces;
-using UnityEditor.Rendering;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class InventoryManager : MonoBehaviour
 {

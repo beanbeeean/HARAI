@@ -12,7 +12,7 @@ public class GameManager : MonoBehaviour
     public static GameManager Instance;
 
     [SerializeField] private Light2D globalLight;
-    [SerializeField] private CinemachineCamera camera;
+    [SerializeField] private CinemachineCamera cineCamera;
 
 
     [SerializeField] private PlayerInput playerInput;
@@ -223,7 +223,7 @@ public class GameManager : MonoBehaviour
         mainMonsterCon.currentState = EnemyState.Idle;
 
         //플레이어를 비추던 카메라가 MainMonster를 비춰준다.
-        camera.Follow = mainMonster.transform;
+        cineCamera.Follow = mainMonster.transform;
 
         //MainMonster의 주위에 Sprite Light 2D 비춰줌
         fadeoutImg.color = new Color(0, 0, 0, 0);
@@ -240,7 +240,7 @@ public class GameManager : MonoBehaviour
 
         // yield return new WaitForSeconds(1f);
         // playerCircleLight.SetActive(true);
-        camera.Follow = player.transform;
+        cineCamera.Follow = player.transform;
         fadeoutImg.color = new Color(0, 0, 0, 0);
 
 

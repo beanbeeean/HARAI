@@ -580,7 +580,7 @@ MonoBehaviour:
   canAttackWhileExposed: 0
   patrolRadius: 5
   patrolWaitTime: 2
-  maxExposure: 3
+  maxExposure: 2.5
   currentExposure: 0
   isExposed: 0
   exposureResetDelay: 0.1
@@ -596,7 +596,7 @@ MonoBehaviour:
   stunClip: {fileID: 8300000, guid: a154a413056bf664480e56520a448259, type: 3}
   deathClip: {fileID: 8300000, guid: a154a413056bf664480e56520a448259, type: 3}
   soundInterval: 3
-  defaultVolume: 0.5
+  defaultVolume: 0.7
   isDead: 0
   deathEffectPrefab: {fileID: 1967835574231978638, guid: 3e196c9e632c76841a71cb6e2dc6d010, type: 3}
   effectYOffset: 0
