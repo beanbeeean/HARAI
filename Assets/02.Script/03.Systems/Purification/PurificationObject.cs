@@ -6,7 +6,7 @@ public class PurificationObject : InteractableBase
     [SerializeField] PlayerInputReader playerInputReader;
 
     [Header("Purify Settings")]
-    [SerializeField] private string name;
+    [SerializeField] private string ObjectName;
     [SerializeField] private float totalPurifyTime = 5.0f;
     [SerializeField] private float currentProgress = 0f;
 
