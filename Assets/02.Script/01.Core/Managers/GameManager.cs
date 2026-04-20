@@ -162,7 +162,7 @@ public class GameManager : MonoBehaviour
 
         playerAnimator.SetBool("IsDead", false); 
         playerSprite.enabled = false;
-        SoundManager.Instance.PlaySFX("PlayerDied");
+        SoundManager.Instance.PlaySFX(SoundType.PlayerDied);
 
         yield return new WaitForSeconds(3f);
         fadeoutImg.color = new Color(0, 0, 0, 0);
@@ -171,11 +171,11 @@ public class GameManager : MonoBehaviour
         // 애니메이션 - 메인몬스터 모습으로 웃는 Sprite 8프레임 정도..
         //  + 사운드 포함
         playerAnimator.SetBool("IsChanged", true);
-        SoundManager.Instance.PlaySFX("EnemyLaugh_1");
+        SoundManager.Instance.PlaySFX(SoundType.EnemyLaugh_1);
 
 
         yield return new WaitForSeconds(2.5f);
-        SoundManager.Instance.PlaySFX("EnemyLaugh_2");
+        SoundManager.Instance.PlaySFX(SoundType.EnemyLaugh_2);
         float timer = 0f;
         bool isSoundPlayed = false;
 
@@ -184,7 +184,7 @@ public class GameManager : MonoBehaviour
             timer += Time.deltaTime;
             if (timer >= 3.0f && !isSoundPlayed) 
             {
-                SoundManager.Instance.PlaySFX("EnemyLaugh_2");
+                SoundManager.Instance.PlaySFX(SoundType.EnemyLaugh_2);
                 isSoundPlayed = true;
             }
             float alpha = Mathf.Lerp(0f, 1f, timer / 5.0f);
@@ -230,7 +230,7 @@ public class GameManager : MonoBehaviour
         mainMonsterCircleLight.SetActive(true);
         mainMonsterAnimator.speed = 0.1f;
         mainMonsterAnimator.SetBool("IsDead", true);
-        SoundManager.Instance.PlaySFXEnding("MainMonsterDied", 0.5f);
+        SoundManager.Instance.PlaySFXEnding(SoundType.EnemyScream, 0.5f);
         yield return new WaitForSeconds(1f);
 
         // MainMonster가 소멸되는 애니메이션 + 사운드

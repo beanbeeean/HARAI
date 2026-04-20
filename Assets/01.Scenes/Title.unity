@@ -3415,50 +3415,47 @@ MonoBehaviour:
   bgmSource: {fileID: 1500081795098272945}
   sfxSource: {fileID: 5957206215482475373}
   sfxList:
-  - name: Door
+  - type: 0
     clip: {fileID: 8300000, guid: 957952ad9a4ac304bb2474737d45bca9, type: 3}
     defaultVolume: 0.7
-  - name: Hit
+  - type: 1
     clip: {fileID: 8300000, guid: a715ddf00ff7f24469c72404e8df85e9, type: 3}
     defaultVolume: 0.7
-  - name: Purificate
+  - type: 2
     clip: {fileID: 8300000, guid: 3622ce9a1c1b24e239f93852bf4203c9, type: 3}
     defaultVolume: 0.7
-  - name: PickDropItem
+  - type: 3
     clip: {fileID: 8300000, guid: f918ef0ad9a893a44ab053b0996e5084, type: 3}
     defaultVolume: 0.7
-  - name: Flashlight
+  - type: 4
     clip: {fileID: 8300000, guid: 1de747f2b2e84e74f87f4b34c9a30dd8, type: 3}
     defaultVolume: 0.7
-  - name: Teleport
+  - type: 5
     clip: {fileID: 8300000, guid: 120b23436c37c5747b05ac5d931881ac, type: 3}
     defaultVolume: 0.7
-  - name: Gameover
-    clip: {fileID: 8300000, guid: 6c8df6a7209cd2a468c2d1f53030e3af, type: 3}
-    defaultVolume: 0.7
-  - name: UseBrokenGlass
+  - type: 6
     clip: {fileID: 8300000, guid: 23735759b5106f64ca44e3b235effeac, type: 3}
     defaultVolume: 0.7
-  - name: EndingSFX
+  - type: 7
     clip: {fileID: 8300000, guid: a395748bea50fe14dbb3ad13326798a1, type: 3}
     defaultVolume: 0.7
-  - name: EnemyLaugh_1
+  - type: 8
     clip: {fileID: 8300000, guid: ac3817c9a06700c4c8e07c0dfac22ec5, type: 3}
     defaultVolume: 0.7
-  - name: EnemyLaugh_2
+  - type: 9
     clip: {fileID: 8300000, guid: aea5c236d1149e64cab89f41ff6b3142, type: 3}
     defaultVolume: 0.7
-  - name: PlayerDied
+  - type: 10
     clip: {fileID: 8300000, guid: 41f38bcf63f3dd948894d9c486a31d77, type: 3}
     defaultVolume: 0.7
-  - name: MainMonsterDied
+  - type: 11
     clip: {fileID: 8300000, guid: fa96eb877513bd14ca152ba1036fb938, type: 3}
     defaultVolume: 0.7
   bgmList:
-  - name: Title
+  - type: 12
     clip: {fileID: 8300000, guid: fa6c3922c20699040839583473ea2b05, type: 3}
     defaultVolume: 0.7
-  - name: Game
+  - type: 13
     clip: {fileID: 8300000, guid: ee403a3067a0c476dbd3e34a5f69c4a3, type: 3}
     defaultVolume: 0.7
   footstepSource: {fileID: 7589804447686527775}
@@ -3474,7 +3471,7 @@ MonoBehaviour:
   customBGMVolume: 0.5
   customSFXVolume: 0.5
   currentBGMData:
-    name: 
+    type: 0
     clip: {fileID: 0}
     defaultVolume: 0
 --- !u!224 &6987181475738958985

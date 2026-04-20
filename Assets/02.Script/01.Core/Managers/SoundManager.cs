@@ -9,11 +9,11 @@ public class SoundManager : MonoBehaviour
     [SerializeField] private AudioSource bgmSource;
     [SerializeField] private AudioSource sfxSource;
 
-    [SerializeField] private List<SoundEffect> sfxList;
-    [SerializeField] private List<SoundEffect> bgmList;
+    [SerializeField] private List<SoundEntry> sfxList;
+    [SerializeField] private List<SoundEntry> bgmList;
 
-    private Dictionary<string, SoundEffect> sfxDictionary = new Dictionary<string, SoundEffect>();
-    private Dictionary<string, SoundEffect> bgmDictionary = new Dictionary<string, SoundEffect>();
+    private Dictionary<SoundType, SoundEntry> sfxDictionary = new Dictionary<SoundType, SoundEntry>();
+    private Dictionary<SoundType, SoundEntry> bgmDictionary = new Dictionary<SoundType, SoundEntry>();
 
     [SerializeField] private AudioSource footstepSource;
     [SerializeField] private AudioClip[] walkClips;
@@ -21,7 +21,7 @@ public class SoundManager : MonoBehaviour
     [SerializeField] private float customBGMVolume = 0.5f;
     [SerializeField] private float customSFXVolume = 0.5f;
 
-    [SerializeField] private SoundEffect currentBGMData;
+    [SerializeField] private SoundEntry currentBGMData;
 
     public event Action<float> OnSFXVolumeChanged;
 
@@ -35,7 +35,7 @@ public class SoundManager : MonoBehaviour
             Instance = this;
             DontDestroyOnLoad(gameObject);
             InitDictionaries();
-            PlayBGM("Title");
+            PlayBGM(SoundType.TitleBGM);
             
         }
         else
@@ -58,44 +58,53 @@ public class SoundManager : MonoBehaviour
     private void UpdateBGM(string sceneName)
     {
         bgmSource.Stop();
-        if(sceneName != "Ending")
+
+        switch (sceneName)
         {
-            PlayBGM(sceneName);
+            case "Title":
+                PlayBGM(SoundType.TitleBGM);
+                break;
+            case "Game":
+                PlayBGM(SoundType.GameBGM);
+                break;
+            default:
+                break;
         }
+        
 
     }
 
     private void InitDictionaries()
     {
-        foreach (SoundEffect sfx in sfxList)
+        foreach (SoundEntry sfx in sfxList)
         {
-            if (!string.IsNullOrEmpty(sfx.name) && !sfxDictionary.ContainsKey(sfx.name))
+            if (!sfxDictionary.ContainsKey(sfx.type))
             {
-                sfxDictionary.Add(sfx.name, sfx);
+                sfxDictionary.Add(sfx.type, sfx);
             }
         }
 
-        foreach (SoundEffect bgm in bgmList)
+        foreach (SoundEntry bgm in bgmList)
         {
-            if (!string.IsNullOrEmpty(bgm.name) && !bgmDictionary.ContainsKey(bgm.name))
+            if (!bgmDictionary.ContainsKey(bgm.type))
             {
-                bgmDictionary.Add(bgm.name, bgm);
+                bgmDictionary.Add(bgm.type, bgm);
             }
         }
     }
 
-    public void PlaySFX(string clipName)
+    public void PlaySFX(SoundType type)
     {
-        if (sfxDictionary.TryGetValue(clipName, out SoundEffect sfxData))
+        if (sfxDictionary.TryGetValue(type, out SoundEntry sfxData))
         {
             float finalVolume = sfxData.defaultVolume * customSFXVolume;
             sfxSource.PlayOneShot(sfxData.clip, finalVolume);
         }
     }
 
-    public void PlayBGM(string clipName)
+    public void PlayBGM(SoundType type)
     {
-        if (bgmDictionary.TryGetValue(clipName, out SoundEffect bgmData))
+        if (bgmDictionary.TryGetValue(type, out SoundEntry bgmData))
         {
             if (bgmSource.isPlaying && bgmSource.clip == bgmData.clip) return;
 
@@ -113,9 +122,9 @@ public class SoundManager : MonoBehaviour
         bgmSource.Stop();
     }
 
-    public void PlaySFXEnding(string clipName, float volume)
+    public void PlaySFXEnding(SoundType type, float volume)
     {
-        if (sfxDictionary.TryGetValue(clipName, out SoundEffect sfxData))
+        if (sfxDictionary.TryGetValue(type, out SoundEntry sfxData))
         {
             float endingVolume = volume;
             sfxSource.PlayOneShot(sfxData.clip, endingVolume);

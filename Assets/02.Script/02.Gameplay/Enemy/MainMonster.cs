@@ -122,7 +122,7 @@ public class MainMonster : EnemyFSMController
         encounterTimer = 0f;
 
         Vector3 spawnPos = GetRandomPositionOnPlayerFloor();
-        SoundManager.Instance.PlaySFX("Teleport");
+        SoundManager.Instance.PlaySFX(SoundType.Teleport);
         agent.Warp(spawnPos);
 
         agent.isStopped = false;

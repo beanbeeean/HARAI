@@ -75,7 +75,7 @@ public class PlayerHPManager : MonoBehaviour
 
         currentHealth = Mathf.Max(0, currentHealth - amount);
         OnHealthChanged?.Invoke(currentHealth, maxHealth);
-        SoundManager.Instance.PlaySFX("Hit");
+        SoundManager.Instance.PlaySFX(SoundType.Hit);
         if (healthPopup != null)
         {
             healthPopup.Show(amount, true);

@@ -262,7 +262,7 @@ public class CurseManager : MonoBehaviour
             if (markingPlayerPos != pos)
             {
                 // + 이미지 추가 예정
-                SoundManager.Instance.PlaySFX("EnemyLaugh_2");
+                SoundManager.Instance.PlaySFX(SoundType.EnemyLaugh_2);
                 Debug.Log("기믹 실패");
                 AlertManager.Instance.ShowAlert(AlertKey.FailMovingGimmick);
 
@@ -282,7 +282,7 @@ public class CurseManager : MonoBehaviour
 
             AlertManager.Instance.ShowAlert(AlertKey.SuccessMovingGimmick);
 
-            SoundManager.Instance.PlaySFX("MainMonsterDied");
+            SoundManager.Instance.PlaySFX(SoundType.EnemyScream);
             AlertManager.Instance.ShowAlert(AlertKey.SuccessGimmick);
         }
     }
@@ -302,7 +302,7 @@ public class CurseManager : MonoBehaviour
             if (flashlightManager.isPowerOn)
             {
                 // + 이미지 추가 예정
-                SoundManager.Instance.PlaySFX("EnemyLaugh_2");
+                SoundManager.Instance.PlaySFX(SoundType.EnemyLaugh_2);
                 Debug.Log("기믹 실패");
                 AlertManager.Instance.ShowAlert(AlertKey.FailLightGimmick);
 
@@ -323,7 +323,7 @@ public class CurseManager : MonoBehaviour
             AlertManager.Instance.ShowAlert(AlertKey.SuccessLightGimmick);
 
             // + SoundManager Name을 Key로 관리해야할듯.
-            SoundManager.Instance.PlaySFX("MainMonsterDied");
+            SoundManager.Instance.PlaySFX(SoundType.EnemyScream);
 
             AlertManager.Instance.ShowAlert(AlertKey.SuccessGimmick);
         }

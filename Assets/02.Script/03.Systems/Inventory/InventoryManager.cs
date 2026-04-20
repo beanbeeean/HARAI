@@ -48,7 +48,7 @@ public class InventoryManager : MonoBehaviour
                 {
                     inventoryUI.UpdateUI();
                 }
-                SoundManager.Instance.PlaySFX("PickDropItem");
+                SoundManager.Instance.PlaySFX(SoundType.PickDropItem);
                 return true;
             }
         }
@@ -126,7 +126,7 @@ public class InventoryManager : MonoBehaviour
                     }
                     else
                     {
-                        SoundManager.Instance.PlaySFX("UseBrokenGlass");
+                        SoundManager.Instance.PlaySFX(SoundType.UseBrokenGlass);
                         CurseManager.instance.RemoveLastCurse();
                         return true;
                     }
@@ -159,7 +159,7 @@ public class InventoryManager : MonoBehaviour
         {
             itemObj.itemData = slots[index];
         }
-        SoundManager.Instance.PlaySFX("PickDropItem");
+        SoundManager.Instance.PlaySFX(SoundType.PickDropItem);
         Debug.Log($"{slots[index].itemName}을(를) 현재 위치에 버렸습니다.");
         slots[index] = new ItemData();
         inventoryUI.UpdateUI();
