@@ -63,10 +63,10 @@ public class CurseManager : MonoBehaviour
 
     void Start()
     {
-        // InvokeRepeating("SuddenGimmick", gimmcikRepeatTime, gimmcikRepeatTime);
+        InvokeRepeating("SuddenGimmick", gimmcikRepeatTime, gimmcikRepeatTime);
 
         // 테스트용
-        InvokeRepeating("SuddenGimmick", 20f, 20f);
+        // InvokeRepeating("SuddenGimmick", 20f, 20f);
     }
 
     public void AddRandomCurse()

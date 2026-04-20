@@ -9,30 +9,14 @@ public class PauseManager : MonoBehaviour
     [SerializeField] private GameObject pausePanel;
     [SerializeField] private GameObject settingPanel;
 
-
-    // [Header("Audio Settings UI")]
-    // [SerializeField] private Slider bgmSlider;
-    // [SerializeField] private TextMeshProUGUI bgmValueText;
-    // [SerializeField] private Slider sfxSlider;
-    // [SerializeField] private TextMeshProUGUI sfxValueText;
+    [SerializeField] private GameObject tipsContainer;
+    [SerializeField] private GameObject[] tipsPanels;
+    private int tipsPanelIdx;
 
     private void Start()
     {
         playerInputReader.PauseEvent += OnPause;
         playerInputReader.ResumeEvent += OnResume;
-
-        // bgmSlider.onValueChanged.AddListener(UpdateBGMVolume);
-        // sfxSlider.onValueChanged.AddListener(UpdateSFXVolume);
-
-        // float defaultStartValue = 0.5f;
-        // bgmSlider.value = defaultStartValue;
-        // sfxSlider.value = defaultStartValue;
-
-        // UpdateVolumeText(bgmSlider.value, bgmValueText);
-        // UpdateVolumeText(sfxSlider.value, sfxValueText);
-
-        // Debug.Log($"bgmSlider.value: {bgmSlider.value}");
-        // Debug.Log($"sfxSlider.value: {sfxSlider.value}");
         pauseContainer.SetActive(false);
     }
 
@@ -45,34 +29,27 @@ public class PauseManager : MonoBehaviour
         }
     }
 
-    // private void UpdateBGMVolume(float value)
-    // {
-    //     UpdateVolumeText(value, bgmValueText);
 
-    //     if (SoundManager.Instance != null)
-    //         SoundManager.Instance.SetBGMVolume(value);
-    // }
-
-    // private void UpdateSFXVolume(float value)
-    // {
-    //     UpdateVolumeText(value, sfxValueText);
-
-    //     if (SoundManager.Instance != null)
-    //         SoundManager.Instance.SetSFXVolume(value);
-    // }
-
-    // private void UpdateVolumeText(float value, TextMeshProUGUI text)
-    // {
-    //     text.text = Mathf.RoundToInt(value * 100).ToString();
-    // }
 
     private void OnPause()
     {
+        if (tipsContainer.activeSelf)
+        {
+            tipsContainer.SetActive(false);
+
+            return;
+        }
+        else if (settingPanel.activeSelf)
+        {
+            settingPanel.SetActive(false);
+            pausePanel.SetActive(true);
+            return;
+        }
+        
         Time.timeScale = 0f;
 
         pauseContainer.SetActive(true);
         pausePanel.SetActive(true);
-        settingPanel.SetActive(false);
 
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
@@ -100,7 +77,7 @@ public class PauseManager : MonoBehaviour
         }
 
     }
-    
+
     public void GoBackTitle()
     {
         Time.timeScale = 1f;
@@ -120,8 +97,59 @@ public class PauseManager : MonoBehaviour
         pausePanel.SetActive(true);
     }
 
-    //public void GoToTitle()
-    //{
-    //    Time.timeScale = 1f;
-    //}
+    public void CloseTipsContainer()
+    {
+        if (tipsContainer.activeSelf)
+        {
+            
+            foreach (GameObject panel in tipsPanels)
+            {
+                panel.SetActive(false);
+            }
+            tipsContainer.SetActive(false);
+            pausePanel.SetActive(true);
+            
+        }
+    }
+
+    public void OpenTipsContainer()
+    {
+        Debug.Log("Call Open Panel");
+        if (!tipsContainer.activeSelf)
+        {
+            pausePanel.SetActive(false);
+
+            tipsPanelIdx = 0;
+            tipsContainer.SetActive(true);
+            tipsPanels[tipsPanelIdx].SetActive(true);
+        }
+    }
+
+    public void ClickNextBtn()
+    {
+
+        tipsPanels[tipsPanelIdx].SetActive(false);
+        if (tipsPanelIdx == tipsPanels.Length - 1)
+        {
+            tipsPanelIdx = 0;
+            tipsPanels[tipsPanelIdx].SetActive(true);
+            return;
+        }
+        tipsPanelIdx++;
+        tipsPanels[tipsPanelIdx].SetActive(true);
+    }
+    
+    public void ClickPrevBtn()
+    {
+        
+        tipsPanels[tipsPanelIdx].SetActive(false);
+        if (tipsPanelIdx == 0)
+        {
+            tipsPanelIdx = tipsPanels.Length - 1;
+            tipsPanels[tipsPanelIdx].SetActive(true);
+            return;
+        }
+        tipsPanelIdx--;
+        tipsPanels[tipsPanelIdx].SetActive(true);
+    }
 }
