@@ -19,6 +19,14 @@
     StartMsg_2,
     StartMsg_3,
     StartMsg_4,
+    CurseWarning,
+    StartMovingGimmick,
+    SuccessMovingGimmick,
+    FailMovingGimmick,
+    StartLightGimmick,
+    SuccessLightGimmick,
+    FailLightGimmick,
+    SuccessGimmick
 }
 
 [System.Serializable]

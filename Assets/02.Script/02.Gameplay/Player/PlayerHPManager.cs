@@ -41,6 +41,7 @@ public class PlayerHPManager : MonoBehaviour
             childSprites = visualContainer.GetComponentsInChildren<SpriteRenderer>();
         }
         // StartCoroutine(Test());
+        CurseManager.instance.CurseGameoverEvent += Die;
     }
 
     IEnumerator Test()
@@ -48,6 +49,14 @@ public class PlayerHPManager : MonoBehaviour
         yield return new WaitForSeconds(5f);
         Die();
     }
+
+
+    private void OnDisable()
+    {
+        CurseManager.instance.CurseGameoverEvent -= Die;
+    }
+
+    
 
     public int FullHealth()
     {
@@ -142,6 +151,7 @@ public class PlayerHPManager : MonoBehaviour
 
     private void Die()
     {
+        Debug.Log("React CurseEvent");
         StopAllCoroutines();
         OnDied?.Invoke();
 

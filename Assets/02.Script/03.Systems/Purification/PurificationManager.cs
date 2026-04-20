@@ -29,9 +29,11 @@ public class PurificationManager : MonoBehaviour
     public void OnObjectPurified()
     {
         CurrentPurified++;
+        InfoManager.Instance.UpdatePurifyInfo(CurrentPurified);
         AlertManager.Instance.ShowAlert(AlertKey.Purifying, CurrentPurified, TotalTargets);
 
         if (CurrentPurified >= TotalTargets)
+        // if (CurrentPurified >= 2)
         {
             // AlertManager.Instance.ShowAlert(AlertKey.GameClear);
             gameClearEvent?.Invoke();

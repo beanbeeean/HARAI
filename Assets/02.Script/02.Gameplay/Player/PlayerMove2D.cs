@@ -23,13 +23,15 @@ public class PlayerMove2D : MonoBehaviour
     public Direction CurrentDirection => currentDirection;
 
     Vector2 inputDirection;
-    [SerializeField] private float moveSpeed = 5.0f;
-    [SerializeField] private float baseMoveSpeed = 5.0f;
+    [SerializeField] private float moveSpeed;
+    [SerializeField] private float baseMoveSpeed;
     private float tempSpeedMultiplier = 1.0f;
     public float MoveSpeed => moveSpeed;
 
     public int currentFloor;
 
+    public Rigidbody2D CurrentRb => rb;
+    
     private float footstepTimer;
     [SerializeField] private float stepInterval = 0.3f;
 
@@ -37,6 +39,7 @@ public class PlayerMove2D : MonoBehaviour
     {
         if (rb == null) rb = GetComponent<Rigidbody2D>();
         if (playerInputReader == null) playerInputReader = GetComponent<PlayerInputReader>();
+        baseMoveSpeed = moveSpeed;
     }
 
     private void Start()
@@ -147,6 +150,6 @@ public class PlayerMove2D : MonoBehaviour
 
     public void UpdateMoveSpeed(float totalPenalty)
     {
-        moveSpeed = Mathf.Max(baseMoveSpeed - totalPenalty, 3.5f);
+        moveSpeed = Mathf.Max(baseMoveSpeed - totalPenalty, 2.0f);
     }
 }
