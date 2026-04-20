@@ -37,6 +37,8 @@ public class CurseManager : MonoBehaviour
     [SerializeField] private float gimmcikRepeatTime = 120f;
     [SerializeField] private bool successGimmick = true;
     [SerializeField] private TextMeshProUGUI gimmickTimerUIText;
+    [SerializeField] GameObject gimmickImg;
+    [SerializeField] GameObject gimmickFailedImg;
 
     [Header("Effect")]
     [SerializeField] private GameObject curseEffectPrefab;
@@ -61,10 +63,10 @@ public class CurseManager : MonoBehaviour
 
     void Start()
     {
-        InvokeRepeating("SuddenGimmick", gimmcikRepeatTime, gimmcikRepeatTime);
+        // InvokeRepeating("SuddenGimmick", gimmcikRepeatTime, gimmcikRepeatTime);
 
         // 테스트용
-        // InvokeRepeating("SuddenGimmick", 15f, gimmcikRepeatTime);
+        InvokeRepeating("SuddenGimmick", 20f, 20f);
     }
 
     public void AddRandomCurse()
@@ -244,7 +246,7 @@ public class CurseManager : MonoBehaviour
     IEnumerator MovingGimmick()
     {
         AlertManager.Instance.ShowAlert(AlertKey.StartMovingGimmick);
-
+        gimmickImg.SetActive(true);
         yield return new WaitForSeconds(4f);
 
 
@@ -261,11 +263,18 @@ public class CurseManager : MonoBehaviour
             Debug.Log("pos : " + pos);
             if (markingPlayerPos != pos)
             {
-                // + 이미지 추가 예정
-                SoundManager.Instance.PlaySFX(SoundType.EnemyLaugh_2);
-                Debug.Log("기믹 실패");
-                AlertManager.Instance.ShowAlert(AlertKey.FailMovingGimmick);
+                gimmickImg.SetActive(false);
 
+                Debug.Log("기믹 실패");
+                gimmickTimerUIText.gameObject.SetActive(false);
+                AlertManager.Instance.ShowAlert(AlertKey.FailMovingGimmick);
+                yield return new WaitForSeconds(1.5f);
+
+                gimmickFailedImg.SetActive(true);
+                SoundManager.Instance.PlaySFX(SoundType.EnemyLaugh_2);
+                yield return new WaitForSeconds(2f);
+
+                gimmickFailedImg.SetActive(false);
                 AddRandomCurse();
                 successGimmick = false;
 
@@ -276,6 +285,8 @@ public class CurseManager : MonoBehaviour
         }
 
         gimmickTimerUIText.gameObject.SetActive(false);
+        gimmickImg.SetActive(false);
+        gimmickFailedImg.SetActive(false);
 
         if (successGimmick)
         {
@@ -290,7 +301,7 @@ public class CurseManager : MonoBehaviour
     IEnumerator LightGimmick()
     {
         AlertManager.Instance.ShowAlert(AlertKey.StartLightGimmick);
-
+        gimmickImg.SetActive(true);
         yield return new WaitForSeconds(4f);
 
         float timer = 0f;
@@ -301,11 +312,18 @@ public class CurseManager : MonoBehaviour
             ShowGimmickTimeUI(gimmickTimer - timer);
             if (flashlightManager.isPowerOn)
             {
-                // + 이미지 추가 예정
-                SoundManager.Instance.PlaySFX(SoundType.EnemyLaugh_2);
-                Debug.Log("기믹 실패");
-                AlertManager.Instance.ShowAlert(AlertKey.FailLightGimmick);
 
+                gimmickImg.SetActive(false);
+
+                Debug.Log("기믹 실패");
+                gimmickTimerUIText.gameObject.SetActive(false);
+                AlertManager.Instance.ShowAlert(AlertKey.FailLightGimmick);
+                yield return new WaitForSeconds(1.5f);
+
+                gimmickFailedImg.SetActive(true);
+                SoundManager.Instance.PlaySFX(SoundType.EnemyLaugh_2);
+
+                yield return new WaitForSeconds(2f);
                 AddRandomCurse();
                 successGimmick = false;
 
@@ -316,13 +334,14 @@ public class CurseManager : MonoBehaviour
         }
 
         gimmickTimerUIText.gameObject.SetActive(false);
+        gimmickImg.SetActive(false);
+        gimmickFailedImg.SetActive(false);
 
         if (successGimmick)
         {
 
             AlertManager.Instance.ShowAlert(AlertKey.SuccessLightGimmick);
 
-            // + SoundManager Name을 Key로 관리해야할듯.
             SoundManager.Instance.PlaySFX(SoundType.EnemyScream);
 
             AlertManager.Instance.ShowAlert(AlertKey.SuccessGimmick);
