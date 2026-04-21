@@ -9888,6 +9888,34 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7492291775419817488, guid: ec74f585eded26e43874e166b96938e8, type: 3}
+      propertyPath: sfxList.Array.size
+      value: 19
+      objectReference: {fileID: 0}
+    - target: {fileID: 7492291775419817488, guid: ec74f585eded26e43874e166b96938e8, type: 3}
+      propertyPath: sfxList.Array.data[17].clip
+      value: 
+      objectReference: {fileID: 8300000, guid: 4889633352de27d408b2b095089967df, type: 3}
+    - target: {fileID: 7492291775419817488, guid: ec74f585eded26e43874e166b96938e8, type: 3}
+      propertyPath: sfxList.Array.data[17].type
+      value: 19
+      objectReference: {fileID: 0}
+    - target: {fileID: 7492291775419817488, guid: ec74f585eded26e43874e166b96938e8, type: 3}
+      propertyPath: sfxList.Array.data[18].clip
+      value: 
+      objectReference: {fileID: 8300000, guid: 11135e3b23e36664ebfb466b66f86356, type: 3}
+    - target: {fileID: 7492291775419817488, guid: ec74f585eded26e43874e166b96938e8, type: 3}
+      propertyPath: sfxList.Array.data[18].type
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 7492291775419817488, guid: ec74f585eded26e43874e166b96938e8, type: 3}
+      propertyPath: sfxList.Array.data[17].defaultVolume
+      value: 0.7
+      objectReference: {fileID: 0}
+    - target: {fileID: 7492291775419817488, guid: ec74f585eded26e43874e166b96938e8, type: 3}
+      propertyPath: sfxList.Array.data[18].defaultVolume
+      value: 0.7
+      objectReference: {fileID: 0}
     - target: {fileID: 7666747228411730641, guid: ec74f585eded26e43874e166b96938e8, type: 3}
       propertyPath: m_Name
       value: SoundManager

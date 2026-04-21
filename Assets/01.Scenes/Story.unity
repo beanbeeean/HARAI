@@ -325,7 +325,7 @@ MonoBehaviour:
     speakerName: "\uB098"
     dialogueText: "\uC751? \uC0DD\uAC01\uBCF4\uB2E4 \uC27D\uAC8C \uC5F4\uB9B4 \uAC83
       \uAC19... \uC5B4, \uC5B4\uC5B4?!"
-    soundType: 1
+    soundType: 19
   - speakerType: 0
     speakerName: "\uB098"
     dialogueText: "\uBB50\uC57C.. \uB204\uAC00 \uC55E\uC5D0\uC11C \uB098\uB97C \uC7A1\uC544
@@ -335,7 +335,7 @@ MonoBehaviour:
     speakerName: "\uB098"
     dialogueText: "\uBB50\uC57C... \uC65C \uC548 \uC5F4\uB824! \uC57C! \uBC16\uC5D0
       \uB204\uAD6C \uC788\uC5B4?!"
-    soundType: 1
+    soundType: 20
   - speakerType: 0
     speakerName: "\uB098"
     dialogueText: "\uC7A5\uB09C\uCE58\uC9C0 \uB9C8! \uBB38 \uC5F4\uC5B4! \uB2F9\uC7A5

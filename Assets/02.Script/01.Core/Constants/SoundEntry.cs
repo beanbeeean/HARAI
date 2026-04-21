@@ -20,7 +20,9 @@ public enum SoundType
     HittingGround_Story,
     Footstep_Story,
     DoorBang_Story,
-    DropBag_Story
+    DropBag_Story,
+    DoorOpening_Story,
+    DoorClosing_Story,
 
 }
 
