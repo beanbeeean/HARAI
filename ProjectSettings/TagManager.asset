@@ -7,6 +7,7 @@ TagManager:
   - Enemy
   - Item
   - SpawnPoint_1F
+  - Purification
   layers:
   - Default
   - TransparentFX
