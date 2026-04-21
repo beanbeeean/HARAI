@@ -133,7 +133,8 @@ public class CommonMonster : EnemyFSMController
     {
         if (isDead) return;
         isDead = true;
-
+        // gameObject.GetComponent<BoxCollider2D>().enabled = false;
+        isAttackCoolingDown = true;
         StopMovement();
         currentState = EnemyState.Idle;
 

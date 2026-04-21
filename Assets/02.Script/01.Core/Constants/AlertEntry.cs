@@ -26,7 +26,8 @@
     StartLightGimmick,
     SuccessLightGimmick,
     FailLightGimmick,
-    SuccessGimmick
+    SuccessGimmick,
+    Teleport
 }
 
 [System.Serializable]

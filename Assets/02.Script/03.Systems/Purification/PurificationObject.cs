@@ -103,7 +103,7 @@ public class PurificationObject : InteractableBase
     private void CompletePurification()
     {
         Debug.Log("정화 완료!");
-        SoundManager.Instance.PlaySFX(SoundType.PickDropItem);
+        SoundManager.Instance.PlaySFX(SoundType.Purificate);
         if (purificationEffectPrefab != null)
         {
             Vector3 spawnPosition = transform.position + new Vector3(0, effectYOffset, 0);

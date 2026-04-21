@@ -118,6 +118,7 @@ public class MainMonster : EnemyFSMController
 
     private void TeleportToPlayerFloor()
     {
+        AlertManager.Instance.ShowAlert(AlertKey.Teleport);
         teleportTimer = 0f;
         encounterTimer = 0f;
 
