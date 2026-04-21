@@ -25,6 +25,11 @@ public class GameSceneManager : MonoBehaviour
     public void LoadSceneByName(string sceneName)
     {
         SceneManager.LoadScene(sceneName);
+        if(sceneName == "Title")
+        {
+            Cursor.visible = true;
+            Cursor.lockState = CursorLockMode.None;
+        }
         changeSceneEvent?.Invoke(sceneName);
     }
 

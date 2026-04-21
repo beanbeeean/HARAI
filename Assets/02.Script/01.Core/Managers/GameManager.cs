@@ -93,15 +93,20 @@ public class GameManager : MonoBehaviour
 
     public void StartPlay()
     {
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
         StartCoroutine(StartPlayRoutine());
     }
     
     IEnumerator StartPlayRoutine()
     {
-        // 페이드 인
+        foreach (GameObject obj in closeObjects)
+        {
+            obj.SetActive(false);
+        }
+
         yield return FadeInView();
 
-        // Play View, Spawner 활성화
         foreach (GameObject obj in closeObjects)
         {
             obj.SetActive(true);
