@@ -28,6 +28,7 @@ public class GameSceneManager : MonoBehaviour
         changeSceneEvent?.Invoke(sceneName);
     }
 
+
     public void ExitGame()
     {
         Application.Quit();

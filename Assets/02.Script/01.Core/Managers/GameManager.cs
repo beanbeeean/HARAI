@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
@@ -33,6 +34,8 @@ public class GameManager : MonoBehaviour
 
     [SerializeField] private CanvasGroup fadeinText;
 
+    public Action StartPlayEvent;
+    
 
     private bool isCleared = false;
 
@@ -41,10 +44,7 @@ public class GameManager : MonoBehaviour
 
     void Start()
     {
-        AlertManager.Instance.ShowAlert(AlertKey.StartMsg_1);
-        AlertManager.Instance.ShowAlert(AlertKey.StartMsg_2);
-        AlertManager.Instance.ShowAlert(AlertKey.StartMsg_3);
-        AlertManager.Instance.ShowAlert(AlertKey.StartMsg_4);
+        StartPlay();
     }
     
     void OnEnable()
@@ -84,11 +84,35 @@ public class GameManager : MonoBehaviour
             Destroy(item.gameObject);
         }
 
-        foreach(TeleportPortal portal in portals)
+        foreach (TeleportPortal portal in portals)
         {
             portal.SetInactiveCanvas();
         }
 
+    }
+
+    public void StartPlay()
+    {
+        StartCoroutine(StartPlayRoutine());
+    }
+    
+    IEnumerator StartPlayRoutine()
+    {
+        // 페이드 인
+        yield return FadeInView();
+
+        // Play View, Spawner 활성화
+        foreach (GameObject obj in closeObjects)
+        {
+            obj.SetActive(true);
+        }
+
+        yield return new WaitForSeconds(1f);
+
+        AlertManager.Instance.ShowAlert(AlertKey.StartMsg_1);
+        AlertManager.Instance.ShowAlert(AlertKey.StartMsg_2);
+        AlertManager.Instance.ShowAlert(AlertKey.StartMsg_3);
+        AlertManager.Instance.ShowAlert(AlertKey.StartMsg_4);
     }
 
     IEnumerator FadeOutView()
@@ -98,6 +122,18 @@ public class GameManager : MonoBehaviour
         {
             timer += Time.deltaTime;
             float alpha = Mathf.Lerp(0f, 1f, timer / 5.0f);
+            fadeoutImg.color = new Color(0, 0, 0, alpha);
+            yield return null;
+        }
+    }
+
+    IEnumerator FadeInView()
+    {
+        float timer = 0f;
+        while (timer < 5.0f)
+        {
+            timer += Time.deltaTime;
+            float alpha = Mathf.Lerp(1f, 0f, timer / 5.0f);
             fadeoutImg.color = new Color(0, 0, 0, alpha);
             yield return null;
         }

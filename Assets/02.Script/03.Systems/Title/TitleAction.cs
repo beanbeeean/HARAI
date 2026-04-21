@@ -5,22 +5,22 @@ public class TitleAction : MonoBehaviour
 {
     [SerializeField] private GameObject settingPanel;
     [SerializeField] private GameObject tipsContainer;
+    [SerializeField] private GameObject confirmContainer;
+    
     [SerializeField] private GameObject[] tipsPanels;
     [SerializeField] public Button startBtn;
     [SerializeField] private Button exitBtn;
 
     private int tipsPanelIdx;
 
-    void Start()
-    {
-        if (GameSceneManager.Instance != null)
-        {
-            startBtn.onClick.AddListener(() => GameSceneManager.Instance.LoadSceneByName("Game"));
-            exitBtn.onClick.AddListener(() => GameSceneManager.Instance.ExitGame());
-        }
-
-        
-    }
+    // void Start()
+    // {
+    //     if (GameSceneManager.Instance != null)
+    //     {
+    //         startBtn.onClick.AddListener(() => GameSceneManager.Instance.LoadSceneByName("Story"));
+    //         exitBtn.onClick.AddListener(() => GameSceneManager.Instance.ExitGame());
+    //     }
+    // }
 
     void Update()
     {
@@ -28,6 +28,7 @@ public class TitleAction : MonoBehaviour
         {
             CloseSettingPanel();
             CloseTipsContainer();
+            CloseConfirmContainer();
         }
     }
 
@@ -48,12 +49,40 @@ public class TitleAction : MonoBehaviour
         }
     }
 
+    public void OpenConfirmContainer()
+    {
+        Debug.Log("Call Open Panel");
+        if (!confirmContainer.activeSelf)
+        {
+            confirmContainer.SetActive(true);
+        }
+    }
+
+    public void CloseConfirmContainer()
+    {
+        Debug.Log("Call Open Panel");
+        if (confirmContainer.activeSelf)
+        {
+            confirmContainer.SetActive(false);
+        }
+    }
+
+    public void ClickConfirmBtnToStory()
+    {
+        GameSceneManager.Instance.LoadSceneByName("Story");
+    }
+
+    public void ClickConfirmBtnToGame()
+    {
+        GameSceneManager.Instance.LoadSceneByName("Game");
+    }
+
     public void CloseTipsContainer()
     {
         if (tipsContainer.activeSelf)
         {
             tipsContainer.SetActive(false);
-            foreach(GameObject panel in tipsPanels)
+            foreach (GameObject panel in tipsPanels)
             {
                 panel.SetActive(false);
             }
@@ -71,6 +100,8 @@ public class TitleAction : MonoBehaviour
         }
     }
 
+    
+
     public void clickNextBtn()
     {
 
@@ -84,10 +115,10 @@ public class TitleAction : MonoBehaviour
         tipsPanelIdx++;
         tipsPanels[tipsPanelIdx].SetActive(true);
     }
-    
+
     public void clickPrevBtn()
     {
-        
+
         tipsPanels[tipsPanelIdx].SetActive(false);
         if (tipsPanelIdx == 0)
         {
@@ -97,5 +128,10 @@ public class TitleAction : MonoBehaviour
         }
         tipsPanelIdx--;
         tipsPanels[tipsPanelIdx].SetActive(true);
+    }
+    
+    public void ClickExitBtn()
+    {
+        GameSceneManager.Instance.ExitGame();
     }
 }

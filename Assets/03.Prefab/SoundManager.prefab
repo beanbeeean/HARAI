@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &4515059289765904233
+--- !u!1 &7666747228411730641
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,11 +8,11 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 6373414163893609196}
-  - component: {fileID: 8517935755054143848}
-  - component: {fileID: 4393064399006076091}
-  - component: {fileID: 8829922554503621479}
-  - component: {fileID: 4715961865173852949}
+  - component: {fileID: 2671770091667292196}
+  - component: {fileID: 7492291775419817488}
+  - component: {fileID: 481365338515558760}
+  - component: {fileID: 3533937573633626960}
+  - component: {fileID: 1240450722810402947}
   m_Layer: 0
   m_Name: SoundManager
   m_TagString: Untagged
@@ -20,68 +20,95 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &6373414163893609196
+--- !u!4 &2671770091667292196
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4515059289765904233}
+  m_GameObject: {fileID: 7666747228411730641}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -69.66979, y: 2.90472, z: 0}
+  m_LocalPosition: {x: 510.48343, y: 623.12726, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &8517935755054143848
+--- !u!114 &7492291775419817488
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4515059289765904233}
+  m_GameObject: {fileID: 7666747228411730641}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 67f0fa567800bca49a1e185f76643891, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SoundManager
-  bgmSource: {fileID: 4393064399006076091}
-  sfxSource: {fileID: 8829922554503621479}
+  bgmSource: {fileID: 481365338515558760}
+  sfxSource: {fileID: 3533937573633626960}
   sfxList:
-  - name: Door
+  - type: 0
     clip: {fileID: 8300000, guid: 957952ad9a4ac304bb2474737d45bca9, type: 3}
-    defaultVolume: 0.5
-  - name: Hit
+    defaultVolume: 0
+  - type: 1
+    clip: {fileID: 8300000, guid: 957952ad9a4ac304bb2474737d45bca9, type: 3}
+    defaultVolume: 0.7
+  - type: 2
     clip: {fileID: 8300000, guid: a715ddf00ff7f24469c72404e8df85e9, type: 3}
-    defaultVolume: 0.5
-  - name: Purificate
+    defaultVolume: 0.7
+  - type: 3
     clip: {fileID: 8300000, guid: 3622ce9a1c1b24e239f93852bf4203c9, type: 3}
-    defaultVolume: 0.5
-  - name: PickDropItem
+    defaultVolume: 0.7
+  - type: 4
     clip: {fileID: 8300000, guid: f918ef0ad9a893a44ab053b0996e5084, type: 3}
-    defaultVolume: 0.5
-  - name: Flashlight
+    defaultVolume: 0.7
+  - type: 5
     clip: {fileID: 8300000, guid: 1de747f2b2e84e74f87f4b34c9a30dd8, type: 3}
-    defaultVolume: 0.5
-  - name: Teleport
+    defaultVolume: 0.7
+  - type: 6
     clip: {fileID: 8300000, guid: 120b23436c37c5747b05ac5d931881ac, type: 3}
-    defaultVolume: 0.5
-  - name: Gameover
-    clip: {fileID: 8300000, guid: 6c8df6a7209cd2a468c2d1f53030e3af, type: 3}
-    defaultVolume: 0.5
-  - name: UseBrokenGlass
+    defaultVolume: 0.7
+  - type: 7
     clip: {fileID: 8300000, guid: 23735759b5106f64ca44e3b235effeac, type: 3}
-    defaultVolume: 0.5
+    defaultVolume: 0.7
+  - type: 8
+    clip: {fileID: 8300000, guid: a395748bea50fe14dbb3ad13326798a1, type: 3}
+    defaultVolume: 0.7
+  - type: 9
+    clip: {fileID: 8300000, guid: ac3817c9a06700c4c8e07c0dfac22ec5, type: 3}
+    defaultVolume: 0.7
+  - type: 10
+    clip: {fileID: 8300000, guid: aea5c236d1149e64cab89f41ff6b3142, type: 3}
+    defaultVolume: 0.7
+  - type: 11
+    clip: {fileID: 8300000, guid: 41f38bcf63f3dd948894d9c486a31d77, type: 3}
+    defaultVolume: 0.7
+  - type: 15
+    clip: {fileID: 8300000, guid: a8d35fe7cae423c4cbba0094801f1ffb, type: 3}
+    defaultVolume: 0.7
+  - type: 16
+    clip: {fileID: 8300000, guid: b3d6b8931fb5d0b479f3e26d750b3c6c, type: 3}
+    defaultVolume: 0.7
+  - type: 17
+    clip: {fileID: 8300000, guid: be8b96e7c47e25c4384036f1c707d77f, type: 3}
+    defaultVolume: 0.7
+  - type: 18
+    clip: {fileID: 8300000, guid: eb31e7e4f303948418c053cb238fcc57, type: 3}
+    defaultVolume: 0.7
+  - type: 12
+    clip: {fileID: 8300000, guid: fa96eb877513bd14ca152ba1036fb938, type: 3}
+    defaultVolume: 0.7
   bgmList:
-  - name: TitleBGM
+  - type: 13
     clip: {fileID: 8300000, guid: fa6c3922c20699040839583473ea2b05, type: 3}
-    defaultVolume: 0.5
-  - name: GameBGM
+    defaultVolume: 0.7
+  - type: 14
     clip: {fileID: 8300000, guid: ee403a3067a0c476dbd3e34a5f69c4a3, type: 3}
-    defaultVolume: 0.558
-  footstepSource: {fileID: 4715961865173852949}
+    defaultVolume: 0.7
+  footstepSource: {fileID: 1240450722810402947}
   walkClips:
   - {fileID: 8300000, guid: a6c2dc50b10068f40ac01f9fb9b3b7ac, type: 3}
   - {fileID: 8300000, guid: 6f644713f7ceb554f920a335bc73ada3, type: 3}
@@ -94,25 +121,25 @@ MonoBehaviour:
   customBGMVolume: 0.5
   customSFXVolume: 0.5
   currentBGMData:
-    name: 
+    type: 0
     clip: {fileID: 0}
     defaultVolume: 0
---- !u!82 &4393064399006076091
+--- !u!82 &481365338515558760
 AudioSource:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4515059289765904233}
+  m_GameObject: {fileID: 7666747228411730641}
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
   m_Resource: {fileID: 0}
-  m_PlayOnAwake: 0
+  m_PlayOnAwake: 1
   m_Volume: 0.541
   m_Pitch: 1
-  Loop: 0
+  Loop: 1
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
@@ -194,13 +221,13 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!82 &8829922554503621479
+--- !u!82 &3533937573633626960
 AudioSource:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4515059289765904233}
+  m_GameObject: {fileID: 7666747228411730641}
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
@@ -291,13 +318,13 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!82 &4715961865173852949
+--- !u!82 &1240450722810402947
 AudioSource:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4515059289765904233}
+  m_GameObject: {fileID: 7666747228411730641}
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
