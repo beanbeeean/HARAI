@@ -10,17 +10,15 @@ public class TitleAction : MonoBehaviour
     [SerializeField] private GameObject[] tipsPanels;
     [SerializeField] public Button startBtn;
     [SerializeField] private Button exitBtn;
+    [SerializeField] Animator backgroundAnimator;
+    [SerializeField] private float blinkerTimer = 10.0f;
 
     private int tipsPanelIdx;
 
-    // void Start()
-    // {
-    //     if (GameSceneManager.Instance != null)
-    //     {
-    //         startBtn.onClick.AddListener(() => GameSceneManager.Instance.LoadSceneByName("Story"));
-    //         exitBtn.onClick.AddListener(() => GameSceneManager.Instance.ExitGame());
-    //     }
-    // }
+    void Start()
+    {
+        InvokeRepeating("BlinkerBackground", blinkerTimer, blinkerTimer);
+    }
 
     void Update()
     {
@@ -30,6 +28,12 @@ public class TitleAction : MonoBehaviour
             CloseTipsContainer();
             CloseConfirmContainer();
         }
+    }
+
+    public void BlinkerBackground()
+    {
+        int hashTrigger = Animator.StringToHash("BlinkerTrigger");
+        backgroundAnimator.SetTrigger(hashTrigger);
     }
 
     public void CloseSettingPanel()
