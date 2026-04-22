@@ -63,7 +63,7 @@ public class CurseManager : MonoBehaviour
 
     void Start()
     {
-        InvokeRepeating("SuddenGimmick", 20f, gimmcikRepeatTime);
+        InvokeRepeating("SuddenGimmick", gimmcikRepeatTime, gimmcikRepeatTime);
 
         // 테스트용
         // Invoke("Test", 19f);
@@ -258,10 +258,10 @@ public class CurseManager : MonoBehaviour
     IEnumerator MovingGimmick()
     {
         yield return StartCoroutine(AlertManager.Instance.ShowAlertAndWait(AlertKey.StartMovingGimmick));
+
+
         gimmickImg.SetActive(true);
-        yield return new WaitForSeconds(2f);
-
-
+        yield return new WaitForSeconds(1f);
         Vector3 markingPlayerPos = new Vector3();
         markingPlayerPos.x = playerMove2D.gameObject.transform.position.x;
         markingPlayerPos.y = playerMove2D.gameObject.transform.position.y;
@@ -314,7 +314,7 @@ public class CurseManager : MonoBehaviour
     {
         yield return StartCoroutine(AlertManager.Instance.ShowAlertAndWait(AlertKey.StartLightGimmick));
         gimmickImg.SetActive(true);
-        yield return new WaitForSeconds(2f);
+        yield return new WaitForSeconds(1f);
 
         float timer = 0f;
 

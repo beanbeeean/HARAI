@@ -78,6 +78,7 @@ public class AlertManager : MonoBehaviour
             StartCoroutine(ProcessQueue());
         }
 
+
         while (isShowing || alertMessagesQueue.Count > 0)
         {
             yield return null;
