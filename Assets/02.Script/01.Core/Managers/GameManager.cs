@@ -104,14 +104,14 @@ public class GameManager : MonoBehaviour
         {
             obj.SetActive(false);
         }
-
+        playerInput.enabled = false;
         yield return FadeInView();
 
         foreach (GameObject obj in closeObjects)
         {
             obj.SetActive(true);
         }
-
+        playerInput.enabled = true;
         yield return new WaitForSeconds(1f);
 
         AlertManager.Instance.ShowAlert(AlertKey.StartMsg_1);
