@@ -63,11 +63,19 @@ public class CurseManager : MonoBehaviour
 
     void Start()
     {
-        InvokeRepeating("SuddenGimmick", gimmcikRepeatTime, gimmcikRepeatTime);
+        InvokeRepeating("SuddenGimmick", 20f, gimmcikRepeatTime);
 
         // 테스트용
+        // Invoke("Test", 19f);
         // InvokeRepeating("SuddenGimmick", 20f, 20f);
     }
+
+    // public void Test()
+    // {
+    //     AlertManager.Instance.ShowAlert(AlertKey.NoCurse);
+    //     AlertManager.Instance.ShowAlert(AlertKey.FullHealth);
+    //     AlertManager.Instance.ShowAlert(AlertKey.FullBattery);
+    // }
 
     public void AddRandomCurse()
     {
@@ -220,11 +228,15 @@ public class CurseManager : MonoBehaviour
 
     void SuddenGimmick()
     {
-        if(currentTotalCurse >= 10 || PurificationManager.Instance.CurrentPurified >= 10 || playerHPManager.IsDead)
+    
+        
+
+        if (currentTotalCurse >= 10 || PurificationManager.Instance.CurrentPurified >= 10 || playerHPManager.IsDead)
         {
             CancelInvoke("SuddenGimmick");
             return;
         }
+        
         successGimmick = true;
         int randomIdx = UnityEngine.Random.Range(0, 2);
         Debug.Log($"{randomIdx}번 기믹");
@@ -245,9 +257,9 @@ public class CurseManager : MonoBehaviour
 
     IEnumerator MovingGimmick()
     {
-        AlertManager.Instance.ShowAlert(AlertKey.StartMovingGimmick);
+        yield return StartCoroutine(AlertManager.Instance.ShowAlertAndWait(AlertKey.StartMovingGimmick));
         gimmickImg.SetActive(true);
-        yield return new WaitForSeconds(4f);
+        yield return new WaitForSeconds(2f);
 
 
         Vector3 markingPlayerPos = new Vector3();
@@ -300,9 +312,9 @@ public class CurseManager : MonoBehaviour
     
     IEnumerator LightGimmick()
     {
-        AlertManager.Instance.ShowAlert(AlertKey.StartLightGimmick);
+        yield return StartCoroutine(AlertManager.Instance.ShowAlertAndWait(AlertKey.StartLightGimmick));
         gimmickImg.SetActive(true);
-        yield return new WaitForSeconds(4f);
+        yield return new WaitForSeconds(2f);
 
         float timer = 0f;
 

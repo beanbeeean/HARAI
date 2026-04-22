@@ -22,7 +22,7 @@ public class AlertManager : MonoBehaviour
 
     [SerializeField] private bool isShowing = false;
 
-
+    
     private void Awake()
     {
         if (Instance == null)
@@ -53,7 +53,7 @@ public class AlertManager : MonoBehaviour
 
     public void ShowAlert(AlertKey key, params object[] args)
     {
-        if(alertMessages.TryGetValue(key, out string msg))
+        if (alertMessages.TryGetValue(key, out string msg))
         {
             string showMsg = string.Format(msg, args);
             alertMessagesQueue.Enqueue(showMsg);
@@ -64,6 +64,28 @@ public class AlertManager : MonoBehaviour
             StartCoroutine(ProcessQueue());
         }
     }
+
+    public IEnumerator ShowAlertAndWait(AlertKey key, params object[] args)
+    {
+        if (alertMessages.TryGetValue(key, out string msg))
+        {
+            string showMsg = string.Format(msg, args);
+            alertMessagesQueue.Enqueue(showMsg);
+        }
+
+        if (!isShowing)
+        {
+            StartCoroutine(ProcessQueue());
+        }
+
+        while (isShowing || alertMessagesQueue.Count > 0)
+        {
+            yield return null;
+        }
+
+        // yield return new WaitForSeconds(3.5f);
+    }
+
 
     private IEnumerator ProcessQueue()
     {
