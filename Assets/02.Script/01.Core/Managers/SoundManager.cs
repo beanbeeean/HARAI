@@ -67,6 +67,9 @@ public class SoundManager : MonoBehaviour
             case "Game":
                 PlayBGM(SoundType.GameBGM);
                 break;
+            case "Story":
+                PlayBGM(SoundType.StoryBGM);
+                break;
             default:
                 break;
         }

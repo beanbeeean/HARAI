@@ -17,7 +17,7 @@ public class DialogueManager : MonoBehaviour
 
     private int dialogueIdx = 0;
 
-    [SerializeField] private float typingSpeed = 0.1f;
+    [SerializeField] private float typingSpeed = 0.05f;
     [SerializeField] private bool isTyping = false;
     [SerializeField] private Coroutine playingCoroutine;
 
