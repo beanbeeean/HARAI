@@ -21,6 +21,7 @@ public class PlayerHPManager : MonoBehaviour
     public bool IsDead => currentHealth <= 0;
 
     public event Action<int, int> OnHealthChanged;
+    public event Action OnDamaged;
     public event Action OnDied;
 
     public bool isHit = false;
@@ -92,7 +93,7 @@ public class PlayerHPManager : MonoBehaviour
             Die();
             return;
         };
-        
+        OnDamaged?.Invoke();
 
         StartCoroutine(InvincibilityRoutine());
     }
