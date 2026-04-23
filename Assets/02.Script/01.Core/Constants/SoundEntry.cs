@@ -24,7 +24,8 @@ public enum SoundType
     DoorOpening_Story,
     DoorClosing_Story,
     StoryBGM,
-    EnemyLaugh_3
+    EnemyLaugh_3,
+    Ending_Lamp
 }
 
 [System.Serializable]

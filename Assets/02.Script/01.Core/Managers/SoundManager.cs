@@ -125,6 +125,11 @@ public class SoundManager : MonoBehaviour
         bgmSource.Stop();
     }
 
+    public void StopSFX()
+    {
+        sfxSource.Stop();
+    }
+
     public void PlaySFXEnding(SoundType type, float volume)
     {
         if (sfxDictionary.TryGetValue(type, out SoundEntry sfxData))

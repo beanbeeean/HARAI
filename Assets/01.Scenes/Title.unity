@@ -4348,6 +4348,9 @@ MonoBehaviour:
   - type: 22
     clip: {fileID: 8300000, guid: 6b5bb9f7d45451143ba92b3efb8bad1a, type: 3}
     defaultVolume: 0.7
+  - type: 23
+    clip: {fileID: 8300000, guid: 3f0757f2d1b41c747a1cfa52ffa1e435, type: 3}
+    defaultVolume: 0.7
   bgmList:
   - type: 13
     clip: {fileID: 8300000, guid: fa6c3922c20699040839583473ea2b05, type: 3}
