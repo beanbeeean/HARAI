@@ -192,6 +192,7 @@ public class GameManager : MonoBehaviour
         // Enemy, Item Spawner 비활성화
         // Common Monster 전체 비활성화 + Item 오브젝트전체 비활성화
         // Mainmonster 비활성화 
+        fadeOutObj.SetActive(true);
         SetInactiveObjects();
         playerInput.enabled = false;
 
@@ -257,6 +258,7 @@ public class GameManager : MonoBehaviour
     {
         isCleared = true;
         // HUD UI, 입력값, 아이템, 커먼몬스터, 스포너 다 비활성화.
+        fadeOutObj.SetActive(true);
         SetInactiveObjects();
         playerInput.enabled = false;
 
@@ -301,15 +303,15 @@ public class GameManager : MonoBehaviour
         playerAnimator.SetBool("IsCleared", true);
 
         // Global Light가 점점 밝아진다. (기본 0, 목표값 1)
-        while (timer < 7.0f)
+        while (timer < 5.0f)
         {
             timer += Time.deltaTime;
-            float intensity = Mathf.Lerp(0f, 1f, timer / 7.0f);
+            float intensity = Mathf.Lerp(0f, 1f, timer / 5.0f);
             globalLight.intensity = intensity;
             yield return null;
         }
 
-        yield return new WaitForSeconds(2f);
+        yield return new WaitForSeconds(1f);
         // 화면 전체를 덮는 검은 패널로 Scene View를 Fade Out처리
 
         yield return StartCoroutine(FadeOutView());

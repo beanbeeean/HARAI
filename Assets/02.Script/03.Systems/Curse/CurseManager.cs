@@ -34,7 +34,7 @@ public class CurseManager : MonoBehaviour
 
     [Header("Gimmicks")]
     [SerializeField] private float gimmickTimer = 5f;
-    [SerializeField] private float gimmcikRepeatTime = 120f;
+    [SerializeField] private float gimmcikRepeatTime = 100f;
     [SerializeField] private bool successGimmick = true;
     [SerializeField] private TextMeshProUGUI gimmickTimerUIText;
     [SerializeField] GameObject gimmickImg;
@@ -63,11 +63,11 @@ public class CurseManager : MonoBehaviour
 
     void Start()
     {
-        // InvokeRepeating("SuddenGimmick", gimmcikRepeatTime, gimmcikRepeatTime);
+        InvokeRepeating("SuddenGimmick", gimmcikRepeatTime, gimmcikRepeatTime);
 
         // 테스트용
         // Invoke("Test", 19f);
-        InvokeRepeating("SuddenGimmick", 20f, 30f);
+        // InvokeRepeating("SuddenGimmick", 20f, 30f);
     }
 
     // public void Test()
@@ -268,7 +268,7 @@ public class CurseManager : MonoBehaviour
         float timer = 0f;
         ShowGimmickTimeUI(gimmickTimer);
         yield return new WaitForSeconds(0.5f);
-        
+
         Vector3 markingPlayerPos = new Vector3();
         markingPlayerPos.x = playerMove2D.gameObject.transform.position.x;
         markingPlayerPos.y = playerMove2D.gameObject.transform.position.y;
