@@ -37,7 +37,6 @@ public class ItemSpawner : MonoBehaviour
 
 
         InitialSpawn();
-        //InvokeRepeating(nameof(CheckAndRespawn), respawnCheckTime, respawnCheckTime);
     }
 
     private void Update()

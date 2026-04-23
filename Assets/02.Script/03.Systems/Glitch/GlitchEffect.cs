@@ -38,20 +38,20 @@ public class GlitchEffect : MonoBehaviour
         globalVolume = FindFirstObjectByType<Volume>();
     }
 
-      public void Play(float duration)
+      public void Play(float glitchTime)
     {
         if (cameraData == null || globalVolume == null) return;
         
         StopAllCoroutines();
-        StartCoroutine(GlitchEffectRoutine(duration));
+        StartCoroutine(GlitchEffectRoutine(glitchTime));
     }
 
-    private IEnumerator GlitchEffectRoutine(float duration)
+    private IEnumerator GlitchEffectRoutine(float glitchTime)
     {
         cameraData.SetRenderer(glitchRendererIndex);
         globalVolume.profile = glitchProfile;
 
-        yield return new WaitForSeconds(duration);
+        yield return new WaitForSeconds(glitchTime);
 
         cameraData.SetRenderer(normalRendererIndex);
         globalVolume.profile = normalProfile;
