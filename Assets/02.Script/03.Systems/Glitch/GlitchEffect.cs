@@ -38,7 +38,7 @@ public class GlitchEffect : MonoBehaviour
         globalVolume = FindFirstObjectByType<Volume>();
     }
 
-      public void Play(float duration = 0.3f)
+      public void Play(float duration)
     {
         if (cameraData == null || globalVolume == null) return;
         
