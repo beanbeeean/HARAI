@@ -75,6 +75,12 @@ TagManager:
   - name: InteractAlert
     uniqueID: 107144753
     locked: 0
+  - name: UI
+    uniqueID: 1157352207
+    locked: 0
+  - name: FadeOut
+    uniqueID: 4242399421
+    locked: 0
   m_RenderingLayers:
   - Default
   - Light Layer 1

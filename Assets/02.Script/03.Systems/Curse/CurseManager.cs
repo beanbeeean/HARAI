@@ -34,7 +34,7 @@ public class CurseManager : MonoBehaviour
 
     [Header("Gimmicks")]
     [SerializeField] private float gimmickTimer = 5f;
-    [SerializeField] private float gimmcikRepeatTime = 120f;
+    [SerializeField] private float gimmcikRepeatTime = 100f;
     [SerializeField] private bool successGimmick = true;
     [SerializeField] private TextMeshProUGUI gimmickTimerUIText;
     [SerializeField] GameObject gimmickImg;
@@ -67,7 +67,7 @@ public class CurseManager : MonoBehaviour
 
         // 테스트용
         // Invoke("Test", 19f);
-        // InvokeRepeating("SuddenGimmick", 20f, 20f);
+        // InvokeRepeating("SuddenGimmick", 20f, 30f);
     }
 
     // public void Test()
@@ -250,6 +250,7 @@ public class CurseManager : MonoBehaviour
                 StartCoroutine(MovingGimmick());
                 break;
             case 1:
+                // StartCoroutine(MovingGimmick());
                 StartCoroutine(LightGimmick());
                 break;
         }
@@ -261,11 +262,17 @@ public class CurseManager : MonoBehaviour
 
 
         gimmickImg.SetActive(true);
-        yield return new WaitForSeconds(1f);
+        SoundManager.Instance.PlaySFX(SoundType.EnemyLaugh_3);
+        yield return new WaitForSeconds(2f);
+
+        float timer = 0f;
+        ShowGimmickTimeUI(gimmickTimer);
+        yield return new WaitForSeconds(0.5f);
+
         Vector3 markingPlayerPos = new Vector3();
         markingPlayerPos.x = playerMove2D.gameObject.transform.position.x;
         markingPlayerPos.y = playerMove2D.gameObject.transform.position.y;
-        float timer = 0f;
+        
 
         while (timer < gimmickTimer)
         {
@@ -284,7 +291,8 @@ public class CurseManager : MonoBehaviour
 
                 gimmickFailedImg.SetActive(true);
                 SoundManager.Instance.PlaySFX(SoundType.EnemyLaugh_2);
-                yield return new WaitForSeconds(2f);
+                GlitchEffect.Instance.Play(2.5f);
+                yield return new WaitForSeconds(2.5f);
 
                 gimmickFailedImg.SetActive(false);
                 AddRandomCurse();
@@ -314,10 +322,12 @@ public class CurseManager : MonoBehaviour
     {
         yield return StartCoroutine(AlertManager.Instance.ShowAlertAndWait(AlertKey.StartLightGimmick));
         gimmickImg.SetActive(true);
-        yield return new WaitForSeconds(1f);
+        SoundManager.Instance.PlaySFX(SoundType.EnemyLaugh_3);
+        yield return new WaitForSeconds(2f);
 
         float timer = 0f;
-
+        ShowGimmickTimeUI(gimmickTimer);
+        yield return new WaitForSeconds(0.5f);
         while (timer < gimmickTimer)
         {
             timer += Time.deltaTime;
@@ -334,8 +344,8 @@ public class CurseManager : MonoBehaviour
 
                 gimmickFailedImg.SetActive(true);
                 SoundManager.Instance.PlaySFX(SoundType.EnemyLaugh_2);
-
-                yield return new WaitForSeconds(2f);
+                GlitchEffect.Instance.Play(2.5f);
+                yield return new WaitForSeconds(2.5f);
                 AddRandomCurse();
                 successGimmick = false;
 
