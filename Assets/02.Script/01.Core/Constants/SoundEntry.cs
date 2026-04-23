@@ -23,7 +23,8 @@ public enum SoundType
     DropBag_Story,
     DoorOpening_Story,
     DoorClosing_Story,
-    StoryBGM
+    StoryBGM,
+    EnemyLaugh_3
 }
 
 [System.Serializable]

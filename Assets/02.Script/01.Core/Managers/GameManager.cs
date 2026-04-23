@@ -35,6 +35,8 @@ public class GameManager : MonoBehaviour
     [SerializeField] private CanvasGroup fadeinText;
 
     public Action StartPlayEvent;
+
+    [SerializeField] private GameObject fadeOutObj;
     
 
     private bool isCleared = false;
@@ -100,6 +102,7 @@ public class GameManager : MonoBehaviour
     
     IEnumerator StartPlayRoutine()
     {
+        fadeOutObj.SetActive(true);
         foreach (GameObject obj in closeObjects)
         {
             obj.SetActive(false);
@@ -111,6 +114,7 @@ public class GameManager : MonoBehaviour
         {
             obj.SetActive(true);
         }
+        fadeOutObj.SetActive(false);
         playerInput.enabled = true;
         yield return new WaitForSeconds(1f);
 
@@ -118,6 +122,7 @@ public class GameManager : MonoBehaviour
         AlertManager.Instance.ShowAlert(AlertKey.StartMsg_2);
         AlertManager.Instance.ShowAlert(AlertKey.StartMsg_3);
         AlertManager.Instance.ShowAlert(AlertKey.StartMsg_4);
+        
     }
 
     IEnumerator FadeOutView()
@@ -146,11 +151,16 @@ public class GameManager : MonoBehaviour
 
     IEnumerator FadeInOutText()
     {
+        
         if (isCleared)
         {
             TextMeshProUGUI tmp = fadeinText.gameObject.GetComponent<TextMeshProUGUI>();
             tmp.text = "학교에 깃든 긴 어둠이 끝났습니다.";
             tmp.color = new Color(1, 1, 1, 1);
+        }
+        else
+        {
+            GlitchEffect.Instance.Play(7f);
         }
 
         float timer = 0f;

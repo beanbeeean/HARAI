@@ -21,8 +21,8 @@ public class EndingManager : MonoBehaviour
     IEnumerator EndingRoutine()
     {
         yield return new WaitForSeconds(1.5f);
-        SoundManager.Instance.PlaySFXEnding(SoundType.Ending, 0.25f);
-        yield return new WaitForSeconds(3f);
+        SoundManager.Instance.PlaySFXEnding(SoundType.EnemyLaugh_3, 0.5f);
+        yield return new WaitForSeconds(2.6f);
         SoundManager.Instance.PlaySFXEnding(SoundType.Flashlight, 1.0f);
         logo.enabled = false;
 
