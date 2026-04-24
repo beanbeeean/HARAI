@@ -1,4 +1,6 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
 
 public class InventoryManager : MonoBehaviour
 {
@@ -8,7 +10,7 @@ public class InventoryManager : MonoBehaviour
     public ItemData[] slots = new ItemData[3];
     public float dropDistance = 1.0f;
     public InventoryUI inventoryUI;
-
+    private Queue<ItemData> pickItems = new Queue<ItemData>();
 
     private void Awake()
     {
@@ -39,11 +41,13 @@ public class InventoryManager : MonoBehaviour
 
     public bool AddItem(ItemData newItem)
     {
+        pickItems.Enqueue(newItem);
         for (int i = 0; i < slots.Length; i++)
         {
-            if (slots[i].itemType ==  ItemType.None)
+            if (slots[i].itemType == ItemType.None)
             {
-                slots[i] = newItem;
+                slots[i] = pickItems.Dequeue();
+                // slots[i] = newItem;
                 if (inventoryUI != null)
                 {
                     inventoryUI.UpdateUI();
@@ -53,6 +57,7 @@ public class InventoryManager : MonoBehaviour
             }
         }
         //ShowFullMessage();
+        pickItems.Clear();
         AlertManager.Instance.ShowAlert(AlertKey.CannotPickUp);
         inventoryUI.UpdateUI();
         return false;
@@ -163,8 +168,8 @@ public class InventoryManager : MonoBehaviour
         Debug.Log($"{slots[index].itemName}을(를) 현재 위치에 버렸습니다.");
         slots[index] = new ItemData();
         inventoryUI.UpdateUI();
-
-        Destroy(droppedObj, 30f);
+        droppedObj.GetComponent<ItemObject>().DestoryItem();
+        // Destroy(droppedObj, 30f);
     }
 
 

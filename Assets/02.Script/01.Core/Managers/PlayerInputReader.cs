@@ -166,11 +166,7 @@ public class PlayerInputReader : MonoBehaviour
 
     private void OnTooltipsStarted(InputAction.CallbackContext context)
     {
-        bool isAltPressed = Keyboard.current.leftAltKey.isPressed || Keyboard.current.rightAltKey.isPressed;
-        if (isAltPressed)
-        {
-            TooltipsEvent?.Invoke();
-        }
+        TooltipsEvent?.Invoke();
     }
 
     private void OnPauseStarted(InputAction.CallbackContext context)

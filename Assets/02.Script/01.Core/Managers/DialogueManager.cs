@@ -1,7 +1,6 @@
 using System.Collections;
 using TMPro;
 using UnityEngine;
-using UnityEngine.InputSystem;
 
 public class DialogueManager : MonoBehaviour
 {
@@ -24,7 +23,6 @@ public class DialogueManager : MonoBehaviour
     [SerializeField] private Color textEnemyColor;
     Color textOriginColor;
 
-    // 다이얼로그 브금 추가 예정 .. 바람소리..?
     void Awake()
     {
         if (Instance == null)
@@ -57,6 +55,15 @@ public class DialogueManager : MonoBehaviour
                 NextDialogue();
             }
         }
+
+
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            StopCoroutine(playingCoroutine);
+            dialogueIdx = startDialogues.Length - 1;
+            NextDialogue();
+        }
+
     }
 
     private void NextDialogue()
@@ -65,6 +72,7 @@ public class DialogueManager : MonoBehaviour
 
         if (dialogueIdx < startDialogues.Length)
         {
+            SoundManager.Instance.StopSFX();
             blinkerBtn.SetActive(false);
             StartDialogue();
         }
