@@ -21,6 +21,7 @@ public class PurificationObject : InteractableBase
     [Header("Status")]
     [SerializeField] private bool isColliding = false;
     private FlashlightManager currentFlashlight;
+    
 
     [Header("Effect Settings")]
     [SerializeField] private GameObject purificationEffectPrefab;
@@ -28,6 +29,9 @@ public class PurificationObject : InteractableBase
 
     private readonly int lightLayerMask = 1 << 13;
 
+    [SerializeField] private FlashlightDetector flashlightDetector;
+
+    
     protected override void Awake()
     {
         base.Awake();
@@ -43,7 +47,7 @@ public class PurificationObject : InteractableBase
 
         if (gaugeCanvas != null) gaugeCanvas.SetActive(false);
 
-        if(playerInputReader == null)
+        if (playerInputReader == null)
         {
             playerInputReader = FindFirstObjectByType<PlayerInputReader>();
         }
@@ -53,30 +57,38 @@ public class PurificationObject : InteractableBase
     {
         base.Update();
 
-        bool isExposed = isColliding && currentFlashlight != null &&
-                         currentFlashlight.isPowerOn && currentFlashlight.isUVMode;
+    bool isExposed = isColliding && currentFlashlight != null &&
+                     currentFlashlight.isPowerOn && currentFlashlight.isUVMode;
 
-        UpdateVisuals(isExposed);
+    SetAlpha(isExposed ? 1.0f : unexposedAlpha);
 
-        if (isExposed)
+    if (isExposed)
+    {
+        
+
+        if (flashlightDetector.IsInRange)
         {
+            ShowUI();
             if (gaugeCanvas != null) gaugeCanvas.SetActive(true);
+
             if (playerInputReader.InteractPressed)
             {
                 currentProgress += Time.deltaTime;
-
                 if (progressSlider != null) progressSlider.value = currentProgress;
-
-                if (currentProgress >= totalPurifyTime)
-                {
-                    CompletePurification();
-                }
+                if (currentProgress >= totalPurifyTime) CompletePurification();
             }
         }
         else
         {
+            HideUI();
             if (gaugeCanvas != null) gaugeCanvas.SetActive(false);
         }
+    }
+    else
+    {
+        HideUI();
+        if (gaugeCanvas != null) gaugeCanvas.SetActive(false);
+    }
     }
 
     public override void Interact() { }
