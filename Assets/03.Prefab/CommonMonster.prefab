@@ -580,7 +580,7 @@ MonoBehaviour:
   canAttackWhileExposed: 0
   patrolRadius: 5
   patrolWaitTime: 2
-  maxExposure: 2.5
+  maxExposure: 2
   currentExposure: 0
   isExposed: 0
   exposureResetDelay: 0.1
