@@ -159,6 +159,7 @@ public abstract class EnemyFSMController : MonoBehaviour
         if (currentState == EnemyState.Dead || currentState == EnemyState.Stun)
         {
             StopMovement();
+            Debug.Log("IsDead : " + (currentState == EnemyState.Dead));
             return;
         }
 
@@ -256,7 +257,6 @@ public abstract class EnemyFSMController : MonoBehaviour
     protected virtual void HandleStateBehavior()
     {
         if (agent == null || !agent.isOnNavMesh) return;
-
         ResumeMovement();
 
         switch (currentState)

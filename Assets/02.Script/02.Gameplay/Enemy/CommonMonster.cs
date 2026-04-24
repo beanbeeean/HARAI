@@ -56,6 +56,32 @@ public class CommonMonster : EnemyFSMController
         }
     }
 
+    public void ResetMonster(Vector3 spawnPos)
+    {
+        StopAllCoroutines();
+        isDead = false;
+        isAttackCoolingDown = false;
+        isExposed = false;
+
+        // Debug.Log("agent speed " + agent.speed);
+        agent.enabled = true;
+        agent.Warp(spawnPos);
+        
+        agent.isStopped = false;
+        SpriteRenderer[] srs = GetComponentsInChildren<SpriteRenderer>(true);
+        foreach (SpriteRenderer sr in srs)
+        {
+            sr.enabled = true; 
+            sr.gameObject.SetActive(true); 
+        }
+
+        currentState = EnemyState.Patrol;
+
+        
+        HandlePatrol();
+
+    }
+
     private void ExecutePortalTeleport(TeleportPortal portal)
     {
         StartCoroutine(PortalCooldownRoutine(2.0f));
@@ -69,6 +95,7 @@ public class CommonMonster : EnemyFSMController
         if (!agent.pathPending && (agent.remainingDistance <= agent.stoppingDistance || !agent.hasPath))
         {
             StartCoroutine(PatrolRoutine());
+            // Debug.Log("Patrol 루틴 시작됨.");
         }
     }
 
@@ -78,8 +105,11 @@ public class CommonMonster : EnemyFSMController
         isWaiting = true;
         yield return new WaitForSeconds(patrolWaitTime);
         Vector2 nextPoint = GetRandomPoint(spawnPoint, patrolRadius);
+        Debug.Log("patrol Radius : " + patrolRadius);
         agent.speed = moveSpeed * 0.5f;
         agent.SetDestination(nextPoint);
+        Debug.Log("enemy pos : " + transform.position);
+        Debug.Log("next Point : " + nextPoint);
         isWaiting = false;
     }
     private Vector2 GetRandomPoint(Vector2 center, float radius)
@@ -88,19 +118,18 @@ public class CommonMonster : EnemyFSMController
         {
             Vector2 randomPoint = center + Random.insideUnitCircle * radius;
             NavMeshHit navHit;
-            if (NavMesh.SamplePosition(randomPoint, out navHit, 1.0f, NavMesh.AllAreas))
+            if (NavMesh.SamplePosition(randomPoint, out navHit, 1.0f, 1 << NavMesh.GetAreaFromName("Walkable")))
             {
+                Debug.Log("GetRandomPoint Pass - 1");
                 Vector2 targetPos = navHit.position;
-                Vector2 originPos = transform.position;
-                float distance = Vector2.Distance(originPos, targetPos);
-                Vector2 direction = (targetPos - originPos).normalized;
-                RaycastHit2D hit = Physics2D.Raycast(originPos, direction, distance, obstacleMask);
-                if (hit.collider == null)
-                {
-                    return targetPos;
-                }
+                // Vector2 originPos = transform.position;
+                // float distance = Vector2.Distance(originPos, targetPos);
+                // Vector2 direction = (targetPos - originPos).normalized;
+                return targetPos;
+                
             }
         }
+        Debug.Log("GetRandomPoint Failed");
         return (Vector2)transform.position;
     }
 
@@ -166,8 +195,9 @@ public class CommonMonster : EnemyFSMController
     private IEnumerator PlayDeathSoundRoutine()
     {
         PlayDeathSound();
-        yield return new WaitForSeconds(0.8f);
-        Destroy(gameObject);
+        yield return new WaitForSeconds(0.9f);
+        EnemyPool.Instance.Release(this.gameObject);
+        // Destroy(gameObject);
     }
  
     protected override void ApplyLightEffect()

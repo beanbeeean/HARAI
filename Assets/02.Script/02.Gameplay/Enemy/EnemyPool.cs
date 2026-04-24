@@ -9,10 +9,15 @@ public class EnemyPool : MonoBehaviour
     private IObjectPool<GameObject> pool;
 
     [SerializeField] MapArea[] mapAreas = new MapArea[2];
-    private int capacity;
+    private int capacity = 0;
 
     private void Awake()
     {
+        foreach (MapArea map in mapAreas)
+        {
+            capacity += map.maxEnemyCount;
+        }
+        
         Instance = this;
         pool = new ObjectPool<GameObject>(
             createFunc: CreateEnemy,
@@ -20,7 +25,7 @@ public class EnemyPool : MonoBehaviour
             actionOnRelease: OnReleaseEnemy,
             actionOnDestroy: OnDestroyEnemy,
             collectionCheck: true, 
-            defaultCapacity: 10,
+            defaultCapacity: capacity,
             maxSize: 20
         );
     }
@@ -44,7 +49,8 @@ public class EnemyPool : MonoBehaviour
         
         if (enemy.TryGetComponent(out CommonMonster monster))
         {
-            // 상태를 리셋하는 함수 만들어야 됨.
+            Debug.Log(" enemy 정보 있음");
+            monster.ResetMonster(spawnPosition);
         }
         
         return enemy;
