@@ -35,21 +35,27 @@ public class EnemySpawner : MonoBehaviour
     }
 
     private void SpawnMonsterInArea(MapArea area)
+{
+    if (area.walkablePoints.Count == 0) return;
+
+    Vector3 spawnPos = GetValidSpawnPoint(area);
+    GameObject monster = EnemyPool.Instance.Get(spawnPos);
+    
+    var controller = monster.GetComponent<EnemyFSMController>();
+    if (controller != null)
     {
-        if (area.walkablePoints.Count == 0) return;
-
-        Vector3 spawnPos = GetValidSpawnPoint(area);
-        GameObject monster = Instantiate(enemyPrefab, spawnPos, Quaternion.identity);
-
-        var controller = monster.GetComponent<EnemyFSMController>();
-        if (controller != null)
-        {
-            controller.target = playerTransform;
-        }
-
-        EnemyDeathNotifier notifier = monster.AddComponent<EnemyDeathNotifier>();
-        notifier.Init(this, area);
+        controller.target = playerTransform;
     }
+
+    EnemyDeathNotifier notifier = monster.GetComponent<EnemyDeathNotifier>();
+    if (notifier == null)
+    {
+        notifier = monster.AddComponent<EnemyDeathNotifier>();
+    }
+    notifier.Init(this, area); 
+    
+    Debug.Log($"{area.name} 구역에 몬스터 재생성 요청 완료");
+}
 
     private Vector3 GetValidSpawnPoint(MapArea area)
     {
