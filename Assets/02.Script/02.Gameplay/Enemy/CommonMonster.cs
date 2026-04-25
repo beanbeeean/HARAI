@@ -102,7 +102,7 @@ public class CommonMonster : EnemyFSMController
     {
         isWaiting = true;
         yield return new WaitForSeconds(patrolWaitTime);
-        Vector2 nextPoint = GetRandomPoint(spawnPoint, patrolRadius);
+        Vector2 nextPoint = GetRandomPoint(transform.position, patrolRadius);
         Debug.Log("patrol Radius : " + patrolRadius);
         agent.speed = moveSpeed * 0.5f;
         agent.SetDestination(nextPoint);
@@ -116,7 +116,7 @@ public class CommonMonster : EnemyFSMController
         {
             Vector2 randomPoint = center + Random.insideUnitCircle * radius;
             NavMeshHit navHit;
-            if (NavMesh.SamplePosition(randomPoint, out navHit, 1.0f, 1 << NavMesh.GetAreaFromName("Walkable")))
+            if (NavMesh.SamplePosition(randomPoint, out navHit, 2.0f, NavMesh.AllAreas))
             {
                 Debug.Log("GetRandomPoint Pass - 1");
                 Vector2 targetPos = navHit.position;
