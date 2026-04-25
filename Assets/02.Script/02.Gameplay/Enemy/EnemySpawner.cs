@@ -58,22 +58,35 @@ public class EnemySpawner : MonoBehaviour
 }
 
     private Vector3 GetValidSpawnPoint(MapArea area)
+{
+    List<Vector3> points = area.walkablePoints;
+    float minMonsterDistance = 8f;
+    for (int i = 0; i < 30; i++)
     {
-        List<Vector3> points = area.walkablePoints;
+        Vector3 candidate = points[Random.Range(0, points.Count)];
+        
+        float distanceToPlayer = Vector3.Distance(candidate, playerTransform.position);
+        if (distanceToPlayer <= minSpawnDistance) continue;
 
-        for (int i = 0; i < 30; i++)
+        bool isTooCloseToOtherMonster = false;
+        Collider2D[] hitColliders = Physics2D.OverlapCircleAll(candidate, minMonsterDistance);
+        foreach (var hit in hitColliders)
         {
-            Vector3 candidate = points[Random.Range(0, points.Count)];
-            float distanceToPlayer = Vector2.Distance(candidate, playerTransform.position);
-
-            if (distanceToPlayer > minSpawnDistance)
+            if (hit.CompareTag("Enemy"))
             {
-                return candidate;
+                isTooCloseToOtherMonster = true;
+                break;
             }
         }
 
-        return points[Random.Range(0, points.Count)];
+        if (!isTooCloseToOtherMonster)
+        {
+            return candidate;
+        }
     }
+
+    return points[Random.Range(0, points.Count)];
+}
 
     public void OnMonsterDied(MapArea area)
     {
