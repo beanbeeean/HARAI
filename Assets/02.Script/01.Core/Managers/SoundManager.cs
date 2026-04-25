@@ -45,7 +45,6 @@ public class SoundManager : MonoBehaviour
 
     }
 
-    //Test
     private void Start()
     {
         GameSceneManager.Instance.changeSceneEvent += UpdateBGM;
@@ -176,7 +175,6 @@ public class SoundManager : MonoBehaviour
         {
             bgmSource.volume = currentBGMData.defaultVolume * customBGMVolume;
         }
-        //bgmSource.Play();
     }
 
     public void SetSFXVolume(float volume)

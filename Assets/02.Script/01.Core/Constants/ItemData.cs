@@ -1,6 +1,5 @@
 ﻿using UnityEngine;
 
-//[CreateAssetMenu(fileName = "NewItem", menuName = "Inventory/Item")]
 [System.Serializable]
 public class ItemData
 {

@@ -52,10 +52,8 @@ public class MapArea : MonoBehaviour
                 TileBase tile = tiles[x + y * bounds.size.x];
                 if (tile != null)
                 {
-                    // 타일 중심 좌표 계산
                     Vector3 worldPos = map.CellToWorld(bounds.position + new Vector3Int(x, y)) + new Vector3(0.5f, 0.5f, 0);
 
-                    // NavMesh 위(하늘색 바닥)인지 확인
                     if (NavMesh.SamplePosition(worldPos, out NavMeshHit hit, navMeshCheckRadius, NavMesh.AllAreas))
                     {
                         walkablePoints.Add(hit.position);
@@ -67,17 +65,13 @@ public class MapArea : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        // 플레이어나 몬스터가 들어오면 층 정보를 업데이트
         if (collision.CompareTag("Player"))
         {
-            // 플레이어 스크립트에 floorIndex 전달 (기능 추가 필요)
             collision.GetComponent<PlayerMove2D>().currentFloor = floorIndex;
         }
         else if (collision.CompareTag("Enemy"))
         {
-            // 메인 몬스터나 일반 몬스터에게 전달
             var fsm = collision.GetComponent<EnemyFSMController>();
-            // 여기서 메인 몬스터인지 체크해서 층 정보 업데이트
             if (collision.TryGetComponent(out MainMonster mainMonster))
             {
                 mainMonster.UpdateCurrentFloor(floorIndex);

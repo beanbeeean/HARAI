@@ -187,11 +187,6 @@ public class GameManager : MonoBehaviour
     void GameOver()
     {
         isCleared = false;
-        // UI 다 끄는 함수.  키입력 전체 비활성화 함수 필요
-
-        // Enemy, Item Spawner 비활성화
-        // Common Monster 전체 비활성화 + Item 오브젝트전체 비활성화
-        // Mainmonster 비활성화 
         fadeOutObj.SetActive(true);
         SetInactiveObjects();
         playerInput.enabled = false;
@@ -201,9 +196,7 @@ public class GameManager : MonoBehaviour
 
     IEnumerator DeathScenario()
     {
-        // float timer = 0f;
         playerCircleLight.SetActive(true);
-        // yield return new WaitForSeconds(1f);
 
         playerAnimator.SetBool("IsDead", true);
 
@@ -220,8 +213,6 @@ public class GameManager : MonoBehaviour
         fadeoutImg.color = new Color(0, 0, 0, 0);
         playerCircleLight.SetActive(true);
         playerSprite.enabled = true;
-        // 애니메이션 - 메인몬스터 모습으로 웃는 Sprite 8프레임 정도..
-        //  + 사운드 포함
         playerAnimator.SetBool("IsChanged", true);
         SoundManager.Instance.PlaySFX(SoundType.EnemyLaugh_1);
 
@@ -257,7 +248,6 @@ public class GameManager : MonoBehaviour
     void GameClear()
     {
         isCleared = true;
-        // HUD UI, 입력값, 아이템, 커먼몬스터, 스포너 다 비활성화.
         fadeOutObj.SetActive(true);
         SetInactiveObjects();
         playerInput.enabled = false;
@@ -267,18 +257,13 @@ public class GameManager : MonoBehaviour
 
     IEnumerator ClearScenario()
     {
-        // 암전효과
         yield return StartCoroutine(FadeOutView());
-
-        // yield return new WaitForSeconds(5f);
 
         MainMonster mainMonsterCon = mainMonster.GetComponent<MainMonster>();
         mainMonsterCon.currentState = EnemyState.Idle;
 
-        //플레이어를 비추던 카메라가 MainMonster를 비춰준다.
         cineCamera.Follow = mainMonster.transform;
 
-        //MainMonster의 주위에 Sprite Light 2D 비춰줌
         fadeoutImg.color = new Color(0, 0, 0, 0);
         mainMonsterCircleLight.SetActive(true);
         mainMonsterAnimator.speed = 0.1f;
@@ -286,23 +271,17 @@ public class GameManager : MonoBehaviour
         SoundManager.Instance.PlaySFXEnding(SoundType.EnemyScream, 0.5f);
         yield return new WaitForSeconds(1f);
 
-        // MainMonster가 소멸되는 애니메이션 + 사운드
 
-        // 암전 이후 다시 주인공 시점 카메라
         yield return StartCoroutine(FadeOutView());
 
-        // yield return new WaitForSeconds(1f);
-        // playerCircleLight.SetActive(true);
         cineCamera.Follow = player.transform;
         fadeoutImg.color = new Color(0, 0, 0, 0);
 
 
         float timer = 0f;
 
-        // 플레이어가 위를 쳐다보는 애니메이션
         playerAnimator.SetBool("IsCleared", true);
 
-        // Global Light가 점점 밝아진다. (기본 0, 목표값 1)
         while (timer < 5.0f)
         {
             timer += Time.deltaTime;
@@ -312,16 +291,13 @@ public class GameManager : MonoBehaviour
         }
 
         yield return new WaitForSeconds(1f);
-        // 화면 전체를 덮는 검은 패널로 Scene View를 Fade Out처리
 
         yield return StartCoroutine(FadeOutView());
 
         yield return new WaitForSeconds(2f);
 
-        // 중앙에 텍스트 Fade In, FadeOut
         yield return StartCoroutine(FadeInOutText());
 
-        // 그리고 엔딩씬으로 넘기기
         GameSceneManager.Instance.LoadSceneByName("Ending");
     }
 }

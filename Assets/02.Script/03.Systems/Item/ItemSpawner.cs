@@ -9,7 +9,6 @@ public class ItemSpawner : MonoBehaviour
     [Header("Spawn Setting")]
     [SerializeField] private int spawnLimit = 10;
     [SerializeField] private float respawnDelay = 10f;
-    // [SerializeField] private float itemLifeTime = 15f;
 
     [SerializeField] private List<SpawnPointState> pointStates = new List<SpawnPointState>();
 
@@ -108,7 +107,6 @@ public class ItemSpawner : MonoBehaviour
             itemObj.itemData = data;
         }
 
-        // Destroy(newItem, itemLifeTime);
         newItem.GetComponent<ItemObject>().DestoryItem();
         state.currentItem = newItem;
         state.wasSpawning = true;

@@ -51,7 +51,6 @@ public class CommonMonsterAnimator : MonoBehaviour
             animator.SetFloat(dirXHash, inputX);
             animator.SetFloat(dirYHash, inputY);
 
-            //Debug.Log($"몬스터 방향 - X: {inputX}, Y: {inputY}");
         }
     }
 

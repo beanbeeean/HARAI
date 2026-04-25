@@ -17,7 +17,6 @@ public class PurificationManager : MonoBehaviour
         TotalTargets = FindObjectsByType<PurificationObject>(FindObjectsSortMode.None).Length;
         Debug.Log($"TotalTargets : {TotalTargets}");
 
-        // StartCoroutine(Test());
     }
 
     IEnumerator Test()
@@ -33,9 +32,7 @@ public class PurificationManager : MonoBehaviour
         AlertManager.Instance.ShowAlert(AlertKey.Purifying, CurrentPurified, TotalTargets);
 
         if (CurrentPurified >= TotalTargets)
-        // if (CurrentPurified >= 2)
         {
-            // AlertManager.Instance.ShowAlert(AlertKey.GameClear);
             gameClearEvent?.Invoke();
         }
     }

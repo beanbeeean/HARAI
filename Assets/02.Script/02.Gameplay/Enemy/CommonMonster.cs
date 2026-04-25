@@ -63,7 +63,6 @@ public class CommonMonster : EnemyFSMController
         isAttackCoolingDown = false;
         isExposed = false;
 
-        // Debug.Log("agent speed " + agent.speed);
         agent.enabled = true;
         agent.Warp(spawnPos);
         
@@ -95,7 +94,6 @@ public class CommonMonster : EnemyFSMController
         if (!agent.pathPending && (agent.remainingDistance <= agent.stoppingDistance || !agent.hasPath))
         {
             StartCoroutine(PatrolRoutine());
-            // Debug.Log("Patrol 루틴 시작됨.");
         }
     }
 
@@ -122,9 +120,6 @@ public class CommonMonster : EnemyFSMController
             {
                 Debug.Log("GetRandomPoint Pass - 1");
                 Vector2 targetPos = navHit.position;
-                // Vector2 originPos = transform.position;
-                // float distance = Vector2.Distance(originPos, targetPos);
-                // Vector2 direction = (targetPos - originPos).normalized;
                 return targetPos;
                 
             }
@@ -162,14 +157,12 @@ public class CommonMonster : EnemyFSMController
     {
         if (isDead) return;
         isDead = true;
-        // gameObject.GetComponent<BoxCollider2D>().enabled = false;
         isAttackCoolingDown = true;
         StopMovement();
         currentState = EnemyState.Idle;
 
 
         SpriteRenderer spriteRenderer = GetComponentInChildren<SpriteRenderer>();
-        //spriteRenderer.enabled = false;
 
         spriteRenderer.gameObject.SetActive(false);
 
@@ -189,7 +182,6 @@ public class CommonMonster : EnemyFSMController
             Debug.LogWarning("이펙트 프리팹 할당 X");
         }
         StartCoroutine(PlayDeathSoundRoutine());
-        //Destroy(gameObject);
     }
 
     private IEnumerator PlayDeathSoundRoutine()
@@ -197,7 +189,6 @@ public class CommonMonster : EnemyFSMController
         PlayDeathSound();
         yield return new WaitForSeconds(0.9f);
         EnemyPool.Instance.Release(this.gameObject);
-        // Destroy(gameObject);
     }
  
     protected override void ApplyLightEffect()

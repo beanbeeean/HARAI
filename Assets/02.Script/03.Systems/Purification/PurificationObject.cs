@@ -138,11 +138,9 @@ public class PurificationObject : InteractableBase
             Debug.LogWarning("PurificationManager 없음");
         }
 
-        // Debug.Log("CurrentPurified : " + PurificationManager.Instance.CurrentPurified);
-        // Debug.Log("TotalTargets - 1 : " + (PurificationManager.Instance.TotalTargets - 1));
+       
 
         if(CurseManager.instance != null  && PurificationManager.Instance.CurrentPurified < PurificationManager.Instance.TotalTargets - 1)
-        //  && PurificationManager.Instance.CurrentPurified < PurificationManager.Instance.TotalTargets - 1
         {
             
             CurseManager.instance.AddRandomCurse();

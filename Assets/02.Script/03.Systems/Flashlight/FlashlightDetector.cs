@@ -48,13 +48,13 @@ public class FlashlightDetector : MonoBehaviour
         if (collision.CompareTag("Purification"))
         {
             float distance = Vector2.Distance(transform.position, collision.transform.position);
-            float threshold = maxDistance * 0.5f;
+            float half = maxDistance * 0.5f;
 
-            if (distance > threshold)
+            if (distance > half)
             {
                 IsInRange = false;
                 detectionPopup.sprite = searchSprite;
-                float percent = (maxDistance - distance) / (maxDistance - threshold);
+                float percent = (maxDistance - distance) / (maxDistance - half);
                 percent = Mathf.Clamp01(percent);
                 detectionPopup.color = Color.Lerp(farColor, nearColor, percent);
             }
@@ -62,7 +62,7 @@ public class FlashlightDetector : MonoBehaviour
             {
                 IsInRange = true;
                 detectionPopup.sprite = activeSprite;
-                float activePercent = (threshold - distance) / (threshold - minDistance);
+                float activePercent = (half - distance) / (half - minDistance);
                 activePercent = Mathf.Clamp01(activePercent);
                 detectionPopup.color = Color.Lerp(activeFarColor, activeNearColor, activePercent);
             }

@@ -23,7 +23,6 @@ public class BatteryUIController : MonoBehaviour
     {
         float ratio = currentPower / maxPower;
         powerSlider.value = ratio;
-        //Debug.Log("ratio : " + ratio);
         powerText.text = $"PW: {(int)currentPower}/{(int)maxPower}";
     }
 

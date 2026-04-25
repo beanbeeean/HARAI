@@ -65,17 +65,10 @@ public class CurseManager : MonoBehaviour
     {
         InvokeRepeating("SuddenGimmick", gimmcikRepeatTime - 10f, gimmcikRepeatTime);
 
-        // 테스트용
-        // Invoke("Test", 19f);
-        // InvokeRepeating("SuddenGimmick", 20f, 30f);
+       
     }
 
-    // public void Test()
-    // {
-    //     AlertManager.Instance.ShowAlert(AlertKey.NoCurse);
-    //     AlertManager.Instance.ShowAlert(AlertKey.FullHealth);
-    //     AlertManager.Instance.ShowAlert(AlertKey.FullBattery);
-    // }
+   
 
     public void AddRandomCurse()
     {
@@ -241,16 +234,13 @@ public class CurseManager : MonoBehaviour
         int randomIdx = UnityEngine.Random.Range(0, 2);
         Debug.Log($"{randomIdx}번 기믹");
 
-        // 테스트용
-        // randomIdx = 1;
-
+      
         switch (randomIdx)
         {
             case 0:
                 StartCoroutine(MovingGimmick());
                 break;
             case 1:
-                // StartCoroutine(MovingGimmick());
                 StartCoroutine(LightGimmick());
                 break;
         }

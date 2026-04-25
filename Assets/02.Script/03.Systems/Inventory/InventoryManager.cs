@@ -47,7 +47,6 @@ public class InventoryManager : MonoBehaviour
             if (slots[i].itemType == ItemType.None)
             {
                 slots[i] = pickItems.Dequeue();
-                // slots[i] = newItem;
                 if (inventoryUI != null)
                 {
                     inventoryUI.UpdateUI();
@@ -56,7 +55,6 @@ public class InventoryManager : MonoBehaviour
                 return true;
             }
         }
-        //ShowFullMessage();
         pickItems.Clear();
         AlertManager.Instance.ShowAlert(AlertKey.CannotPickUp);
         inventoryUI.UpdateUI();
@@ -89,7 +87,6 @@ public class InventoryManager : MonoBehaviour
                 {
                     if (hpManager.CurrentHealth >= hpManager.MaxHealth)
                     {
-                        // 팝업 알림 넣어야할 곳
                         Debug.Log("체력이 이미 가득 찼습니다!");
                         AlertManager.Instance.ShowAlert(AlertKey.FullHealth);
                         return false;
@@ -106,8 +103,7 @@ public class InventoryManager : MonoBehaviour
                 {
                     if(flashlightManager.currentPower >= flashlightManager.maxPower)
                     {
-                        // 팝업 알림 넣어야할 곳
-                        //Debug.Log("배터리가 이미 가득 찼습니다.");
+                       
                         AlertManager.Instance.ShowAlert(AlertKey.FullBattery);
                         return false;
                     }
@@ -149,14 +145,6 @@ public class InventoryManager : MonoBehaviour
 
         Vector3 dropPos = transform.position;
 
-
-        // 버린 자리에 똑같이 겹치게 버릴 수 있게 할지.. 고민
-        //Collider2D hit = Physics2D.OverlapCircle(dropPos, 0.5f);
-        //if (hit == null || !hit.CompareTag("Item"))
-        //{
-            
-        //}
-
         GameObject droppedObj = Instantiate(slots[index].itemPrefab, dropPos, Quaternion.identity);
 
         ItemObject itemObj = droppedObj.GetComponent<ItemObject>();
@@ -169,9 +157,7 @@ public class InventoryManager : MonoBehaviour
         slots[index] = new ItemData();
         inventoryUI.UpdateUI();
         droppedObj.GetComponent<ItemObject>().DestoryItem();
-        // Destroy(droppedObj, 30f);
     }
 
 
-    //private void ShowFullMessage() {  }
 }

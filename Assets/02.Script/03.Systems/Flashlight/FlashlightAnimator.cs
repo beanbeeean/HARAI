@@ -24,9 +24,4 @@ public class FlashlightAnimator : MonoBehaviour
         anim.SetFloat(hashDirX, dirVec.x);
         anim.SetFloat(hashDirY, dirVec.y);
     }
-    //public void UpdateFlashlight(float x, float y)
-    //{
-    //    animator.SetFloat(hashDirX, x);
-    //    animator.SetFloat(hashDirY, y);
-    //}
 }

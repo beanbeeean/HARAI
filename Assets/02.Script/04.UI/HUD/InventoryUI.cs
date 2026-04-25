@@ -13,7 +13,6 @@ public class InventoryUI : MonoBehaviour
 
     public void UpdateUI()
     {
-        //Debug.Log("UpdateUI 호출됨!");
         for (int i = 0; i < inventoryManager.slots.Length; i++)
         {
             if (inventoryManager.slots[i].itemType != ItemType.None)
