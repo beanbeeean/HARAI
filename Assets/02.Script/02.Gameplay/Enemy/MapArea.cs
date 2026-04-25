@@ -12,7 +12,7 @@ public class MapArea : MonoBehaviour
     [Header("Layer Settings")]
     [SerializeField] private string floorLayerName = "Floor"; 
 
-    [HideInInspector] public List<Vector3> walkablePoints = new List<Vector3>();
+    public List<Vector3> walkablePoints = new List<Vector3>();
     private float navMeshCheckRadius = 0.1f;
 
     public void InitializeArea()
