@@ -8,6 +8,7 @@ public class FlashlightManager : MonoBehaviour
     [SerializeField] private PlayerInputReader playerInputReader;
     [SerializeField] private GameObject flashlightObj;
     [SerializeField] private Light2D flashlight;
+    [SerializeField] private GameObject subLightObj;
     [SerializeField] private BatteryPopup batteryPopup;
 
     [SerializeField] private PlayerHPManager playerHPManager;
@@ -75,6 +76,7 @@ public class FlashlightManager : MonoBehaviour
         SpriteRenderer flashlight = GetComponent<SpriteRenderer>();
         flashlight.enabled = false;
         flashlightObj.SetActive(false);
+        subLightObj.SetActive(false);
     }
 
     void TogglePower()
@@ -95,6 +97,7 @@ public class FlashlightManager : MonoBehaviour
     void UpdateLightState()
     {
         flashlightObj.SetActive(isPowerOn);
+        subLightObj.SetActive(isPowerOn);
 
         if (isPowerOn)
         {
