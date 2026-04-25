@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections;
 using UnityEngine;
 
@@ -41,7 +41,6 @@ public class PlayerHPManager : MonoBehaviour
         {
             childSprites = visualContainer.GetComponentsInChildren<SpriteRenderer>();
         }
-        // StartCoroutine(Test());
         CurseManager.instance.CurseGameoverEvent += Die;
     }
 
@@ -83,7 +82,6 @@ public class PlayerHPManager : MonoBehaviour
         }
 
 
-        // 넉백 및 무적 로직...
         if (TryGetComponent(out PlayerMove2D playerMove))
         {
             playerMove.ApplyKnockback(attackerPosition);
