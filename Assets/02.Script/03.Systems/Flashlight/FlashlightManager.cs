@@ -9,6 +9,13 @@ public class FlashlightManager : MonoBehaviour
     [SerializeField] private GameObject flashlightObj;
     [SerializeField] private Light2D flashlight;
     [SerializeField] private GameObject subLightObj;
+
+    [SerializeField] private Light2D keyBoardFlashlight;
+    [SerializeField] private GameObject keyboardSubLightObj;
+
+    [SerializeField] private Light2D mouseFlashlight;
+    [SerializeField] private GameObject mouseSubLightObj;
+
     [SerializeField] private BatteryPopup batteryPopup;
 
     [SerializeField] private PlayerHPManager playerHPManager;
@@ -23,6 +30,12 @@ public class FlashlightManager : MonoBehaviour
     [SerializeField] private float rechargeRate = 2.0f;
     [SerializeField] private float baseRechargeRate = 2.0f;
 
+    [Header("Rotation Settings")]
+    [SerializeField] private Transform flashlightPivot;
+    [SerializeField] private float viewAngleLimit = 180f;
+    [SerializeField] private PlayerMove2D playerMove2D; 
+    [SerializeField] private float angleOffset = -225f;
+
     public bool isPowerOn = false;
     public bool isUVMode = false;
 
@@ -31,6 +44,10 @@ public class FlashlightManager : MonoBehaviour
     private void Awake()
     {
         currentPower = maxPower;
+        flashlight = mouseFlashlight;
+        flashlightObj = mouseFlashlight.gameObject;
+        subLightObj = mouseSubLightObj;
+        flashlightPivot = mouseFlashlight.transform;
     }
 
     private void OnEnable()
@@ -65,6 +82,7 @@ public class FlashlightManager : MonoBehaviour
 
     private void Update()
     {
+        RotateFlashlight();
         HandlePower();
         OnPowerChanged?.Invoke(currentPower, maxPower);
     }
@@ -145,4 +163,27 @@ public class FlashlightManager : MonoBehaviour
         maxPower = Mathf.Max(baseMaxPower - totalPenalty, 70f);
         OnPowerChanged?.Invoke(currentPower, maxPower);
     }
+
+    
+    private void RotateFlashlight()
+{
+    if (flashlightPivot == null) return;
+
+    // 1. 마우스 위치를 월드 좌표로 변환
+    Vector3 mouseInput = Input.mousePosition;
+    mouseInput.z = 10f; 
+    Vector3 mousePos = Camera.main.ScreenToWorldPoint(mouseInput);
+    mousePos.z = 0f;
+
+    // 2. 피벗에서 마우스까지의 방향 및 절대 각도 계산
+    Vector2 dir = (mousePos - flashlightPivot.position).normalized;
+    float targetMouseAngle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
+
+    // 3. 플레이어 각도 계산 없이, 마우스 각도에 보정값(Offset)만 더함
+    // angleOffset과 135f는 현재 사용 중인 스프라이트의 기본 기울기에 맞춰 조절하세요.
+    float finalAngle = targetMouseAngle + (angleOffset + 135f);
+
+    // 4. 회전 적용
+    flashlightPivot.rotation = Quaternion.Euler(0, 0, finalAngle);
+}
 }

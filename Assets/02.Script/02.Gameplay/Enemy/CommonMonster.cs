@@ -34,7 +34,7 @@ public class CommonMonster : EnemyFSMController
         Collider2D hit = Physics2D.OverlapCircle(transform.position, portalDetectionRadius, debugMask);
         if (hit != null && hit.TryGetComponent(out TeleportPortal portal))
         {
-            Debug.Log($"포탈 감지 성공: {hit.name}");
+            // Debug.Log($"포탈 감지 성공: {hit.name}");
             if (currentState == EnemyState.Chase)
             {
                 float distToLastSeen = Vector2.Distance(lastKnownPlayerPosition, portal.transform.position);
@@ -45,11 +45,11 @@ public class CommonMonster : EnemyFSMController
             }
             else if (currentState == EnemyState.Patrol)
             {
-                Debug.Log("currentState == EnemyState.Patrol");
+                // Debug.Log("currentState == EnemyState.Patrol");
                 if (Random.value < 0.5f && !agent.pathPending && agent.remainingDistance <= agent.stoppingDistance)
                 {
 
-                    Debug.Log("currentState == EnemyState.Patrol222222");
+                    // Debug.Log("currentState == EnemyState.Patrol222222");
                     ExecutePortalTeleport(portal);
                 }
             }
@@ -103,11 +103,11 @@ public class CommonMonster : EnemyFSMController
         isWaiting = true;
         yield return new WaitForSeconds(patrolWaitTime);
         Vector2 nextPoint = GetRandomPoint(transform.position, patrolRadius);
-        Debug.Log("patrol Radius : " + patrolRadius);
+        // Debug.Log("patrol Radius : " + patrolRadius);
         agent.speed = moveSpeed * 0.5f;
         agent.SetDestination(nextPoint);
-        Debug.Log("enemy pos : " + transform.position);
-        Debug.Log("next Point : " + nextPoint);
+        // Debug.Log("enemy pos : " + transform.position);
+        // Debug.Log("next Point : " + nextPoint);
         isWaiting = false;
     }
     private Vector2 GetRandomPoint(Vector2 center, float radius)
@@ -118,13 +118,13 @@ public class CommonMonster : EnemyFSMController
             NavMeshHit navHit;
             if (NavMesh.SamplePosition(randomPoint, out navHit, 2.0f, NavMesh.AllAreas))
             {
-                Debug.Log("GetRandomPoint Pass - 1");
+                // Debug.Log("GetRandomPoint Pass - 1");
                 Vector2 targetPos = navHit.position;
                 return targetPos;
                 
             }
         }
-        Debug.Log("GetRandomPoint Failed");
+        // Debug.Log("GetRandomPoint Failed");
         return (Vector2)transform.position;
     }
 

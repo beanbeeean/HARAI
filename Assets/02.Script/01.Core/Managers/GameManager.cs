@@ -95,8 +95,18 @@ public class GameManager : MonoBehaviour
 
     public void StartPlay()
     {
-        Cursor.lockState = CursorLockMode.Locked;
-        Cursor.visible = false;
+        // 모드 변경 관련 수정 필요.
+        // GameSceneManager에서 받아서 이벤트 발행
+        // 세팅에서 키보드/마우스 모드 선택 시 GameSceneManager의 이벤트 실행
+        // GameManger에서는 시작 시 Boolean 값 따라 Cursor 분기 처리
+        // GameManger에서 이벤트를 구독해서 재발행 해서 FlashlightManager, PurificationObject, FSMController에서 구독 업데이트.
+        // 세팅에 패널 하나 더 추가. UI/UX 구상 필요.
+
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
+
+        // Cursor.lockState = CursorLockMode.Locked;
+        // Cursor.visible = false;
         StartCoroutine(StartPlayRoutine());
     }
     

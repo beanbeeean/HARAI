@@ -22,13 +22,14 @@ public class FlashlightDetector : MonoBehaviour
 
     private Coroutine pulseCoroutine;
     private Vector3 originalScale;
-
+    private GameObject player;
     public bool IsInRange { get; private set; }
 
 
     void Awake()
     {
         if (detectionPopup != null) originalScale = detectionPopup.rectTransform.localScale;
+        player = GetComponentInParent<PlayerMove2D>().gameObject;
     }
 
     void OnTriggerEnter2D(Collider2D collision)
@@ -47,11 +48,12 @@ public class FlashlightDetector : MonoBehaviour
     {
         if (collision.CompareTag("Purification"))
         {
-            float distance = Vector2.Distance(transform.position, collision.transform.position);
+            float distance = Vector2.Distance(player.transform.position, collision.transform.position);
             float half = maxDistance * 0.5f;
 
             if (distance > half)
             {
+                // Debug.Log("FALSE");
                 IsInRange = false;
                 detectionPopup.sprite = searchSprite;
                 float percent = (maxDistance - distance) / (maxDistance - half);
@@ -60,6 +62,7 @@ public class FlashlightDetector : MonoBehaviour
             }
             else
             {
+                // Debug.Log("TRUE");
                 IsInRange = true;
                 detectionPopup.sprite = activeSprite;
                 float activePercent = (half - distance) / (half - minDistance);
@@ -87,6 +90,7 @@ public class FlashlightDetector : MonoBehaviour
     {
         if (collision.CompareTag("Purification"))
         {
+            // Debug.Log("EXIT");
             IsInRange = false;
             detectionPopup.sprite = searchSprite;
             detectionPopup.enabled = false;

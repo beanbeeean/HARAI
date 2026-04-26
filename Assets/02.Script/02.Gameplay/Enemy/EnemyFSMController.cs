@@ -60,7 +60,7 @@ public abstract class EnemyFSMController : MonoBehaviour
     [SerializeField] protected AudioClip deathClip;
     [SerializeField] private float soundInterval = 3.0f;
     [SerializeField] private float defaultVolume = 1.0f;
-
+    [SerializeField] private FlashlightManager flashlightManager;
     private Coroutine chaseSoundCoroutine;
 
     protected Vector2 currentVelocity;
@@ -107,6 +107,11 @@ public abstract class EnemyFSMController : MonoBehaviour
         {
             target = playerObject.transform;
             playerHP = playerObject.GetComponent<PlayerHPManager>();
+        }
+
+        if(flashlightManager == null)
+        {
+            flashlightManager = playerObject.GetComponentInChildren<FlashlightManager>();
         }
     }
 
@@ -297,7 +302,7 @@ public abstract class EnemyFSMController : MonoBehaviour
 
     protected virtual void OnTriggerStay2D(Collider2D collision)
     {
-        if (((1 << collision.gameObject.layer) & lightLayerMask) != 0 && collision.GetComponentInParent<FlashlightManager>().isUVMode) isExposed = true;
+        if (((1 << collision.gameObject.layer) & lightLayerMask) != 0 && flashlightManager.isUVMode) isExposed = true;
     }
 
     protected void StartChaseSound()

@@ -66,14 +66,14 @@ public class MainMonster : EnemyFSMController
 
         if (hit != null && hit.TryGetComponent(out TeleportPortal portal))
         {
-            Debug.Log("[MainMonster] hit != null && hit.TryGetComponent(out TeleportPortal portal)");
-            Debug.Log("현재 상태: " + currentState);
+            // Debug.Log("[MainMonster] hit != null && hit.TryGetComponent(out TeleportPortal portal)");
+            // Debug.Log("현재 상태: " + currentState);
             if (currentState == EnemyState.Chase)
             {
                 float distToLastSeen = Vector2.Distance(lastKnownPlayerPosition, portal.transform.position);
                 if (!CanSeePlayer() && distToLastSeen < 2.0f)
                 {
-                    Debug.Log("!CanSeePlayer() && distToLastSeen < 1.0f");
+                    // Debug.Log("!CanSeePlayer() && distToLastSeen < 1.0f");
                     ExecutePortalTeleport(portal);
                 }
             }
@@ -99,7 +99,7 @@ public class MainMonster : EnemyFSMController
             agent.SetDestination(target.position);
         }
 
-        Debug.Log($"[MainMonster]포탈 이동: {portal.name}");
+        // Debug.Log($"[MainMonster]포탈 이동: {portal.name}");
     }
 
     private void HandleTeleportTimers()

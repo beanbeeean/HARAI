@@ -20,13 +20,13 @@ public class PurificationObject : InteractableBase
 
     [Header("Status")]
     [SerializeField] private bool isColliding = false;
-    private FlashlightManager currentFlashlight;
+    [SerializeField] private FlashlightManager flashlightManager;
     
 
     [Header("Effect Settings")]
     [SerializeField] private GameObject purificationEffectPrefab;
     [SerializeField] private float effectYOffset = 1.0f;
-
+    
     private readonly int lightLayerMask = 1 << 13;
 
     [SerializeField] private FlashlightDetector flashlightDetector;
@@ -57,25 +57,31 @@ public class PurificationObject : InteractableBase
     {
         base.Update();
 
-    bool isExposed = isColliding && currentFlashlight != null &&
-                     currentFlashlight.isPowerOn && currentFlashlight.isUVMode;
+        bool isExposed = isColliding && flashlightManager != null &&
+                        flashlightManager.isPowerOn && flashlightManager.isUVMode;
 
-    SetAlpha(isExposed ? 1.0f : unexposedAlpha);
+        SetAlpha(isExposed ? 1.0f : unexposedAlpha);
 
-    if (isExposed)
-    {
-        
-
-        if (flashlightDetector.IsInRange)
-        {
-            ShowUI();
-            if (gaugeCanvas != null) gaugeCanvas.SetActive(true);
-
-            if (playerInputReader.InteractPressed)
+        if (isExposed)
             {
-                currentProgress += Time.deltaTime;
-                if (progressSlider != null) progressSlider.value = currentProgress;
-                if (currentProgress >= totalPurifyTime) CompletePurification();
+                // Debug.Log("flashlightDetector.IsInRange : " + flashlightDetector.IsInRange);
+            if (flashlightDetector.IsInRange)
+            {
+                    // Debug.Log("통과");
+                ShowUI();
+                if (gaugeCanvas != null) gaugeCanvas.SetActive(true);
+
+                if (playerInputReader.InteractPressed)
+                {
+                    currentProgress += Time.deltaTime;
+                    if (progressSlider != null) progressSlider.value = currentProgress;
+                    if (currentProgress >= totalPurifyTime) CompletePurification();
+                }
+            }
+            else
+            {
+                HideUI();
+                if (gaugeCanvas != null) gaugeCanvas.SetActive(false);
             }
         }
         else
@@ -83,12 +89,6 @@ public class PurificationObject : InteractableBase
             HideUI();
             if (gaugeCanvas != null) gaugeCanvas.SetActive(false);
         }
-    }
-    else
-    {
-        HideUI();
-        if (gaugeCanvas != null) gaugeCanvas.SetActive(false);
-    }
     }
 
     public override void Interact() { }
@@ -153,11 +153,9 @@ public class PurificationObject : InteractableBase
     {
         if (((1 << collision.gameObject.layer) & lightLayerMask) != 0)
         {
-            var flashlight = collision.GetComponentInParent<FlashlightManager>();
-            if (flashlight != null)
+            if (flashlightManager != null)
             {
                 isColliding = true;
-                currentFlashlight = flashlight;
             }
         }
     }
@@ -167,7 +165,6 @@ public class PurificationObject : InteractableBase
         if (((1 << collision.gameObject.layer) & lightLayerMask) != 0)
         {
             isColliding = false;
-            currentFlashlight = null;
         }
     }
 }
